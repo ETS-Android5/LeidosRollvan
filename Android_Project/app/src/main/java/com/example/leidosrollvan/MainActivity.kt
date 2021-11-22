@@ -9,6 +9,7 @@ import com.example.leidosrollvan.fragments.MapFragment
 import com.example.leidosrollvan.fragments.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()

@@ -19,4 +19,82 @@
         app:layout_constraintRight_toRightOf="parent"
         />
 
+    <TextView
+        android:id="@+id/NearYou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="90dp"
+        android:fillViewport="true"
+        android:text="Near You"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <HorizontalScrollView
+        android:layout_width="411dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NearYou"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/button1"
+                android:layout_width="220dp"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/burger"
+                android:text="Van1"
+                android:radius="50dp"/>/>
+
+            <ImageButton
+                android:id="@+id/button2"
+                android:layout_width="220dp"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/burger"
+                android:text="Van1" />
+
+            <ImageButton
+                android:id="@+id/button3"
+                android:layout_width="220dp"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/burger"
+                android:text="Van1" />
+
+            <ImageButton
+                android:id="@+id/button4"
+                android:layout_width="220dp"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/burger"
+                android:text="Van1" />
+
+            <ImageButton
+                android:id="@+id/button5"
+                android:layout_width="220dp"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/burger"
+                android:text="Van1" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
