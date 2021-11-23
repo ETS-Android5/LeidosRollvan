@@ -1,3 +1,5 @@
+image: openjdk:11-jdk
+
 variables:
   
   ANDROID_COMPILE_SDK: "30"
@@ -30,11 +32,15 @@ stages:
  
 lintDebug:
   stage: build
+  tags:
+    - docker
   script:
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
  
 assembleDebug:
   stage: build
+  tags:
+    - docker
   script:
     - ./gradlew assembleDebug
     #./gradlew assembleRelease -Pandroid.injected.signing.store.file=$KEYFILE -Pandroid.injected.signing.store.password=$STORE_PASSWORD -Pandroid.injected.signing.key.alias=$KEY_ALIAS -Pandroid.injected.signing.key.password=$KEY_PASSWORD
