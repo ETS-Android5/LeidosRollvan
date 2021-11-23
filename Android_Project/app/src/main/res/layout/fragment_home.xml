@@ -7,17 +7,18 @@
     tools:context=".fragments.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Home"
         android:textSize="36sp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.778" />
 
     <TextView
         android:id="@+id/NearYou"
@@ -33,6 +34,7 @@
 
 
     <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
         android:layout_width="411dp"
         android:layout_height="145dp"
         android:layout_marginTop="5dp"
@@ -53,9 +55,9 @@
                 android:layout_height="130dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:radius="50dp"
                 android:src="@drawable/burger"
-                android:text="Van1"
-                android:radius="50dp"/>/>
+                android:text="Van1" />/>
 
             <ImageButton
                 android:id="@+id/button2"
@@ -94,6 +96,63 @@
                 android:text="Van1" />
 
         </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/topDeals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="18dp"
+        android:text="Top deals"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <HorizontalScrollView
+        android:layout_width="411dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topDeals">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/button6"
+                android:layout_width="220dp"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:radius="50dp"
+                android:src="@drawable/burger"
+                android:text="Van1"/>/>
+            <ImageButton
+                android:id="@+id/button7"
+                android:layout_width="220dp"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/burger"
+                android:text="Van1" />
+
+            <ImageButton
+                android:id="@+id/button8"
+                android:layout_width="220dp"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/burger"
+                android:text="Van1" />
+        </LinearLayout>
+
     </HorizontalScrollView>
 
 
