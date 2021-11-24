@@ -8,6 +8,22 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/appbar" />
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="363dp"
+        android:layout_height="46dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="Current Location"
+        android:searchIcon="@drawable/ic_location"
+        app:layout_constraintBottom_toBottomOf="@+id/include"
+        app:layout_constraintEnd_toEndOf="@+id/include"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
