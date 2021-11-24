@@ -17,20 +17,74 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="417dp"
-                android:layout_height="109dp"
-                android:clipToPadding="false"
-                android:paddingStart="22dp"
-                android:paddingEnd="22dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="50dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/discount"
+                            android:drawableTop="@drawable/ic_discount"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:text="Discounts"
+                            android:textSize="10dp"/>
+
+
+                        <Button
+                            android:id="@+id/breakfast"
+                            android:drawableTop="@drawable/ic_breakfast"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:text="Breakfast"
+                            android:textSize="10dp"/>
+
+                        <Button
+                            android:id="@+id/burger"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:drawableTop="@drawable/ic_burger"
+                            android:text="Burgers"
+                            android:textSize="10dp" />
+
+                        <Button
+                            android:id="@+id/salad"
+                            android:drawableTop="@drawable/ic_salad"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:text="Healthy"
+                            android:textSize="10dp"/>
+
+                        <Button
+                            android:id="@+id/dessert"
+                            android:drawableTop="@drawable/ic_dessert"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:text="Desserts"
+                            android:textSize="10dp"/>
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/NearYou"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="120dp"
                 android:fillViewport="true"
                 android:text="Near You"
                 android:textSize="20sp"
@@ -54,7 +108,7 @@
                         android:layout_weight="1"
                         android:radius="50dp"
                         android:src="@drawable/burger"
-                        android:text="Van1" />/>
+                        android:text="Van1" />
 
                     <ImageButton
                         android:id="@+id/button7"
@@ -156,6 +210,5 @@
 
         </LinearLayout>
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

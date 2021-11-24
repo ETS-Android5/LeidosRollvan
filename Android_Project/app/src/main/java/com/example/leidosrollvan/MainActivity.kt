@@ -3,11 +3,16 @@ package com.example.leidosrollvan
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.leidosrollvan.Adapter.CategoryAdapter
+import com.example.leidosrollvan.Domain.CategoryDomain
 import com.example.leidosrollvan.fragments.AccountFragment
 import com.example.leidosrollvan.fragments.HomeFragment
 import com.example.leidosrollvan.fragments.MapFragment
 import com.example.leidosrollvan.fragments.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,4 +45,6 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
+
+
 }
