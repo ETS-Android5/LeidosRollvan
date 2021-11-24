@@ -58,6 +58,8 @@ before_script:
 lintDebug:
   interruptible: true
   stage: build
+  tags:
+    - docker
   script:
     - cd Android_Project
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
@@ -66,6 +68,8 @@ lintDebug:
 assembleDebug:
   interruptible: true
   stage: build
+  tags:
+    - docker
   script:
     - cd Android_Project
     - ./gradlew assembleDebug
@@ -77,6 +81,8 @@ assembleDebug:
 debugTests:
   interruptible: true
   stage: test
+  tags: 
+    - docker
   script:
     - cd Android_Project
     - ./gradlew -Pci --console=plain :app:testDebug
