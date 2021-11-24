@@ -62,7 +62,7 @@ lintDebug:
     - docker
   script:
     - cd Android_Project
-    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint --stacktrace
 
 # Make Project
 assembleDebug:
@@ -72,7 +72,7 @@ assembleDebug:
     - docker
   script:
     - cd Android_Project
-    - ./gradlew assembleDebug
+    - ./gradlew assembleDebug. --stacktrace
   artifacts:
     paths:
       - Android_Project/app/build/outputs/
