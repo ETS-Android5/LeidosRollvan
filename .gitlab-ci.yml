@@ -30,14 +30,14 @@ lintDebug:
   tags: 
     - docker
   script:
-    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+    - Android_Project/gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
 assembleDebug:
   stage: build
   tags:
-    - docker
+    - Centos 7 shell
   script:
-    - ./gradlew assembleDebug
+    - Android_Project/gradlew assembleDebug
   artifacts:
     paths:
     - Android_Project/app/build/outputs/
@@ -47,4 +47,4 @@ debugTests:
   tags:
     - docker
   script:
-    - ./gradlew -Pci --console=plain :app:testDebug
+    - Android_Project/gradlew -Pci --console=plain :app:testDebug
