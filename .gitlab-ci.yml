@@ -27,18 +27,24 @@ stages:
 
 lintDebug:
   stage: build
+  tags: 
+    - docker
   script:
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
 assembleDebug:
   stage: build
+  tags:
+    - docker
   script:
     - ./gradlew assembleDebug
   artifacts:
     paths:
-    - app/build/outputs/
+    - Android_Project/app/build/outputs/
 
 debugTests:
   stage: test
+  tags:
+    - docker
   script:
     - ./gradlew -Pci --console=plain :app:testDebug
