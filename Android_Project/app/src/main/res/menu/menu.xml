@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/id_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/id_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Search" />
+
+    <item
+        android:id="@+id/id_map"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="Map" />
+
+    <item
+        android:id="@+id/id_account"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="Account" />
+</menu>
