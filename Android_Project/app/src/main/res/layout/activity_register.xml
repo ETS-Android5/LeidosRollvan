@@ -18,26 +18,29 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-25dp"
+            android:layout_marginTop="0dp"
             android:orientation="vertical"
             android:padding="20dp">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="149dp"
+                android:padding="0dp">
+
 
                 <TextView
                     style="@style/viewParent.headerText.NoMode"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:text="Register Here"
-                    android:textColor="@color/whiteTextColor" />
+                    android:text="Register\n Below!"
+                    android:textColor="#FFFFFF"
+                    android:textSize="40sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:src="@drawable/ic_food_truck_svgrepo_com" />
             </RelativeLayout>
 
@@ -50,8 +53,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_height="408dp"
+                    android:layout_margin="5dp"
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -111,6 +114,7 @@
                         style="@style/loginButton"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/loginViewsMargin"
+                        android:onClick="onRegisterClick"
                         android:text="Register"
                         app:initialCornerAngle="27dp"
                         app:spinning_bar_color="#FFF"
@@ -120,11 +124,12 @@
                     <TextView
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin"
-                        android:text="Already have an account?"
+                        android:onClick="toLoginPage"
+                        android:text="Sign-in to existing account"
                         android:textAlignment="center"
                         android:textColor="@color/themeColor"
                         android:textSize="17sp"
-                        android:textStyle="bold" /><!--android:onClick="onLoginClick"-->
+                        android:textStyle="bold" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -200,5 +205,6 @@
         android:layout_marginRight="11dp"
         android:layout_marginBottom="30dp"
         android:adjustViewBounds="false"
-        android:src="@drawable/ic_back_img" /><!--android:onClick="onLoginClick"-->
+        android:onClick="toLoginPage"
+        android:src="@drawable/ic_back_img" />
 </RelativeLayout>
