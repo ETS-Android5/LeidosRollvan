@@ -94,6 +94,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:background="#00000000"
+            android:onClick="toLoginPage"
             android:drawableLeft="@drawable/signout"
             android:drawableTint="@color/red"
             android:text="Sign Out"
