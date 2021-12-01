@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".fragments.SearchFragment">
 
     <SearchView
-        android:id="@+id/searchView2"
-        android:layout_width="394dp"
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:background="#ececec"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/searchview_background"
         android:iconifiedByDefault="false"
-        android:queryHint="Search"
-        app:layout_constraintEnd_toEndOf="@+id/scrollView3"
-        app:layout_constraintStart_toStartOf="@+id/scrollView3"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:queryBackground="@android:color/transparent"
+        android:queryHint="Search" />
 
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="401dp"
         android:layout_height="510dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:fillViewport="true">
 
 
         <LinearLayout
@@ -55,18 +53,18 @@
                         android:id="@+id/btn1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         android:background="@drawable/kebab"
-                        android:clickable="true">
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:gravity="center"
                             android:text="Kebab"
                             android:textColor="@color/white"
-                            android:textSize="33sp"
-                            android:gravity="center"/>
-
+                            android:textSize="33sp" />
 
 
                     </LinearLayout>
@@ -84,18 +82,18 @@
                         android:id="@+id/btn2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         android:background="@drawable/hotdog"
-                        android:clickable="true">
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:gravity="center"
                             android:text="Hot dog"
                             android:textColor="@color/white"
-                            android:textSize="33sp"
-                            android:gravity="center"/>
+                            android:textSize="33sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -112,18 +110,18 @@
                         android:id="@+id/btn3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         android:background="@drawable/burritos"
-                        android:clickable="true">
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:gravity="center"
                             android:text="Burritos"
                             android:textColor="@color/white"
-                            android:textSize="33sp"
-                            android:gravity="center"/>
+                            android:textSize="33sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -140,18 +138,18 @@
                         android:id="@+id/btn4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         android:background="@drawable/burger2"
-                        android:clickable="true">
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:gravity="center"
                             android:text="Burger"
                             android:textColor="@color/white"
-                            android:textSize="33sp"
-                            android:gravity="center"/>
+                            android:textSize="33sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -168,18 +166,18 @@
                         android:id="@+id/btn5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         android:background="@drawable/coffee_and_tea"
-                        android:clickable="true">
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:gravity="center"
                             android:text="Coffee and tea"
                             android:textColor="@color/white"
-                            android:textSize="33sp"
-                            android:gravity="center"/>
+                            android:textSize="33sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -196,18 +194,18 @@
                         android:id="@+id/btn6"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         android:background="@drawable/asian_cuisine"
-                        android:clickable="true">
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:gravity="center"
                             android:text="Asian Cuisine"
                             android:textColor="@color/white"
-                            android:textSize="33sp"
-                            android:gravity="center"/>
+                            android:textSize="33sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -230,12 +228,12 @@
                             android:id="@+id/btn7"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/black"
-                            android:text="Button"
-                            android:textSize="18sp"
-                            android:src="@drawable/kebab"
                             android:adjustViewBounds="true"
-                            android:scaleType="fitCenter">
+                            android:background="@color/black"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/kebab"
+                            android:text="Button"
+                            android:textSize="18sp">
 
                         </ImageButton>
 
@@ -247,32 +245,12 @@
         </LinearLayout>
     </ScrollView>
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="412dp"
-        android:layout_height="89dp"
-        android:background="@color/register_bk_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-    </RelativeLayout>
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
         android:textColor="#000000"
         android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="@+id/relativeLayout"
-        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.77" />
+        android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
