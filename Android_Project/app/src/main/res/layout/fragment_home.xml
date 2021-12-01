@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout --><![CDATA[
+
+
+
+        \\tools:layout_editor_absoluteX="-179dp"
+        \\tools:layout_editor_absoluteY="-16dp">
+
+
+
+
+
+
+    ]]>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:orientation="horizontal">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="50dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/discount"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:drawableTop="@drawable/ic_discount"
+                            android:text="Discounts"
+                            android:textColor="@color/black"
+                            android:textSize="10dp" />
+
+
+                        <Button
+                            android:id="@+id/breakfast"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:drawableTop="@drawable/ic_breakfast"
+                            android:text="Breakfast"
+                            android:textColor="@color/black"
+                            android:textSize="10dp" />
+
+                        <Button
+                            android:id="@+id/burger"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:drawableTop="@drawable/ic_burger"
+                            android:text="Burgers"
+                            android:textColor="@color/black"
+                            android:textSize="10dp" />
+
+                        <Button
+                            android:id="@+id/salad"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:drawableTop="@drawable/ic_salad"
+                            android:text="Healthy"
+                            android:textColor="@color/black"
+                            android:textSize="10dp" />
+
+                        <Button
+                            android:id="@+id/dessert"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:drawableTop="@drawable/ic_dessert"
+                            android:text="Desserts"
+                            android:textColor="@color/black"
+                            android:textSize="10dp" />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/button"
+                android:layout_width="400dp"
+                android:layout_height="175dp"
+                android:adjustViewBounds="true"
+                android:backgroundTint="@color/white"
+                android:layout_marginLeft="0dp"
+                android:src="@drawable/coke"
+                android:layout_marginBottom="5dp"
+
+                android:text="AD" />
+
+            <TextView
+                android:id="@+id/NearYou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:fillViewport="true"
+                android:text="Near You"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="411dp"
+                android:layout_height="145dp"
+                android:layout_marginTop="0dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button6"
+                        android:layout_width="220dp"
+                        android:layout_height="130dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:radius="50dp"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/croiss"
+                        android:textColor="@color/black"
+                        android:textSize="10dp"
+                        />
+
+                    <Button
+                        android:id="@+id/button7"
+                        android:layout_width="220dp"
+                        android:layout_height="130dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/bacon"
+                        android:background="@android:color/transparent"
+                        android:text="Van1" />
+
+                    <Button
+                        android:id="@+id/button8"
+                        android:layout_width="220dp"
+                        android:layout_height="130dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/pie_edit"
+                        android:text="Van1" />
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/topDeals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Top deals"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
+                android:layout_width="411dp"
+                android:layout_height="145dp"
+                android:layout_marginTop="5dp"
+                android:scrollbars="none"
+                tools:ignore="SpeakableTextPresentCheck">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button1"
+                        android:layout_width="220dp"
+                        android:layout_height="130dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:radius="50dp"
+                        android:drawableTop="@drawable/pie_edit"
+                        android:background="@android:color/transparent"
+                        android:text="Van1" />/>
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="220dp"
+                        android:layout_height="130dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/cupcake"
+                        android:background="@android:color/transparent"
+                        android:text="Van1" />
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="220dp"
+                        android:layout_height="130dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/croiss"
+                        android:background="@android:color/transparent"
+                        android:text="Van1" />
+
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_width="220dp"
+                        android:layout_height="130dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/bacon"
+                        android:background="@android:color/transparent"
+                        android:text="Van1" />
+
+                    <Button
+                        android:id="@+id/button5"
+                        android:layout_width="220dp"
+                        android:layout_height="130dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/pie_edit"
+                        android:background="@android:color/transparent"
+                        android:text="Van1" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <Button
+                android:id="@+id/van1"
+                android:background="@android:color/transparent"
+                android:layout_width="400dp"
+                android:layout_height="175dp"
+                android:drawableTop="@drawable/fast_food"
+                android:layout_marginBottom="5dp"
+                />
+            <TextView
+                android:id="@+id/vanName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="0dp"
+                android:fillViewport="true"
+                android:text="Van Name"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/vanDistance1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:fillViewport="true"
+                android:text="5 minutes away"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+                //android:text="resteraunt1"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                app:iconPadding="0dp" />
+
+            <Button
+                android:id="@+id/van2"
+                android:background="@android:color/transparent"
+                android:layout_width="400dp"
+                android:layout_height="175dp"
+                android:drawableTop="@drawable/pizza_edit"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:layout_marginBottom="2dp"/>
+"
+            <TextView
+                android:id="@+id/vanName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="0dp"
+                android:fillViewport="true"
+                android:text="Van Name"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/vanDistance2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:fillViewport="true"
+                android:text="10 minutes away"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/Browse_More"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="5dp"
+                android:fillViewport="true"
+                android:text="Browse More Locations"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/button25"
+                android:layout_width="400dp"
+                android:layout_height="175dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:adjustViewBounds="true"
+                android:backgroundTint="@color/white"
+
+                android:src="@drawable/map_edit"
+                />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Need help finding what you're looking for?" />
+
+            <Button
+                android:id="@+id/button15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View all businesses" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/appbar" />
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="363dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="5dp"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@android:color/transparent"
+        android:queryHint="Current Location"
+        android:searchIcon="@drawable/ic_location"
+        app:layout_constraintBottom_toBottomOf="@+id/include"
+        app:layout_constraintEnd_toEndOf="@+id/include"
+        app:layout_constraintStart_toStartOf="@+id/include"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
