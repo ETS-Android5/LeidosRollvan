@@ -94,11 +94,12 @@
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:background="#00000000"
-            android:onClick="toLoginPage"
+            android:onClick="toLoginPage2"
             android:drawableLeft="@drawable/signout"
             android:drawableTint="@color/red"
             android:text="Sign Out"
-            android:textColor="@color/red" />
+            android:textColor="@color/red"
+            tools:ignore="UsingOnClickInXml" />
 
     </LinearLayout>
 </ScrollView>

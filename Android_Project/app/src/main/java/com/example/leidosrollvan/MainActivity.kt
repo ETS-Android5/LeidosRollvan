@@ -1,7 +1,9 @@
 package com.example.leidosrollvan
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.leidosrollvan.fragments.AccountFragment
 import com.example.leidosrollvan.fragments.HomeFragment
@@ -40,6 +42,10 @@ class MainActivity : AppCompatActivity() {
             transaction.replace(R.id.fragment_container, fragment)
             transaction.commit()
         }
+    }
+    fun toLoginPage2(view: View?) {
+        startActivity(Intent(this, LoginActivity::class.java))
+        overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right)
     }
 
 

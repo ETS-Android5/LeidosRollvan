@@ -33,7 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
     public void toLoginPage(View view){
         startActivity(new Intent(this,LoginActivity.class));
         overridePendingTransition(R.anim.slide_in_left,android.R.anim.slide_out_right);
-
     }
 
     public void onRegisterClick(View View){
