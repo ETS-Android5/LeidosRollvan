@@ -21,9 +21,10 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="401dp"
-        android:layout_height="510dp"
-        android:fillViewport="true">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="false"
+        android:scrollbars="none">
 
 
         <LinearLayout
