@@ -4,11 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.leidosrollvan.fragments.AccountFragment
 import com.example.leidosrollvan.fragments.HomeFragment
 import com.example.leidosrollvan.fragments.MapFragment
 import com.example.leidosrollvan.fragments.SearchFragment
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 
@@ -26,11 +28,17 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(homeFragment)
 
         bottom_navigation.setOnItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.id_home -> replaceFragment(homeFragment)
                 R.id.id_search -> replaceFragment(searchFragment)
                 R.id.id_map -> replaceFragment(mapFragment)
-                R.id.id_account -> replaceFragment(accountFragment)
+                R.id.id_account -> {
+                    if(FirebaseAuth.getInstance().currentUser == null){
+                        startActivity(Intent(this, LoginActivity::class.java))
+                    }else {
+                        replaceFragment(accountFragment)
+                    }
+                }
             }
             true
         }
@@ -43,10 +51,10 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
-    fun toLoginPage2(view: View?) {
-        startActivity(Intent(this, LoginActivity::class.java))
-        overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right)
-    }
+//    fun toLoginPage2(view: View?) {
+//        startActivity(Intent(this, LoginActivity::class.java))
+//        overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right)
+//    }
 
 
 }

@@ -17,13 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LeidosRollVan">
         <activity
-            android:name=".RegisterActivity"
-            android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".LoginActivity"
+            android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,10 +27,18 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"><!--adjustPan makes navbar not scroll up when typing -->
-
+            android:windowSoftInputMode="adjustPan"> <!-- adjustPan makes navbar not scroll up when typing -->
 
         </activity>
     </application>

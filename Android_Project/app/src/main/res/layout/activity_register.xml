@@ -44,6 +44,14 @@
                     android:src="@drawable/ic_food_truck_svgrepo_com" />
             </RelativeLayout>
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_gravity="center" />
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,7 +129,9 @@
                         app:spinning_bar_padding="6dp"
                         app:spinning_bar_width="4dp" />
 
+
                     <TextView
+                        android:id="@+id/existingAccount"
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:onClick="toLoginPage"
@@ -133,7 +143,6 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
