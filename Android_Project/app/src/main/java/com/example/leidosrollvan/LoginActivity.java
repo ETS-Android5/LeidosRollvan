@@ -99,6 +99,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
+    public void toRegisterPage(View view){
+        startActivity(new Intent(LoginActivity.this,  RegisterActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+    }
     @Override
     public void onClick(View v) {
         switch(v.getId()){
