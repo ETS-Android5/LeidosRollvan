@@ -51,10 +51,4 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
-//    fun toLoginPage2(view: View?) {
-//        startActivity(Intent(this, LoginActivity::class.java))
-//        overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right)
-//    }
-
-
 }
