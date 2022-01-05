@@ -117,6 +117,19 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
+            <Button
+                android:id="@+id/gotoBusinessLogin"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:text="Business owner? Click here"
+                android:textAlignment="center"
+                android:textColor="@color/themeColor"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
