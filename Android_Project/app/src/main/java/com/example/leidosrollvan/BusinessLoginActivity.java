@@ -1,15 +1,23 @@
 package com.example.leidosrollvan;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
@@ -20,6 +28,7 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
     private CircularProgressButton businessLogin;
 
     private ProgressBar progressBar;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +52,7 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
         editBusinessTextPassword= (EditText) findViewById(R.id.editBusinessLoginTextPassword);
 
         progressBar = (ProgressBar) findViewById(R.id.businessLoginProgressBar);
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public void toBusinessRegisterPage(View view){
@@ -51,7 +61,49 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
     }
 
     public void businessLogin(){
-        startActivity(new Intent(this, BusinessHomeActivity.class));
+
+        //startActivity(new Intent(this, BusinessHomeActivity.class));
+        String businessEmail = editBusinessTextEmail.getText().toString().trim();
+        String password = editBusinessTextPassword.getText().toString().trim();
+
+        if(businessEmail.isEmpty()){
+            editBusinessTextEmail.setError("Email is Required!");
+            editBusinessTextEmail.requestFocus();
+            return;
+        }
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(businessEmail).matches()){
+            editBusinessTextEmail.setError("Please enter a valid Email!");
+            editBusinessTextEmail.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            editBusinessTextPassword.setError("Password is required!");
+            editBusinessTextPassword.requestFocus();
+            return;
+        }
+
+        if(password.length() < 6){
+            editBusinessTextPassword.setError("Minimum password length is 6 characters");
+            editBusinessTextPassword.requestFocus();
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        mAuth.signInWithEmailAndPassword(businessEmail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    progressBar.setVisibility(View.GONE);
+                    startActivity(new Intent(BusinessLoginActivity.this, BusinessHomeActivity.class));
+                }else {
+                    Toast.makeText( BusinessLoginActivity.this, "Failed to Login! Please check your credentials!", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     @Override
