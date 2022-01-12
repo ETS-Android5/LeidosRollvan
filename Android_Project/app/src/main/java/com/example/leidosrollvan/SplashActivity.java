@@ -42,6 +42,9 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else {
+//                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+//                    startActivity(intent);
+//                    finish();
                     String userID = mAuth.getInstance().getCurrentUser().getUid();
 
                     businessReference.addListenerForSingleValueEvent(new ValueEventListener() {
