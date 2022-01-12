@@ -31,6 +31,10 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class AccountFragment : Fragment(), View.OnClickListener {
+
+    private val helpFragment = HelpFragment()
+    private val aboutFragment = AboutFragment()
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -57,6 +61,12 @@ class AccountFragment : Fragment(), View.OnClickListener {
 
         val logoutBtn : Button = view.findViewById(R.id.signOut)
         logoutBtn.setOnClickListener(this)
+
+        val helpBtn: Button = view.findViewById(R.id.help)
+        helpBtn.setOnClickListener(this)
+
+        val aboutBtn: Button = view.findViewById(R.id.about)
+        aboutBtn.setOnClickListener(this)
 
         user = FirebaseAuth.getInstance().currentUser!!
         reference = FirebaseDatabase.getInstance().getReference("Users")
@@ -110,6 +120,19 @@ class AccountFragment : Fragment(), View.OnClickListener {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(Intent(activity, LoginActivity::class.java))
             }
+            R.id.help -> {
+                replaceFragment(helpFragment)
+            }
+            R.id.about -> {
+                replaceFragment(aboutFragment)
+            }
+        }
+    }
+    private fun replaceFragment(fragment : Fragment){
+        if(fragment != null){
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, fragment)
+            transaction.commit()
         }
     }
 }
