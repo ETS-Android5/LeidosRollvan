@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "817716753812",
+    "project_id": "leidos-rollvan",
+    "storage_bucket": "leidos-rollvan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817716753812:android:2388b7fcb7a04d50604b81",
+        "android_client_info": {
+          "package_name": "com.example.leidosrollvan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817716753812-rg69jqgbbi7a0splpsjsvfm52oq1v8gp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfQw3PwRn3zqJ2F9z7fudzGe1MoqGUeak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817716753812-rg69jqgbbi7a0splpsjsvfm52oq1v8gp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
