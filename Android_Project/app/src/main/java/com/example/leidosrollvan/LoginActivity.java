@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView register, continueAsGuest;
     private EditText editTextEmail, editTextPassword;
     private CircularProgressButton login;
+    private Button goToBusinessLogin;
 
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
@@ -43,6 +45,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         continueAsGuest = (TextView) findViewById(R.id.continueGuest);
         continueAsGuest.setOnClickListener(this);
+
+        goToBusinessLogin = (Button) findViewById(R.id.gotoBusinessLogin);
+        goToBusinessLogin.setOnClickListener(this);
 
         login = (CircularProgressButton) findViewById(R.id.cirLoginButton);
         login.setOnClickListener(this);
@@ -114,6 +119,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.cirLoginButton:
                 userLogin();
+                break;
+            case R.id.gotoBusinessLogin:
+                startActivity(new Intent(this, BusinessLoginActivity.class));
                 break;
         }
     }

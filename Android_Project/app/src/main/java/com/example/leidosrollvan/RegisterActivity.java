@@ -118,7 +118,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         if(task.isSuccessful()){
                             User user = new User(name, mobile, email);
 
-                            FirebaseDatabase.getInstance().getReference("Users")
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -151,7 +152,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case R.id.cirRegisterButton:
                 registerUser();
                 break;
-
         }
     }
 }
