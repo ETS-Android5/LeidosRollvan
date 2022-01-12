@@ -86,7 +86,7 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
         bannerImage = (ImageView) findViewById(R.id.businessImagePreview);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("Business banners");
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("Businesses");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
     private void changeStatusBarColor() {
@@ -170,7 +170,6 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
                                         Toast.makeText(BusinessRegisterActivity.this, "Business has been registered successfully", Toast.LENGTH_LONG).show();
                                         businessProgressBar.setVisibility(View.GONE);
                                         uploadImage();
-                                        mAuth.signOut();
                                         startActivity(new Intent(BusinessRegisterActivity.this, BusinessLoginActivity.class));
 
                                     }else {
@@ -232,8 +231,7 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
                             .getInstance().getCurrentUser().getUid() + "_banner" + "." + getImageExtension(mImageUri),
                                     fileReference.getDownloadUrl().toString());
 
-                            mDatabaseReference.child(mAuth.getCurrentUser().getUid())
-                                    .child("Business Image")
+                            mDatabaseReference.child("Business Images").child(mAuth.getCurrentUser().getUid())
                                     .setValue(businessImage);
 
                         }
