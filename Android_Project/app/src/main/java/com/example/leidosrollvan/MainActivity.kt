@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.leidosrollvan.fragments.AccountFragment
-import com.example.leidosrollvan.fragments.guestAccountFragment
 import com.example.leidosrollvan.fragments.HomeFragment
 import com.example.leidosrollvan.fragments.MapFragment
 import com.example.leidosrollvan.fragments.SearchFragment
@@ -22,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     private val searchFragment = SearchFragment()
     private val mapFragment = MapFragment()
     private val accountFragment = AccountFragment()
-    private val guestAccountFragment = guestAccountFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.id_map -> replaceFragment(mapFragment)
                 R.id.id_account -> {
                     if(FirebaseAuth.getInstance().currentUser == null){
-                        replaceFragment(guestAccountFragment)
+                        startActivity(Intent(this, LoginActivity::class.java))
                     }else {
                         replaceFragment(accountFragment)
                     }
