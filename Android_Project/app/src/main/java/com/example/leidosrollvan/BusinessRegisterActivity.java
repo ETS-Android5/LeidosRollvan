@@ -170,7 +170,6 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
                                         Toast.makeText(BusinessRegisterActivity.this, "Business has been registered successfully", Toast.LENGTH_LONG).show();
                                         businessProgressBar.setVisibility(View.GONE);
                                         uploadImage();
-                                        mAuth.signOut();
                                         startActivity(new Intent(BusinessRegisterActivity.this, BusinessLoginActivity.class));
 
                                     }else {
