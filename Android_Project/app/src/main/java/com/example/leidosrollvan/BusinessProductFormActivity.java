@@ -49,6 +49,7 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private String businessID;
+    Button SaveButton;
     String[] categories =  {"Asian Cuisine","Kebab","Hot Dogs","Coffee and Tea","Burritos"};
     String[] sections =  {"Breakfast","Lunch","Dinner","Dessert","Drinks"};
     AutoCompleteTextView autoCompleteCategories;
@@ -63,6 +64,9 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_popup);
+        saveButton = (Button) findViewById(R.id.popupSave);
+        cancelButton = (Button) findViewById(R.id.popupCancel);
+
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getInstance().getCurrentUser();
         spinnerCategory = findViewById(R.id.spinnerCategory);
@@ -90,14 +94,7 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
     NO FORM VALIDATION
      */
     public void save(){
-        productName = (EditText) findViewById(R.id.productNamePopup);
-        productPrice = (EditText) findViewById(R.id.productPricePopup);
-        spinnerCategory = findViewById(R.id.spinnerCategory);
-        spinnerSection = findViewById(R.id.spinnerSection);
-        String selectedName = productName.getText().toString();
-        String selectedPrice = productPrice.getText().toString();
-        String selectedCategory = spinnerCategory.getSelectedItem().toString();
-        String selectedSection = spinnerSection.getSelectedItem().toString();
+
 
 
         reference = FirebaseDatabase.getInstance().getReference("Business Menu");
@@ -113,6 +110,14 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             BusinessMenu oldMenu = snapshot.getValue(BusinessMenu.class);
+                            productName = (EditText) findViewById(R.id.productNamePopup);
+                            productPrice = (EditText) findViewById(R.id.productPricePopup);
+                            spinnerCategory = findViewById(R.id.spinnerCategory);
+                            spinnerSection = findViewById(R.id.spinnerSection);
+                            String selectedName = productName.getText().toString().trim();
+                            String selectedPrice = productPrice.getText().toString().trim();
+                            String selectedCategory = spinnerCategory.getSelectedItem().toString().trim();
+                            String selectedSection = spinnerSection.getSelectedItem().toString().trim();
                             HashMap<String, String> item = new HashMap<String, String>();
                             //populate fields with form data
                             oldMenu.addCategories(selectedCategory);
@@ -133,6 +138,14 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                 }
 
                 else{
+                    productName = (EditText) findViewById(R.id.productNamePopup);
+                    productPrice = (EditText) findViewById(R.id.productPricePopup);
+                    spinnerCategory = findViewById(R.id.spinnerCategory);
+                    spinnerSection = findViewById(R.id.spinnerSection);
+                    String selectedName = productName.getText().toString().trim();
+                    String selectedPrice = productPrice.getText().toString().trim();
+                    String selectedCategory = spinnerCategory.getSelectedItem().toString().trim();
+                    String selectedSection = spinnerSection.getSelectedItem().toString().trim();
                     HashMap<String, String> item = new HashMap<String, String>();
                     HashMap<String, ArrayList<HashMap<String,String>>> businessMenuItems = new HashMap<String, ArrayList<HashMap<String,String>>>();
                     ArrayList<HashMap<String,String>> items = new ArrayList<HashMap<String,String>>();
@@ -160,16 +173,16 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
             }
         });
 
-
-
     }
 
+    public void cancel(View v){
+        finish();
+        startActivity(new Intent(this, BusinessHomeActivity.class));
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.popupCancel:
-                startActivity(new Intent(this, BusinessHomeActivity.class));
             case R.id.popupSave:
                 save();
                 startActivity(new Intent(this, BusinessHomeActivity.class));
