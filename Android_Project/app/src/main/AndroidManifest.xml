@@ -19,6 +19,9 @@
         <activity
             android:name=".BusinessHomeActivity"
             android:exported="false" />
+        <activity android:name=".BusinessProductFormActivity"
+            android:exported="false"
+            />
         <activity
             android:name=".BusinessRegisterActivity"
             android:exported="false" />

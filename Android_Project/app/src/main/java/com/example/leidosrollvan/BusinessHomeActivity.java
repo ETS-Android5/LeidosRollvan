@@ -6,16 +6,28 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.internal.constants.ListAppsActivityContract;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,8 +48,22 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
     private FirebaseUser user;
     private DatabaseReference reference;
     private String businessID;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private EditText productName, productPrice;
+    private String productCategory,productSection;
+    private Button saveButton,cancelButton;
+    String[] categories =  {"Asian Cuisine","Kebab","Hot Dogs","Coffee and Tea","Burritos"};
+    String[] sections =  {"Breakfast","Lunch","Dinner","Dessert","Drinks"};
+    AutoCompleteTextView autoCompleteCategories;
+    AutoCompleteTextView autoCompleteSections;
+    ArrayAdapter<String> adapterCategories;
+    ArrayAdapter<String> adapterSections;
+    ListView listview;
+    Button addButton;
+    EditText GetValue;
+    ArrayAdapter adapter;
     RecyclerView recyclerView;
-    MyAdapter myAdapter;
     BusinessMenu menu;
     HashMap<String, HashMap<String, Double>> menuMap;
 
@@ -46,37 +72,7 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_home);
 
-        recyclerView = findViewById(R.id.recycler1);
-        reference = FirebaseDatabase.getInstance().getReference("Businesses/businessMenu");
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        myAdapter = new MyAdapter(this,menu);
-        recyclerView.setAdapter(myAdapter);
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //Convert firebase data into BusinessMenu Object
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    HashMap<String, Double> foodItems = new HashMap<String,Double>();
-                    String category = dataSnapshot.getKey();
-                    for(DataSnapshot dataSnapshot2: dataSnapshot.getChildren()){
-                        String name = dataSnapshot2.getKey();
-                        double price = (double) dataSnapshot2.getValue();
-                        foodItems.put(name,price);
-                    }
-                    menuMap.put(category,foodItems);
-                }
-                menu = new BusinessMenu(menuMap);
-                myAdapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
+        addButton = findViewById(R.id.button1);
         businessHomeProgressBar = (ProgressBar) findViewById(R.id.business_home_progressBar);
         businessHomeProgressBar.setVisibility(View.VISIBLE);
 
@@ -90,18 +86,14 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
         final TextView businessHomeName = (TextView) findViewById(R.id.business_home_name);
         final TextView businessHomeMobile = (TextView) findViewById(R.id.business_home_mobile);
 
-        reference.child(businessID).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(businessID).child("businessMenu").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Business businessProfile = snapshot.getValue(Business.class);
+               // Business businessProfile = snapshot.getValue(Business.class);
+                BusinessMenu menu = snapshot.getValue(BusinessMenu.class);
 
-                if (businessProfile != null){
-                    String businessName = businessProfile.businessName;
-                    String businessMobile = businessProfile.businessMobile;
+                if (menu != null){
 
-                    businessHomeName.setText("Business Name: " + businessName);
-
-                    businessHomeMobile.setText("Business Contact: " + businessMobile);
                 }
             }
 
@@ -116,12 +108,23 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
         businessHomeMobile.setVisibility(View.VISIBLE);
     }
 
+
+
+    public void toAddPage(View view){
+        startActivity(new Intent(this,  BusinessProductFormActivity.class));
+    }
+
     @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.business_home_logout:
                 mAuth.getInstance().signOut();
                 startActivity(new Intent(this, BusinessLoginActivity.class));
+            case R.id.business_home_add:
+                startActivity(new Intent(this, BusinessProductFormActivity.class));
         }
     }
+
+
+
 }
