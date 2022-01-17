@@ -6,26 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout --><![CDATA[
-
-
-
-        \\tools:layout_editor_absoluteX="-179dp"
-        \\tools:layout_editor_absoluteY="-16dp">
-
-
-
-
-
-
-    ]]>
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="0dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:fillViewport="true">
 
 
         <LinearLayout
@@ -248,81 +235,11 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <Button
-                android:id="@+id/van1"
-                android:background="@android:color/transparent"
-                android:layout_width="400dp"
-                android:layout_height="175dp"
-                android:drawableTop="@drawable/fast_food"
-                android:layout_marginBottom="5dp"
-                />
-            <TextView
-                android:id="@+id/vanName1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="0dp"
-                android:fillViewport="true"
-                android:text="Van Name"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/vanDistance1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:fillViewport="true"
-                android:text="5 minutes away"
-                android:textSize="10dp"
-                android:textStyle="bold" />
-                //android:text="resteraunt1"
-                android:textColor="@color/black"
-                android:textSize="10dp"
-                app:iconPadding="0dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/businessRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-            <Button
-                android:id="@+id/van2"
-                android:background="@android:color/transparent"
-                android:layout_width="400dp"
-                android:layout_height="175dp"
-                android:drawableTop="@drawable/pizza_edit"
-                android:textColor="@color/black"
-                android:textSize="10dp"
-                android:layout_marginBottom="2dp"/>
-"
-            <TextView
-                android:id="@+id/vanName2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="0dp"
-                android:fillViewport="true"
-                android:text="Van Name"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/vanDistance2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:fillViewport="true"
-                android:text="10 minutes away"
-                android:textSize="10dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/Browse_More"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginLeft="5dp"
-                android:fillViewport="true"
-                android:text="Browse More Locations"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/button25"
