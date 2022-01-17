@@ -1,7 +1,6 @@
 package com.example.leidosrollvan;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList; // import the ArrayList class
+import java.util.ArrayList;
 import java.util.HashMap;
 public class BusinessMenu {
 

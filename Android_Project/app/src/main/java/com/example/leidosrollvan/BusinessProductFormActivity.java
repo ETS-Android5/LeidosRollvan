@@ -1,18 +1,16 @@
 package com.example.leidosrollvan;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,18 +24,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BusinessProductFormActivity extends AppCompatActivity implements View.OnClickListener {
+    String[] sections =  {"Breakfast","Lunch","Dinner","Dessert","Drinks"};
     private EditText productName, productPrice;
-    private String productSection;
-    private Button saveButton,cancelButton;
-    private Spinner spinnerCategory,spinnerSection;
+    private Spinner spinnerSection;
     private DatabaseReference reference;
-    private FirebaseAuth mAuth;
     private FirebaseUser user;
     private String businessID;
-    Button SaveButton;
-    String[] sections =  {"Breakfast","Lunch","Dinner","Dessert","Drinks"};
-    AutoCompleteTextView autoCompleteSections;
-    ArrayAdapter<String> adapterSections;
+
     @Override
 
     /*
@@ -46,25 +39,22 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_product_form);
-        saveButton = (Button) findViewById(R.id.popupSave);
-        cancelButton = (Button) findViewById(R.id.popupCancel);
+        Button saveButton = (Button) findViewById(R.id.popupSave);
+        Button cancelButton = (Button) findViewById(R.id.popupCancel);
 
-        mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getInstance().getCurrentUser();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         //spinnerCategory = findViewById(R.id.spinnerCategory);
         spinnerSection = findViewById(R.id.spinnerSection);
 
         //populate adapter
-        //ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,categories);
         ArrayAdapter adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item,sections);
 
 
         //choose style of dropdown table
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //set adapter to spinner (populate dropdown table)
-        //spinnerCategory.setAdapter(adapter);
         spinnerSection.setAdapter(adapter2);
 
 

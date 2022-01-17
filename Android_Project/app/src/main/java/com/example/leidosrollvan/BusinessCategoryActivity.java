@@ -1,24 +1,15 @@
 package com.example.leidosrollvan;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,18 +18,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.protobuf.Value;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class BusinessCategoryActivity extends AppCompatActivity{
 
-    private String[] categories = {"Asian Cuisine", "Kebab", "Hot Dogs", "Coffee and Tea", "Burritos"};
-    private ArrayList<String> initialCategories = new ArrayList<String>();
-    private ArrayList<String> finalCategories = new ArrayList<String>();
+    private final String[] categories = {"Asian Cuisine", "Kebab", "Hot Dogs", "Coffee and Tea", "Burritos"};
+    private final ArrayList<String> initialCategories = new ArrayList<String>();
+    private final ArrayList<String> finalCategories = new ArrayList<String>();
     private DatabaseReference reference;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -54,7 +42,7 @@ public class BusinessCategoryActivity extends AppCompatActivity{
         setContentView(R.layout.activity_business_categories);
         //Firebase stuff
         mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Business Menu");
         businessID = user.getUid();
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -121,7 +109,7 @@ public class BusinessCategoryActivity extends AppCompatActivity{
             }
         }
         mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Business Menu");
         businessID = user.getUid();
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
