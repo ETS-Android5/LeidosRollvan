@@ -1,5 +1,6 @@
 package com.example.leidosrollvan.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -63,10 +64,11 @@ class HomeFragment : Fragment() {
         getBusinessData()
     }
 
-    private fun getBusinessData(){
+    private fun getBusinessData() {
         reference = FirebaseDatabase.getInstance().getReference("Businesses")
 
-        reference.addValueEventListener(object : ValueEventListener{
+        reference.addValueEventListener(object : ValueEventListener,
+            CustomRecyclerAdapter.onBusiClickListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     for(businessSnapshot in snapshot.children){
@@ -75,15 +77,30 @@ class HomeFragment : Fragment() {
                         businessIdList.add(businessSnapshot.key!!)
                     }
 
-                    businessRecyclerView.adapter = CustomRecyclerAdapter(businessList, businessIdList)
+
+                    businessRecyclerView.adapter = CustomRecyclerAdapter(businessList, businessIdList,this )
+
+
+
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(activity, "error", Toast.LENGTH_LONG).show()
             }
+
+            override fun onBusiClick(position: Int) {
+                val b_id = businessIdList.get(position)
+                var i  = Intent(activity,businessPage::class.java)
+                i.putExtra("b_id", b_id)
+                startActivity(i)
+            }
+
+
         })
     }
+
+
 
 
     companion object {
@@ -105,4 +122,5 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+
 }
