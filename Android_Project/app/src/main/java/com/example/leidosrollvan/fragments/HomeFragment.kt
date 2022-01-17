@@ -27,6 +27,8 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var reference: DatabaseReference
     private lateinit var businessRecyclerView : RecyclerView
+    private lateinit var businessHorizRecyclerView : RecyclerView
+    private lateinit var businessHorizRecyclerView2 : RecyclerView
     private lateinit var businessList: ArrayList<Business>
     private lateinit var businessIdList : ArrayList<String>
 
@@ -61,6 +63,13 @@ class HomeFragment : Fragment() {
         businessRecyclerView.layoutManager = LinearLayoutManager(view.context)
         businessRecyclerView.setHasFixedSize(true)
 
+        businessHorizRecyclerView = view.findViewById(R.id.businessHorizRecyclerView)
+        businessHorizRecyclerView.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
+        businessHorizRecyclerView.setHasFixedSize(true)
+        businessHorizRecyclerView2 = view.findViewById(R.id.businessHorizRecyclerView2)
+        businessHorizRecyclerView2.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
+        businessHorizRecyclerView2.setHasFixedSize(true)
+
         getBusinessData()
     }
 
@@ -68,7 +77,7 @@ class HomeFragment : Fragment() {
         reference = FirebaseDatabase.getInstance().getReference("Businesses")
 
         reference.addValueEventListener(object : ValueEventListener,
-            CustomRecyclerAdapter.onBusiClickListener {
+            CustomRecyclerAdapter.onBusiClickListener, horizRecyclerAdapter.onBusiClickListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     for(businessSnapshot in snapshot.children){
@@ -79,7 +88,8 @@ class HomeFragment : Fragment() {
 
 
                     businessRecyclerView.adapter = CustomRecyclerAdapter(businessList, businessIdList,this )
-
+                    businessHorizRecyclerView.adapter=horizRecyclerAdapter(businessList,businessIdList,this)
+                    businessHorizRecyclerView2.adapter=horizRecyclerAdapter(businessList,businessIdList,this)
 
 
                 }
@@ -99,9 +109,6 @@ class HomeFragment : Fragment() {
 
         })
     }
-
-
-
 
     companion object {
         /**

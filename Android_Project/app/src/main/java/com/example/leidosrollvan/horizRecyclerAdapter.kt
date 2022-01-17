@@ -13,10 +13,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
-class CustomRecyclerAdapter(private val businessList: ArrayList<Business>,
-                            private val businessIdList: ArrayList<String>,
-                            onBusiClickListener: onBusiClickListener
-) : RecyclerView.Adapter<CustomRecyclerAdapter.ViewHolder>()  {
+class horizRecyclerAdapter(private val businessList: ArrayList<Business>,
+                           private val businessIdList: ArrayList<String>,
+                           onBusiClickListener: onBusiClickListener
+) : RecyclerView.Adapter<horizRecyclerAdapter.ViewHolder>()  {
     private var monBusiClickListener:onBusiClickListener
     init {
         this.monBusiClickListener=onBusiClickListener
@@ -24,7 +24,7 @@ class CustomRecyclerAdapter(private val businessList: ArrayList<Business>,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_list_item,
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.horiz_bus,
             parent, false)
         return ViewHolder(itemView,monBusiClickListener)
 
@@ -39,12 +39,10 @@ class CustomRecyclerAdapter(private val businessList: ArrayList<Business>,
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     val uri = snapshot.getValue(BusinessImage::class.java)!!.mImageUrl
-                    holder.businessName.text = currentItem.businessName
-                    holder.businessContact.text = currentItem.businessMobile
+                    holder.businessName.setText(currentItem.businessName)
                     Picasso.with(holder.businessImage.context).load(uri).into(holder.businessImage)
                 }else {
-                    holder.businessName.text = currentItem.businessName
-                    holder.businessContact.text = currentItem.businessMobile
+                    holder.businessName.setText(currentItem.businessName)
                     holder.businessImage.setImageResource(R.drawable.ic_baseline_image_not_supported_24)
                 }
 
@@ -61,10 +59,9 @@ class CustomRecyclerAdapter(private val businessList: ArrayList<Business>,
 
 
     class ViewHolder(itemView : View, onBusiClickListener: onBusiClickListener) : RecyclerView.ViewHolder(itemView),View.OnClickListener{
-        val businessName : TextView = itemView.findViewById(R.id.nameRecyclerItem)
-        val businessContact : TextView = itemView.findViewById(R.id.contactRecyclerItem)
-        val businessImage : ImageView = itemView.findViewById(R.id.imageRecyclerItem)
-        lateinit var onBusiClickListener:onBusiClickListener
+        var businessName : TextView = itemView.findViewById(R.id.businessCard)
+        var businessImage : ImageView = itemView.findViewById(R.id.businessCardImage)
+        var onBusiClickListener:onBusiClickListener
         init {
             itemView.setOnClickListener(this)
             this.onBusiClickListener =onBusiClickListener

@@ -1,0 +1,290 @@
+Index: app/src/main/java/com/example/leidosrollvan/CustomRecyclerAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.leidosrollvan\n\nimport android.util.Log\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport android.widget.ImageView\nimport android.widget.TextView\nimport androidx.recyclerview.widget.RecyclerView\nimport com.google.firebase.database.DataSnapshot\nimport com.google.firebase.database.DatabaseError\nimport com.google.firebase.database.FirebaseDatabase\nimport com.google.firebase.database.ValueEventListener\nimport com.squareup.picasso.Picasso\n\nclass CustomRecyclerAdapter(private val businessList: ArrayList<Business>,\n                            private val businessIdList: ArrayList<String>,\n                            onBusiClickListener: onBusiClickListener\n) : RecyclerView.Adapter<CustomRecyclerAdapter.ViewHolder>()  {\n    private var monBusiClickListener:onBusiClickListener\n    init {\n        this.monBusiClickListener=onBusiClickListener\n    }\n\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {\n\n        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_list_item,\n        parent, false)\n        return ViewHolder(itemView,monBusiClickListener)\n\n    }\n\n    override fun onBindViewHolder(holder: ViewHolder, position: Int) {\n        val currentItem = businessList[position]\n        val currentID = businessIdList[position]\n\n        val mRef = FirebaseDatabase.getInstance().getReference(\"Business Images\")\n        mRef.child(currentID).addListenerForSingleValueEvent(object : ValueEventListener{\n            override fun onDataChange(snapshot: DataSnapshot) {\n                if(snapshot.exists()){\n                    val uri = snapshot.getValue(BusinessImage::class.java)!!.mImageUrl\n                    holder.businessName.text = currentItem.businessName\n                    holder.businessContact.text = currentItem.businessMobile\n                    Picasso.with(holder.businessImage.context).load(uri).into(holder.businessImage)\n                }else {\n                    holder.businessName.text = currentItem.businessName\n                    holder.businessContact.text = currentItem.businessMobile\n                    holder.businessImage.setImageResource(R.drawable.ic_baseline_image_not_supported_24)\n                }\n\n            }\n            override fun onCancelled(error: DatabaseError) {\n                Log.e(\"Image retrieval error\", error.message)\n            }\n        })\n    }\n\n    override fun getItemCount(): Int {\n        return businessList.size\n    }\n\n\n    class ViewHolder(itemView : View, onBusiClickListener: onBusiClickListener) : RecyclerView.ViewHolder(itemView),View.OnClickListener{\n        val businessName : TextView = itemView.findViewById(R.id.nameRecyclerItem)\n        val businessContact : TextView = itemView.findViewById(R.id.contactRecyclerItem)\n        val businessImage : ImageView = itemView.findViewById(R.id.imageRecyclerItem)\n        lateinit var onBusiClickListener:onBusiClickListener\n        init {\n            itemView.setOnClickListener(this)\n            this.onBusiClickListener =onBusiClickListener\n        }\n\n\n        override fun onClick(v: View?) {\n            onBusiClickListener.onBusiClick(adapterPosition)\n        }\n\n    }\n\n    interface onBusiClickListener{\n        fun onBusiClick(position: Int)\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/leidosrollvan/CustomRecyclerAdapter.kt b/app/src/main/java/com/example/leidosrollvan/CustomRecyclerAdapter.kt
+--- a/app/src/main/java/com/example/leidosrollvan/CustomRecyclerAdapter.kt	(revision d2d070bffcc0f1dc09e7a699982521b95e1649f7)
++++ b/app/src/main/java/com/example/leidosrollvan/CustomRecyclerAdapter.kt	(date 1642434736184)
+@@ -25,7 +25,7 @@
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+ 
+         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_list_item,
+-        parent, false)
++            parent, false)
+         return ViewHolder(itemView,monBusiClickListener)
+ 
+     }
+@@ -81,4 +81,4 @@
+         fun onBusiClick(position: Int)
+     }
+ 
+-}
+\ No newline at end of file
++}
+Index: app/src/main/java/com/example/leidosrollvan/fragments/HomeFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.leidosrollvan.fragments\n\nimport android.content.Intent\nimport android.os.Bundle\nimport androidx.fragment.app.Fragment\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport android.widget.Toast\nimport androidx.recyclerview.widget.LinearLayoutManager\nimport androidx.recyclerview.widget.RecyclerView\nimport com.example.leidosrollvan.*\nimport com.example.leidosrollvan.R\nimport com.google.firebase.database.*\n\n// TODO: Rename parameter arguments, choose names that match\n// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\nprivate const val ARG_PARAM1 = \"param1\"\nprivate const val ARG_PARAM2 = \"param2\"\n\n/**\n * A simple [Fragment] subclass.\n * Use the [HomeFragment.newInstance] factory method to\n * create an instance of this fragment.\n */\nclass HomeFragment : Fragment() {\n    // TODO: Rename and change types of parameters\n    private lateinit var reference: DatabaseReference\n    private lateinit var businessRecyclerView : RecyclerView\n    private lateinit var businessList: ArrayList<Business>\n    private lateinit var businessIdList : ArrayList<String>\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        arguments?.let {\n\n            //businessRecyclerView = view?.findViewById(R.id.businessRecyclerView)!!\n            //businessRecyclerView.layoutManager = LinearLayoutManager(activity)\n            //businessRecyclerView.setHasFixedSize(true)\n\n            //businessList = arrayListOf<Business>()\n\n            //getBusinessData();\n        }\n    }\n\n    override fun onCreateView(\n        inflater: LayoutInflater, container: ViewGroup?,\n        savedInstanceState: Bundle?\n    ): View? {\n        // Inflate the layout for this fragment\n        return inflater.inflate(R.layout.fragment_home, container, false)\n    }\n\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\n        super.onViewCreated(view, savedInstanceState)\n\n        businessIdList = arrayListOf<String>()\n        businessList = arrayListOf<Business>()\n        businessRecyclerView = view.findViewById(R.id.businessRecyclerView)\n        businessRecyclerView.layoutManager = LinearLayoutManager(view.context)\n        businessRecyclerView.setHasFixedSize(true)\n\n        getBusinessData()\n    }\n\n    private fun getBusinessData() {\n        reference = FirebaseDatabase.getInstance().getReference(\"Businesses\")\n\n        reference.addValueEventListener(object : ValueEventListener,\n            CustomRecyclerAdapter.onBusiClickListener {\n            override fun onDataChange(snapshot: DataSnapshot) {\n                if(snapshot.exists()){\n                    for(businessSnapshot in snapshot.children){\n                        val business  = businessSnapshot.getValue(Business::class.java)\n                        businessList.add(business!!)\n                        businessIdList.add(businessSnapshot.key!!)\n                    }\n\n\n                    businessRecyclerView.adapter = CustomRecyclerAdapter(businessList, businessIdList,this )\n\n\n\n                }\n            }\n\n            override fun onCancelled(error: DatabaseError) {\n                Toast.makeText(activity, \"error\", Toast.LENGTH_LONG).show()\n            }\n\n            override fun onBusiClick(position: Int) {\n                val b_id = businessIdList.get(position)\n                var i  = Intent(activity,businessPage::class.java)\n                i.putExtra(\"b_id\", b_id)\n                startActivity(i)\n            }\n\n\n        })\n    }\n\n\n\n\n    companion object {\n        /**\n         * Use this factory method to create a new instance of\n         * this fragment using the provided parameters.\n         *\n         * @param param1 Parameter 1.\n         * @param param2 Parameter 2.\n         * @return A new instance of fragment HomeFragment.\n         */\n        // TODO: Rename and change types and number of parameters\n        @JvmStatic\n        fun newInstance(param1: String, param2: String) =\n            HomeFragment().apply {\n                arguments = Bundle().apply {\n                    putString(ARG_PARAM1, param1)\n                    putString(ARG_PARAM2, param2)\n                }\n            }\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/leidosrollvan/fragments/HomeFragment.kt b/app/src/main/java/com/example/leidosrollvan/fragments/HomeFragment.kt
+--- a/app/src/main/java/com/example/leidosrollvan/fragments/HomeFragment.kt	(revision d2d070bffcc0f1dc09e7a699982521b95e1649f7)
++++ b/app/src/main/java/com/example/leidosrollvan/fragments/HomeFragment.kt	(date 1642435749626)
+@@ -27,6 +27,8 @@
+     // TODO: Rename and change types of parameters
+     private lateinit var reference: DatabaseReference
+     private lateinit var businessRecyclerView : RecyclerView
++    private lateinit var businessHorizRecyclerView : RecyclerView
++    private lateinit var businessHorizRecyclerView2 : RecyclerView
+     private lateinit var businessList: ArrayList<Business>
+     private lateinit var businessIdList : ArrayList<String>
+ 
+@@ -61,6 +63,13 @@
+         businessRecyclerView.layoutManager = LinearLayoutManager(view.context)
+         businessRecyclerView.setHasFixedSize(true)
+ 
++        businessHorizRecyclerView = view.findViewById(R.id.businessHorizRecyclerView)
++        businessHorizRecyclerView.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
++        businessHorizRecyclerView.setHasFixedSize(true)
++        businessHorizRecyclerView2 = view.findViewById(R.id.businessHorizRecyclerView2)
++        businessHorizRecyclerView2.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
++        businessHorizRecyclerView2.setHasFixedSize(true)
++
+         getBusinessData()
+     }
+ 
+@@ -68,7 +77,7 @@
+         reference = FirebaseDatabase.getInstance().getReference("Businesses")
+ 
+         reference.addValueEventListener(object : ValueEventListener,
+-            CustomRecyclerAdapter.onBusiClickListener {
++            CustomRecyclerAdapter.onBusiClickListener, horizRecyclerAdapter.onBusiClickListener {
+             override fun onDataChange(snapshot: DataSnapshot) {
+                 if(snapshot.exists()){
+                     for(businessSnapshot in snapshot.children){
+@@ -79,7 +88,8 @@
+ 
+ 
+                     businessRecyclerView.adapter = CustomRecyclerAdapter(businessList, businessIdList,this )
+-
++                    businessHorizRecyclerView.adapter=horizRecyclerAdapter(businessList,businessIdList,this)
++                    businessHorizRecyclerView2.adapter=horizRecyclerAdapter(businessList,businessIdList,this)
+ 
+ 
+                 }
+@@ -100,9 +110,6 @@
+         })
+     }
+ 
+-
+-
+-
+     companion object {
+         /**
+          * Use this factory method to create a new instance of
+@@ -123,4 +130,4 @@
+             }
+     }
+ 
+-}
+\ No newline at end of file
++}
+Index: app/src/main/res/layout/fragment_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    tools:context=\".fragments.HomeFragment\">\n\n    <ScrollView\n        android:id=\"@+id/scrollView2\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:layout_marginBottom=\"0dp\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        android:fillViewport=\"true\">\n\n\n        <LinearLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"match_parent\"\n            android:orientation=\"vertical\">\n\n            <LinearLayout\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginLeft=\"3dp\"\n                android:layout_marginRight=\"3dp\"\n                android:orientation=\"horizontal\">\n\n                <HorizontalScrollView\n                    android:layout_width=\"match_parent\"\n                    android:layout_height=\"wrap_content\"\n                    android:fillViewport=\"true\"\n                    android:scrollbars=\"none\">\n\n                    <LinearLayout\n                        android:layout_width=\"match_parent\"\n                        android:layout_height=\"match_parent\"\n                        android:layout_marginTop=\"50dp\"\n                        android:orientation=\"horizontal\">\n\n                        <Button\n                            android:id=\"@+id/discount\"\n                            android:layout_width=\"100dp\"\n                            android:layout_height=\"100dp\"\n                            android:drawableTop=\"@drawable/ic_discount\"\n                            android:text=\"Discounts\"\n                            android:textColor=\"@color/black\"\n                            android:textSize=\"10dp\" />\n\n\n                        <Button\n                            android:id=\"@+id/breakfast\"\n                            android:layout_width=\"100dp\"\n                            android:layout_height=\"100dp\"\n                            android:drawableTop=\"@drawable/ic_breakfast\"\n                            android:text=\"Breakfast\"\n                            android:textColor=\"@color/black\"\n                            android:textSize=\"10dp\" />\n\n                        <Button\n                            android:id=\"@+id/burger\"\n                            android:layout_width=\"100dp\"\n                            android:layout_height=\"100dp\"\n                            android:drawableTop=\"@drawable/ic_burger\"\n                            android:text=\"Burgers\"\n                            android:textColor=\"@color/black\"\n                            android:textSize=\"10dp\" />\n\n                        <Button\n                            android:id=\"@+id/salad\"\n                            android:layout_width=\"100dp\"\n                            android:layout_height=\"100dp\"\n                            android:drawableTop=\"@drawable/ic_salad\"\n                            android:text=\"Healthy\"\n                            android:textColor=\"@color/black\"\n                            android:textSize=\"10dp\" />\n\n                        <Button\n                            android:id=\"@+id/dessert\"\n                            android:layout_width=\"100dp\"\n                            android:layout_height=\"100dp\"\n                            android:drawableTop=\"@drawable/ic_dessert\"\n                            android:text=\"Desserts\"\n                            android:textColor=\"@color/black\"\n                            android:textSize=\"10dp\" />\n\n                    </LinearLayout>\n                </HorizontalScrollView>\n\n            </LinearLayout>\n\n            <ImageButton\n                android:id=\"@+id/button\"\n                android:layout_width=\"400dp\"\n                android:layout_height=\"175dp\"\n                android:adjustViewBounds=\"true\"\n                android:backgroundTint=\"@color/white\"\n                android:layout_marginLeft=\"0dp\"\n                android:src=\"@drawable/coke\"\n                android:layout_marginBottom=\"5dp\"\n\n                android:text=\"AD\" />\n\n            <TextView\n                android:id=\"@+id/NearYou\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"0dp\"\n                android:fillViewport=\"true\"\n                android:text=\"Near You\"\n                android:textSize=\"20sp\"\n                android:textStyle=\"bold\" />\n\n            <HorizontalScrollView\n                android:layout_width=\"411dp\"\n                android:layout_height=\"145dp\"\n                android:layout_marginTop=\"0dp\"\n                android:scrollbars=\"none\">\n\n                <LinearLayout\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"match_parent\"\n                    android:orientation=\"horizontal\">\n\n                    <Button\n                        android:id=\"@+id/button6\"\n                        android:layout_width=\"220dp\"\n                        android:layout_height=\"130dp\"\n                        android:layout_margin=\"5dp\"\n                        android:layout_weight=\"1\"\n                        android:radius=\"50dp\"\n                        android:background=\"@android:color/transparent\"\n                        android:drawableTop=\"@drawable/croiss\"\n                        android:textColor=\"@color/black\"\n                        android:textSize=\"10dp\"\n                        />\n\n                    <Button\n                        android:id=\"@+id/button7\"\n                        android:layout_width=\"220dp\"\n                        android:layout_height=\"130dp\"\n                        android:layout_margin=\"5dp\"\n                        android:layout_weight=\"1\"\n                        android:drawableTop=\"@drawable/bacon\"\n                        android:background=\"@android:color/transparent\"\n                        android:text=\"Van1\" />\n\n                    <Button\n                        android:id=\"@+id/button8\"\n                        android:layout_width=\"220dp\"\n                        android:layout_height=\"130dp\"\n                        android:layout_margin=\"5dp\"\n                        android:layout_weight=\"1\"\n                        android:background=\"@android:color/transparent\"\n                        android:drawableTop=\"@drawable/pie_edit\"\n                        android:text=\"Van1\" />\n                </LinearLayout>\n\n            </HorizontalScrollView>\n\n            <TextView\n                android:id=\"@+id/topDeals\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"18dp\"\n                android:text=\"Top deals\"\n                android:textSize=\"20sp\"\n                android:textStyle=\"bold\" />\n\n            <HorizontalScrollView\n                android:id=\"@+id/horizontalScrollView\"\n                android:layout_width=\"411dp\"\n                android:layout_height=\"145dp\"\n                android:layout_marginTop=\"5dp\"\n                android:scrollbars=\"none\"\n                tools:ignore=\"SpeakableTextPresentCheck\">\n\n                <LinearLayout\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"match_parent\"\n                    android:orientation=\"horizontal\">\n\n                    <Button\n                        android:id=\"@+id/button1\"\n                        android:layout_width=\"220dp\"\n                        android:layout_height=\"130dp\"\n                        android:layout_margin=\"5dp\"\n                        android:layout_weight=\"1\"\n                        android:radius=\"50dp\"\n                        android:drawableTop=\"@drawable/pie_edit\"\n                        android:background=\"@android:color/transparent\"\n                        android:text=\"Van1\" />/>\n\n                    <Button\n                        android:id=\"@+id/button2\"\n                        android:layout_width=\"220dp\"\n                        android:layout_height=\"130dp\"\n                        android:layout_margin=\"5dp\"\n                        android:layout_weight=\"1\"\n                        android:drawableTop=\"@drawable/cupcake\"\n                        android:background=\"@android:color/transparent\"\n                        android:text=\"Van1\" />\n\n                    <Button\n                        android:id=\"@+id/button3\"\n                        android:layout_width=\"220dp\"\n                        android:layout_height=\"130dp\"\n                        android:layout_margin=\"5dp\"\n                        android:layout_weight=\"1\"\n                        android:drawableTop=\"@drawable/croiss\"\n                        android:background=\"@android:color/transparent\"\n                        android:text=\"Van1\" />\n\n                    <Button\n                        android:id=\"@+id/button4\"\n                        android:layout_width=\"220dp\"\n                        android:layout_height=\"130dp\"\n                        android:layout_margin=\"5dp\"\n                        android:layout_weight=\"1\"\n                        android:drawableTop=\"@drawable/bacon\"\n                        android:background=\"@android:color/transparent\"\n                        android:text=\"Van1\" />\n\n                    <Button\n                        android:id=\"@+id/button5\"\n                        android:layout_width=\"220dp\"\n                        android:layout_height=\"130dp\"\n                        android:layout_margin=\"5dp\"\n                        android:layout_weight=\"1\"\n                        android:drawableTop=\"@drawable/pie_edit\"\n                        android:background=\"@android:color/transparent\"\n                        android:text=\"Van1\" />\n\n                </LinearLayout>\n            </HorizontalScrollView>\n\n            <androidx.recyclerview.widget.RecyclerView\n                android:id=\"@+id/businessRecyclerView\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"match_parent\" />\n\n\n            <ImageButton\n                android:id=\"@+id/button25\"\n                android:layout_width=\"400dp\"\n                android:layout_height=\"175dp\"\n                android:layout_marginBottom=\"10dp\"\n                android:layout_marginLeft=\"5dp\"\n                android:adjustViewBounds=\"true\"\n                android:backgroundTint=\"@color/white\"\n\n                android:src=\"@drawable/map_edit\"\n                />\n\n            <TextView\n                android:id=\"@+id/textView2\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"Need help finding what you're looking for?\" />\n\n            <Button\n                android:id=\"@+id/button15\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"View all businesses\" />\n        </LinearLayout>\n    </ScrollView>\n\n    <include\n        android:id=\"@+id/include\"\n        layout=\"@layout/appbar\" />\n\n    <SearchView\n        android:id=\"@+id/searchView\"\n        android:layout_width=\"363dp\"\n        android:layout_height=\"46dp\"\n        android:layout_marginBottom=\"5dp\"\n        android:iconifiedByDefault=\"false\"\n        android:queryBackground=\"@android:color/transparent\"\n        android:queryHint=\"Current Location\"\n        android:searchIcon=\"@drawable/ic_location\"\n        app:layout_constraintBottom_toBottomOf=\"@+id/include\"\n        app:layout_constraintEnd_toEndOf=\"@+id/include\"\n        app:layout_constraintStart_toStartOf=\"@+id/include\"\n        app:layout_constraintTop_toTopOf=\"parent\" />\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_home.xml b/app/src/main/res/layout/fragment_home.xml
+--- a/app/src/main/res/layout/fragment_home.xml	(revision d2d070bffcc0f1dc09e7a699982521b95e1649f7)
++++ b/app/src/main/res/layout/fragment_home.xml	(date 1642436142278)
+@@ -106,135 +106,45 @@
+                 android:id="@+id/NearYou"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:layout_marginTop="0dp"
++                android:layout_marginTop="30dp"
+                 android:fillViewport="true"
+                 android:text="Near You"
+                 android:textSize="20sp"
+                 android:textStyle="bold" />
+ 
+-            <HorizontalScrollView
+-                android:layout_width="411dp"
+-                android:layout_height="145dp"
+-                android:layout_marginTop="0dp"
+-                android:scrollbars="none">
+ 
+-                <LinearLayout
+-                    android:layout_width="wrap_content"
++                <androidx.recyclerview.widget.RecyclerView
++                    android:id="@+id/businessHorizRecyclerView"
++                    android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+-                    android:orientation="horizontal">
+-
+-                    <Button
+-                        android:id="@+id/button6"
+-                        android:layout_width="220dp"
+-                        android:layout_height="130dp"
+-                        android:layout_margin="5dp"
+-                        android:layout_weight="1"
+-                        android:radius="50dp"
+-                        android:background="@android:color/transparent"
+-                        android:drawableTop="@drawable/croiss"
+-                        android:textColor="@color/black"
+-                        android:textSize="10dp"
+-                        />
+-
+-                    <Button
+-                        android:id="@+id/button7"
+-                        android:layout_width="220dp"
+-                        android:layout_height="130dp"
+-                        android:layout_margin="5dp"
+-                        android:layout_weight="1"
+-                        android:drawableTop="@drawable/bacon"
+-                        android:background="@android:color/transparent"
+-                        android:text="Van1" />
+-
+-                    <Button
+-                        android:id="@+id/button8"
+-                        android:layout_width="220dp"
+-                        android:layout_height="130dp"
+-                        android:layout_margin="5dp"
+-                        android:layout_weight="1"
+-                        android:background="@android:color/transparent"
+-                        android:drawableTop="@drawable/pie_edit"
+-                        android:text="Van1" />
+-                </LinearLayout>
+-
+-            </HorizontalScrollView>
++                    />
+ 
+             <TextView
+                 android:id="@+id/topDeals"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:layout_marginTop="18dp"
++                android:layout_marginTop="30dp"
+                 android:text="Top deals"
+                 android:textSize="20sp"
++                android:textStyle="bold"
++                />
++
++            <androidx.recyclerview.widget.RecyclerView
++                android:id="@+id/businessHorizRecyclerView2"
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                />
++
++            <TextView
++                android:id="@+id/MoreBusi"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="30dp"
++                android:fillViewport="true"
++                android:text="More Businesses"
++                android:textSize="20sp"
+                 android:textStyle="bold" />
+ 
+-            <HorizontalScrollView
+-                android:id="@+id/horizontalScrollView"
+-                android:layout_width="411dp"
+-                android:layout_height="145dp"
+-                android:layout_marginTop="5dp"
+-                android:scrollbars="none"
+-                tools:ignore="SpeakableTextPresentCheck">
+-
+-                <LinearLayout
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="match_parent"
+-                    android:orientation="horizontal">
+-
+-                    <Button
+-                        android:id="@+id/button1"
+-                        android:layout_width="220dp"
+-                        android:layout_height="130dp"
+-                        android:layout_margin="5dp"
+-                        android:layout_weight="1"
+-                        android:radius="50dp"
+-                        android:drawableTop="@drawable/pie_edit"
+-                        android:background="@android:color/transparent"
+-                        android:text="Van1" />/>
+-
+-                    <Button
+-                        android:id="@+id/button2"
+-                        android:layout_width="220dp"
+-                        android:layout_height="130dp"
+-                        android:layout_margin="5dp"
+-                        android:layout_weight="1"
+-                        android:drawableTop="@drawable/cupcake"
+-                        android:background="@android:color/transparent"
+-                        android:text="Van1" />
+-
+-                    <Button
+-                        android:id="@+id/button3"
+-                        android:layout_width="220dp"
+-                        android:layout_height="130dp"
+-                        android:layout_margin="5dp"
+-                        android:layout_weight="1"
+-                        android:drawableTop="@drawable/croiss"
+-                        android:background="@android:color/transparent"
+-                        android:text="Van1" />
+-
+-                    <Button
+-                        android:id="@+id/button4"
+-                        android:layout_width="220dp"
+-                        android:layout_height="130dp"
+-                        android:layout_margin="5dp"
+-                        android:layout_weight="1"
+-                        android:drawableTop="@drawable/bacon"
+-                        android:background="@android:color/transparent"
+-                        android:text="Van1" />
+-
+-                    <Button
+-                        android:id="@+id/button5"
+-                        android:layout_width="220dp"
+-                        android:layout_height="130dp"
+-                        android:layout_margin="5dp"
+-                        android:layout_weight="1"
+-                        android:drawableTop="@drawable/pie_edit"
+-                        android:background="@android:color/transparent"
+-                        android:text="Van1" />
+-
+-                </LinearLayout>
+-            </HorizontalScrollView>
+-
+             <androidx.recyclerview.widget.RecyclerView
+                 android:id="@+id/businessRecyclerView"
+                 android:layout_width="match_parent"
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"DesignSurface\">\n    <option name=\"filePathToZoomLevelMap\">\n      <map>\n        <entry key=\"..\\:/Users/alexh/OneDrive/cs26/Android_Project/app/src/main/res/layout/activity_main.xml\" value=\"0.10144927536231885\" />\n        <entry key=\"..\\:/Users/alexh/OneDrive/cs26/Android_Project/app/src/main/res/layout/fragment_home.xml\" value=\"0.16983695652173914\" />\n        <entry key=\"..\\:/Users/alexh/OneDrive/cs26/Android_Project/app/src/main/res/menu/bottom_nav_menu.xml\" value=\"0.17916666666666667\" />\n        <entry key=\"..\\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/fragment_account.xml\" value=\"0.1\" />\n        <entry key=\"..\\:/Users/kiera/Documents/cs26-main/Android_Project/app/src/main/res/drawable/ic_discount.xml\" value=\"0.19166666666666668\" />\n        <entry key=\"..\\:/Users/kiera/Documents/cs26-main/Android_Project/app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.19166666666666668\" />\n        <entry key=\"..\\:/Users/kiera/Documents/cs26-main/Android_Project/app/src/main/res/layout/activity_main.xml\" value=\"0.1\" />\n        <entry key=\"..\\:/Users/kiera/Documents/cs26-main/Android_Project/app/src/main/res/layout/appbar.xml\" value=\"0.1\" />\n        <entry key=\"..\\:/Users/kiera/Documents/cs26-main/Android_Project/app/src/main/res/layout/fragment_account.xml\" value=\"0.22\" />\n        <entry key=\"..\\:/Users/kiera/Documents/cs26-main/Android_Project/app/src/main/res/layout/fragment_home.xml\" value=\"0.22\" />\n        <entry key=\"..\\:/Users/kiera/Documents/cs26-main/Android_Project/app/src/main/res/layout/fragment_search.xml\" value=\"0.1\" />\n        <entry key=\"app/src/main/res/drawable-anydpi/signOut.xml\" value=\"0.3111111111111111\" />\n        <entry key=\"app/src/main/res/drawable/ic_baseline_add_photo_alternate_24.xml\" value=\"0.2611111111111111\" />\n        <entry key=\"app/src/main/res/drawable/ic_fast_food_svgrepo_com.xml\" value=\"0.2351851851851852\" />\n        <entry key=\"app/src/main/res/drawable/ic_food_truck_svgrepo_com.xml\" value=\"0.2351851851851852\" />\n        <entry key=\"app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.79375\" />\n        <entry key=\"app/src/main/res/layout/activity_business_home.xml\" value=\"0.10778985507246377\" />\n        <entry key=\"app/src/main/res/layout/activity_business_register.xml\" value=\"0.25\" />\n        <entry key=\"app/src/main/res/layout/activity_main.xml\" value=\"0.25\" />\n        <entry key=\"app/src/main/res/layout/activity_splash.xml\" value=\"0.22327898550724637\" />\n        <entry key=\"app/src/main/res/layout/appbar.xml\" value=\"0.22826086956521738\" />\n        <entry key=\"app/src/main/res/layout/business_page.xml\" value=\"0.16770833333333332\" />\n        <entry key=\"app/src/main/res/layout/fragment_about.xml\" value=\"0.22327898550724637\" />\n        <entry key=\"app/src/main/res/layout/fragment_account.xml\" value=\"0.25\" />\n        <entry key=\"app/src/main/res/layout/fragment_account_guest.xml\" value=\"0.3098958333333333\" />\n        <entry key=\"app/src/main/res/layout/fragment_allbusiness.xml\" value=\"0.26721014492753625\" />\n        <entry key=\"app/src/main/res/layout/fragment_blank.xml\" value=\"0.20380434782608695\" />\n        <entry key=\"app/src/main/res/layout/fragment_guest_account.xml\" value=\"0.20380434782608695\" />\n        <entry key=\"app/src/main/res/layout/fragment_help.xml\" value=\"0.22327898550724637\" />\n        <entry key=\"app/src/main/res/layout/fragment_home.xml\" value=\"0.15070921985815602\" />\n        <entry key=\"app/src/main/res/layout/fragment_map.xml\" value=\"0.22327898550724637\" />\n        <entry key=\"app/src/main/res/layout/fragment_search.xml\" value=\"0.15070921985815602\" />\n        <entry key=\"app/src/main/res/layout/recycler_list_item.xml\" value=\"0.3098958333333333\" />\n        <entry key=\"app/src/main/res/layout/row_business.xml\" value=\"0.26721014492753625\" />\n        <entry key=\"app/src/main/res/layout/rowbus.xml\" value=\"0.26721014492753625\" />\n        <entry key=\"app/src/main/res/menu/menu.xml\" value=\"0.3098958333333333\" />\n        <entry key=\"app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml\" value=\"0.18385416666666668\" />\n        <entry key=\"app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml\" value=\"0.18385416666666668\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"Android\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision d2d070bffcc0f1dc09e7a699982521b95e1649f7)
++++ b/.idea/misc.xml	(date 1642434022382)
+@@ -3,6 +3,7 @@
+   <component name="DesignSurface">
+     <option name="filePathToZoomLevelMap">
+       <map>
++        <entry key="../../../../../layout/custom_preview.xml" value="0.2898148148148148" />
+         <entry key="..\:/Users/alexh/OneDrive/cs26/Android_Project/app/src/main/res/layout/activity_main.xml" value="0.10144927536231885" />
+         <entry key="..\:/Users/alexh/OneDrive/cs26/Android_Project/app/src/main/res/layout/fragment_home.xml" value="0.16983695652173914" />
+         <entry key="..\:/Users/alexh/OneDrive/cs26/Android_Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.17916666666666667" />
+@@ -35,6 +36,7 @@
+         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.15070921985815602" />
+         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.22327898550724637" />
+         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.15070921985815602" />
++        <entry key="app/src/main/res/layout/horiz_bus.xml" value="0.3098958333333333" />
+         <entry key="app/src/main/res/layout/recycler_list_item.xml" value="0.3098958333333333" />
+         <entry key="app/src/main/res/layout/row_business.xml" value="0.26721014492753625" />
+         <entry key="app/src/main/res/layout/rowbus.xml" value="0.26721014492753625" />
