@@ -106,10 +106,11 @@
                 android:id="@+id/NearYou"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:fillViewport="true"
                 android:text="Near You"
-                android:textSize="20sp"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
 
@@ -125,7 +126,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Top deals"
-                android:textSize="20sp"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="25dp"
                 android:textStyle="bold"
                 />
 
@@ -141,8 +143,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fillViewport="true"
-                android:text="More Businesses"
-                android:textSize="20sp"
+                android:text="All Businesses"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -172,7 +175,8 @@
                 android:id="@+id/button15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="View all businesses" />
+                android:text="View all businesses"
+                android:textColor="@color/black"/>
         </LinearLayout>
     </ScrollView>
 
