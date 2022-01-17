@@ -22,6 +22,9 @@
         <activity android:name=".BusinessProductFormActivity"
             android:exported="false"
             />
+        <activity android:name=".BusinessCategoryActivity"
+            android:exported="false"
+            />
         <activity
             android:name=".BusinessRegisterActivity"
             android:exported="false" />

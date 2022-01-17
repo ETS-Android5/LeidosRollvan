@@ -12,7 +12,6 @@ public class BusinessMenu {
 
     private HashMap<String, ArrayList<HashMap<String, String>>> businessMenuItems;
     private ArrayList<String> categories;
-
     /*public BusinessMenu( ArrayList<String> categories, HashMap<String, Food> Menu){
         this.Menu = Menu;
         //this.menuSection = menuSection;
