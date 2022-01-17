@@ -1,7 +1,6 @@
 package com.example.leidosrollvan;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,11 +17,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class businessPage extends AppCompatActivity implements View.OnClickListener {
+public class BusinessPageActivity extends AppCompatActivity implements View.OnClickListener {
     DatabaseReference reference;
     DatabaseReference imRef;
     Button homeButton;
@@ -30,7 +28,7 @@ public class businessPage extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.business_page);
+        setContentView(R.layout.activity_business_page);
 
         homeButton = (Button) findViewById(R.id.home_bus);
         homeButton.setOnClickListener(this);
@@ -59,7 +57,7 @@ public class businessPage extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(businessPage.this, "Something Went Wrong!", Toast.LENGTH_LONG).show();
+                Toast.makeText(BusinessPageActivity.this, "Something Went Wrong!", Toast.LENGTH_LONG).show();
             }
         });
 

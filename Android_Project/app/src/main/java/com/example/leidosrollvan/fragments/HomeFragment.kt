@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
         reference = FirebaseDatabase.getInstance().getReference("Businesses")
 
         reference.addValueEventListener(object : ValueEventListener,
-            CustomRecyclerAdapter.onBusiClickListener, horizRecyclerAdapter.onBusiClickListener {
+            CustomRecyclerAdapter.OnBusiClickListener, HorizRecyclerAdapter.onBusiClickListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     for(businessSnapshot in snapshot.children){
@@ -88,8 +88,8 @@ class HomeFragment : Fragment() {
 
 
                     businessRecyclerView.adapter = CustomRecyclerAdapter(businessList, businessIdList,this )
-                    businessHorizRecyclerView.adapter=horizRecyclerAdapter(businessList,businessIdList,this)
-                    businessHorizRecyclerView2.adapter=horizRecyclerAdapter(businessList,businessIdList,this)
+                    businessHorizRecyclerView.adapter=HorizRecyclerAdapter(businessList,businessIdList,this)
+                    businessHorizRecyclerView2.adapter=HorizRecyclerAdapter(businessList,businessIdList,this)
 
 
                 }
@@ -100,10 +100,12 @@ class HomeFragment : Fragment() {
             }
 
             override fun onBusiClick(position: Int) {
-                val b_id = businessIdList.get(position)
-                var i  = Intent(activity,businessPage::class.java)
-                i.putExtra("b_id", b_id)
+                val bID = businessIdList[position]
+                var i  = Intent(activity,
+                    BusinessPageActivity::class.java)
+                i.putExtra("b_id", bID)
                 startActivity(i)
+                activity?.overridePendingTransition(R.anim.slide_in_right, R.anim.stay)
             }
 
 

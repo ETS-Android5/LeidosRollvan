@@ -15,9 +15,9 @@ import com.squareup.picasso.Picasso
 
 class CustomRecyclerAdapter(private val businessList: ArrayList<Business>,
                             private val businessIdList: ArrayList<String>,
-                            onBusiClickListener: onBusiClickListener
+                            onBusiClickListener: OnBusiClickListener
 ) : RecyclerView.Adapter<CustomRecyclerAdapter.ViewHolder>()  {
-    private var monBusiClickListener:onBusiClickListener
+    private var monBusiClickListener:OnBusiClickListener
     init {
         this.monBusiClickListener=onBusiClickListener
     }
@@ -60,11 +60,11 @@ class CustomRecyclerAdapter(private val businessList: ArrayList<Business>,
     }
 
 
-    class ViewHolder(itemView : View, onBusiClickListener: onBusiClickListener) : RecyclerView.ViewHolder(itemView),View.OnClickListener{
+    class ViewHolder(itemView : View, onBusiClickListener: OnBusiClickListener) : RecyclerView.ViewHolder(itemView),View.OnClickListener{
         val businessName : TextView = itemView.findViewById(R.id.nameRecyclerItem)
         val businessContact : TextView = itemView.findViewById(R.id.contactRecyclerItem)
         val businessImage : ImageView = itemView.findViewById(R.id.imageRecyclerItem)
-        lateinit var onBusiClickListener:onBusiClickListener
+        lateinit var onBusiClickListener:OnBusiClickListener
         init {
             itemView.setOnClickListener(this)
             this.onBusiClickListener =onBusiClickListener
@@ -77,7 +77,7 @@ class CustomRecyclerAdapter(private val businessList: ArrayList<Business>,
 
     }
 
-    interface onBusiClickListener{
+    interface OnBusiClickListener{
         fun onBusiClick(position: Int)
     }
 

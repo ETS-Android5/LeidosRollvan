@@ -13,10 +13,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
-class horizRecyclerAdapter(private val businessList: ArrayList<Business>,
+class HorizRecyclerAdapter(private val businessList: ArrayList<Business>,
                            private val businessIdList: ArrayList<String>,
                            onBusiClickListener: onBusiClickListener
-) : RecyclerView.Adapter<horizRecyclerAdapter.ViewHolder>()  {
+) : RecyclerView.Adapter<HorizRecyclerAdapter.ViewHolder>()  {
     private var monBusiClickListener:onBusiClickListener
     init {
         this.monBusiClickListener=onBusiClickListener
