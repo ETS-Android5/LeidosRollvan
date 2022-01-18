@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".fragments.AccountFragment"
     android:fillViewport="false">
 
-    <ScrollView
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fillViewport="false"
         tools:ignore="MissingConstraints"
         android:scrollbars="none">
@@ -22,47 +22,42 @@
             tools:layout_editor_absoluteY="32dp"
             android:layout_gravity="left">
 
+
             <Button
-                android:id="@+id/help"
+                android:id="@+id/guestHelp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="180dp"
                 android:background="#00000000"
                 android:drawableLeft="@drawable/help"
+                android:drawableTint="?android:textColorPrimary"
                 android:text="Help"
-                android:textColor="@color/black" />
+                android:textSize="25dp"
+                android:textColor="?android:textColorPrimary" />
 
             <Button
-                android:id="@+id/about"
+                android:id="@+id/guestAbout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="80dp"
                 android:background="#00000000"
                 android:drawableLeft="@drawable/info"
+                android:drawableTint="?android:textColorPrimary"
                 android:text="About"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:text="LOGIN OR REGISTER\nFOR AN ACCOUNT TODAY TO UNLOCK\nMANY MORE FEATURES!!"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-
-                android:textColor="@color/black"
-                />
+                android:textSize="25dp"
+                android:textColor="?android:textColorPrimary" />
 
             <Button
-                android:id="@+id/logIn"
+                android:id="@+id/guestLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="250dp"
                 android:background="#00000000"
+                android:textSize="30dp"
                 android:drawableLeft="@drawable/ic_baseline_login_24"
                 android:drawableTint="@color/green"
-                android:text="logIn/Register"
+                android:text="Sign in"
                 android:textColor="@color/green"
                 tools:ignore="UsingOnClickInXml" />
 
@@ -74,7 +69,7 @@
         layout="@layout/appbar" />
 
     <ImageButton
-        android:id="@+id/profilePic"
+        android:id="@+id/guestProfilePic"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="5dp"
@@ -83,24 +78,10 @@
         android:scaleType="centerCrop"
         android:src="@drawable/person"
         android:text="profilePic"
+        app:layout_constraintBottom_toBottomOf="@+id/include"
         app:layout_constraintEnd_toEndOf="@+id/include"
-        app:layout_constraintEnd_toStartOf="@+id/userName"
         app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="@+id/include"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/userName"
-        android:text="Guest"
-        android:layout_width="168dp"
-        android:layout_height="29dp"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/include"
-        app:layout_constraintEnd_toEndOf="@+id/include"
-        app:layout_constraintHorizontal_bias="0.298"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include"
-        app:layout_constraintVertical_bias="0.592" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
