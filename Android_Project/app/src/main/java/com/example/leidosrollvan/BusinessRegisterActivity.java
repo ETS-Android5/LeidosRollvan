@@ -86,7 +86,7 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
         bannerImage = (ImageView) findViewById(R.id.businessImagePreview);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("Business banners");
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("Businesses");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
     private void changeStatusBarColor() {

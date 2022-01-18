@@ -8,9 +8,8 @@ public class BusinessImage {
         // empty  constructor for firebase;
     }
 
-    public BusinessImage(String name, String imageUrl) {
-        mName = name;
-        mImageUrl = imageUrl;
+    public BusinessImage(String name, String imageUrl){
+        this.mName = name;
+        this.mImageUrl = imageUrl;
     }
-
 }
