@@ -72,9 +72,11 @@
 
             <TextView
                 style="@style/viewParent"
+                android:id="@+id/forgotPasswordText"
                 android:layout_gravity="end"
                 android:layout_marginTop="10dp"
                 android:text="Forgot Password?"
+                android:clickable="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/newsMoreTextSize" />
 

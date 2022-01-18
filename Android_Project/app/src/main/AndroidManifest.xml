@@ -17,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LeidosRollVan">
         <activity
+            android:name=".businessForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".forgotPassword"
+            android:exported="false" />
+        <activity
             android:name=".BusinessHomeActivity"
             android:exported="false" />
         <activity android:name=".BusinessProductFormActivity"

@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
 public class BusinessLoginActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView register;
+    private TextView register, businessForgotPassword;
     private Button goToUserLogin;
     private EditText editBusinessTextEmail, editBusinessTextPassword;
     private CircularProgressButton businessLogin;
@@ -50,6 +50,9 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
 
         editBusinessTextEmail = (EditText) findViewById(R.id.editBusinessLoginTextEmail);
         editBusinessTextPassword= (EditText) findViewById(R.id.editBusinessLoginTextPassword);
+
+        businessForgotPassword = (TextView) findViewById(R.id.businessForgotPassword);
+        businessForgotPassword.setOnClickListener(this);
 
         progressBar = (ProgressBar) findViewById(R.id.businessLoginProgressBar);
         mAuth = FirebaseAuth.getInstance();
@@ -105,6 +108,9 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
             }
         });
     }
+    public void forgotPassword(){
+
+    }
 
     @Override
     public void onClick(View v) {
@@ -117,6 +123,10 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.businessRegister:
                 startActivity(new Intent(this, BusinessRegisterActivity.class));
+                break;
+            case R.id.businessForgotPassword:
+                startActivity(new Intent(this,businessForgotPassword.class));
+                break;
         }
 
     }

@@ -30,6 +30,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -166,13 +167,23 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
                                     .setValue(business).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(BusinessRegisterActivity.this, "Business has been registered successfully", Toast.LENGTH_LONG).show();
+                                    if(task.isSuccessful()) {
+                                        //Toast.makeText(BusinessRegisterActivity.this, "Business has been registered successfully", Toast.LENGTH_LONG).show();
                                         businessProgressBar.setVisibility(View.GONE);
+                                        //send verification email
+                                        FirebaseUser business = mAuth.getCurrentUser();
+                                        business.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(BusinessRegisterActivity.this, "Verification email has been sent.", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                        });
+
                                         uploadImage();
                                         startActivity(new Intent(BusinessRegisterActivity.this, BusinessLoginActivity.class));
-
-                                    }else {
+                                    }
+                                    else {
                                         Log.e("LoginActivity", "Failed Registration", task.getException());
                                         Toast.makeText(BusinessRegisterActivity.this, "Failed to register Business, try again!", Toast.LENGTH_LONG).show();
                                         businessProgressBar.setVisibility(View.GONE);
