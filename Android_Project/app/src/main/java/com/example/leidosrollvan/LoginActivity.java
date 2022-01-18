@@ -23,7 +23,7 @@ import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView register, continueAsGuest;
+    private TextView register, continueAsGuest, forgotPasswordText;
     private EditText editTextEmail, editTextPassword;
     private CircularProgressButton login;
     private Button goToBusinessLogin;
@@ -54,6 +54,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         editTextEmail = (EditText) findViewById(R.id.editLoginTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editLoginTextPassword);
+
+        forgotPasswordText = (TextView) findViewById(R.id.forgotPasswordText);
+        forgotPasswordText.setOnClickListener(this);
 
         progressBar = (ProgressBar) findViewById(R.id.loginProgressBar);
 
@@ -108,6 +111,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivity(new Intent(LoginActivity.this,  RegisterActivity.class));
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
     }
+
+    public void forgotPassword(){
+
+    }
+
     @Override
     public void onClick(View v) {
         switch(v.getId()){
@@ -122,6 +130,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.gotoBusinessLogin:
                 startActivity(new Intent(this, BusinessLoginActivity.class));
+                break;
+            case R.id.forgotPasswordText:
+                startActivity(new Intent(this,forgotPassword.class));
                 break;
         }
     }
