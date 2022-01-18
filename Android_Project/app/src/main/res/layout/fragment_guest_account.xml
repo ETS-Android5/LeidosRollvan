@@ -30,8 +30,10 @@
                 android:layout_marginTop="180dp"
                 android:background="#00000000"
                 android:drawableLeft="@drawable/help"
+                android:drawableTint="?android:textColorPrimary"
                 android:text="Help"
-                android:textColor="@color/black" />
+                android:textSize="25dp"
+                android:textColor="?android:textColorPrimary" />
 
             <Button
                 android:id="@+id/guestAbout"
@@ -40,8 +42,10 @@
                 android:layout_marginTop="80dp"
                 android:background="#00000000"
                 android:drawableLeft="@drawable/info"
+                android:drawableTint="?android:textColorPrimary"
                 android:text="About"
-                android:textColor="@color/black" />
+                android:textSize="25dp"
+                android:textColor="?android:textColorPrimary" />
 
             <Button
                 android:id="@+id/guestLogin"

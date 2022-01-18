@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import com.example.leidosrollvan.fragments.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
     }
 
     private fun replaceFragment(fragment : Fragment){
@@ -49,4 +49,5 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
+
 }
