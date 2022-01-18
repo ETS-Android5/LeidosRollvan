@@ -4,7 +4,7 @@ public class BusinessImage {
     public String mName;
     public String mImageUrl;
 
-    public BusinessImage(){
+    public BusinessImage() {
         // empty  constructor for firebase;
     }
 

@@ -227,13 +227,18 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
                             imageProgressBar.setProgress(0);
                             Toast.makeText(BusinessRegisterActivity.this, "Image added successfully", Toast.LENGTH_LONG).show();
 
-                            BusinessImage businessImage = new BusinessImage(FirebaseAuth
-                            .getInstance().getCurrentUser().getUid() + "_banner" + "." + getImageExtension(mImageUri),
-                                    fileReference.getDownloadUrl().toString());
+                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    BusinessImage businessImage = new BusinessImage(FirebaseAuth
+                                            .getInstance().getCurrentUser().getUid() + "_banner" + "." + getImageExtension(mImageUri),
+                                            uri.toString());
 
-                            mDatabaseReference.child("Business Images").child(mAuth.getCurrentUser().getUid())
-                                    .setValue(businessImage);
-
+                                    FirebaseDatabase.getInstance().getReference("Business Images")
+                                            .child(mAuth.getCurrentUser().getUid())
+                                            .setValue(businessImage);
+                                }
+                            });
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

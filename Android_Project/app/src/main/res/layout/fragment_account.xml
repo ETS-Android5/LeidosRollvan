@@ -29,8 +29,9 @@
             android:layout_marginTop="80dp"
             android:background="#00000000"
             android:drawableLeft="@drawable/fav"
+            android:drawableTint="?android:textColorPrimary"
             android:text="Your Favourites"
-            android:textColor="@color/black" />
+            android:textColor="?android:textColorPrimary" />
 
         <Button
             android:id="@+id/help"
@@ -39,8 +40,9 @@
             android:layout_marginTop="40dp"
             android:background="#00000000"
             android:drawableLeft="@drawable/help"
+            android:drawableTint="?android:textColorPrimary"
             android:text="Help"
-            android:textColor="@color/black" />
+            android:textColor="?android:textColorPrimary" />
 
         <Button
             android:id="@+id/about"
@@ -49,8 +51,9 @@
             android:layout_marginTop="40dp"
             android:background="#00000000"
             android:drawableLeft="@drawable/info"
+            android:drawableTint="?android:textColorPrimary"
             android:text="About"
-            android:textColor="@color/black" />
+            android:textColor="?android:textColorPrimary" />
 
         <Button
             android:id="@+id/savedPlaces"
@@ -59,8 +62,9 @@
             android:layout_marginTop="40dp"
             android:background="#00000000"
             android:drawableLeft="@drawable/ic_location"
+            android:drawableTint="?android:textColorPrimary"
             android:text="Saved Places"
-            android:textColor="@color/black" />
+            android:textColor="?android:textColorPrimary" />
 
         <Button
             android:id="@+id/notifications"
@@ -69,8 +73,9 @@
             android:layout_marginTop="40dp"
             android:background="#00000000"
             android:drawableLeft="@drawable/noti"
+            android:drawableTint="?android:textColorPrimary"
             android:text="Notifications"
-            android:textColor="@color/black" />
+            android:textColor="?android:textColorPrimary" />
 
         <Button
             android:id="@+id/editAccount"
@@ -79,8 +84,9 @@
             android:layout_marginTop="40dp"
             android:background="#00000000"
             android:drawableLeft="@drawable/edit"
+            android:drawableTint="?android:textColorPrimary"
             android:text="Edit Account"
-            android:textColor="@color/black" />
+            android:textColor="?android:textColorPrimary" />
 
         <Button
             android:id="@+id/signOut"
@@ -124,6 +130,7 @@
         android:layout_width="168dp"
         android:layout_height="29dp"
         android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/include"
         app:layout_constraintEnd_toEndOf="@+id/include"
         app:layout_constraintHorizontal_bias="0.298"
@@ -136,6 +143,7 @@
         android:layout_width="150dp"
         android:layout_height="29dp"
         android:textSize="16sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/include"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

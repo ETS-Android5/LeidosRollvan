@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.2898148148148148" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/Android_Project/app/src/main/res/layout/activity_main.xml" value="0.10144927536231885" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/Android_Project/app/src/main/res/layout/fragment_home.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/Android_Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.17916666666666667" />
@@ -22,18 +23,29 @@
         <entry key="..\:/Users/kiera/Documents/cs26-main/Android_Project/app/src/main/res/layout/fragment_search.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-anydpi/signOut.xml" value="0.3111111111111111" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_photo_alternate_24.xml" value="0.2611111111111111" />
+        <entry key="app/src/main/res/drawable/ic_fast_food_svgrepo_com.xml" value="0.2351851851851852" />
+        <entry key="app/src/main/res/drawable/ic_food_truck_svgrepo_com.xml" value="0.2351851851851852" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.79375" />
         <entry key="app/src/main/res/layout/activity_business_home.xml" value="0.10778985507246377" />
         <entry key="app/src/main/res/layout/activity_business_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/appbar.xml" value="0.22826086956521738" />
+        <entry key="app/src/main/res/layout/business_page.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_account_guest.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/fragment_allbusiness.xml" value="0.26721014492753625" />
+        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.20380434782608695" />
+        <entry key="app/src/main/res/layout/fragment_guest_account.xml" value="0.20380434782608695" />
         <entry key="app/src/main/res/layout/fragment_help.xml" value="0.22327898550724637" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/horiz_bus.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/recycler_list_item.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/row_business.xml" value="0.26721014492753625" />
+        <entry key="app/src/main/res/layout/rowbus.xml" value="0.26721014492753625" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.18385416666666668" />

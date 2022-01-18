@@ -46,6 +46,10 @@
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".BusinessPageActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar" />
