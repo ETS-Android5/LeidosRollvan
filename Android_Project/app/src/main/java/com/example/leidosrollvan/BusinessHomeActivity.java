@@ -42,7 +42,6 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
     ArrayAdapter<String> adapterCategories;
     ArrayAdapter<String> adapterSections;
     ListView listview;
-    Button addButton;
     EditText GetValue;
     ArrayAdapter adapter;
     RecyclerView recyclerView;
@@ -54,7 +53,6 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_home);
 
-        addButton = findViewById(R.id.button1);
         businessHomeProgressBar = (ProgressBar) findViewById(R.id.business_home_progressBar);
         businessHomeProgressBar.setVisibility(View.VISIBLE);
 
