@@ -8,6 +8,81 @@
     tools:context=".BusinessHomeActivity">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/notifyNoItems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Click the add button to add menu items" />
+
+            <TextView
+                android:id="@+id/cat1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Breakfast" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/breakfastSection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/cat2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lunch" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lunchSection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/cat3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dinner" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dinnerSection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/cat4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dessert" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dessertSection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/cat5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Drinks" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/drinksSection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
+
     <Button
         android:id="@+id/business_home_category"
         android:layout_width="wrap_content"

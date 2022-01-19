@@ -170,6 +170,5 @@ public class BusinessCategoryActivity extends AppCompatActivity{
     public void toBusinessHome(View view){
         save();
         startActivity(new Intent(this,  BusinessHomeActivity.class));
-
     }
 }
