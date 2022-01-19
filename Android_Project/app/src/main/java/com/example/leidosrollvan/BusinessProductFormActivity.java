@@ -22,7 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/*
+TODO: Add form validation
+ */
 public class BusinessProductFormActivity extends AppCompatActivity implements View.OnClickListener {
     String[] sections =  {"Breakfast","Lunch","Dinner","Dessert","Drinks"};
     private EditText productName, productPrice;
@@ -63,7 +65,6 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
 
     /*
     Converts form into BusinessMenu Object then save into database.
-    NO FORM VALIDATION
      */
     public void save(){
 
