@@ -92,6 +92,8 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                                 FirebaseDatabase.getInstance().getReference("Business Menu")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(oldMenu);
+                                notifyAll();
+
                             }
                             //Only categories exist
                             else{
@@ -117,6 +119,7 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                                 FirebaseDatabase.getInstance().getReference("Business Menu")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(newMenu);
+                                notifyAll();
                             }
                         }
 
@@ -131,7 +134,6 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                 else{
                     productName = (EditText) findViewById(R.id.productNamePopup);
                     productPrice = (EditText) findViewById(R.id.productPricePopup);
-
                     spinnerSection = findViewById(R.id.spinnerSection);
                     String selectedName = productName.getText().toString().trim();
                     String selectedPrice = productPrice.getText().toString().trim();
@@ -150,8 +152,8 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                     FirebaseDatabase.getInstance().getReference("Business Menu")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(newMenu);
+                    notifyAll();
                 }
-
 
             }
 

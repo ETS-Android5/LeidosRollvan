@@ -1,5 +1,7 @@
 package com.example.leidosrollvan;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 public class BusinessMenu {
@@ -9,23 +11,15 @@ public class BusinessMenu {
    // private HashMap<String, Food> Menu = new HashMap<String, Food>();
     //private ArrayList<String> menuSection ;//eg. breakfast, beverages, snacks etc
 
-    private HashMap<String, ArrayList<HashMap<String, String>>> businessMenuItems;
-    private ArrayList<String> categories;
-    /*public BusinessMenu( ArrayList<String> categories, HashMap<String, Food> Menu){
-        this.Menu = Menu;
-        //this.menuSection = menuSection;
-        this.categories = categories;
-    }*/
+    private HashMap<String, ArrayList<HashMap<String, String>>> businessMenuItems = new HashMap<String, ArrayList<HashMap<String, String>>>();
+    private ArrayList<String> categories = new ArrayList<String>();
+
     public BusinessMenu(){}
 
     public BusinessMenu(HashMap<String, ArrayList<HashMap<String, String>>> businessMenuItems,ArrayList<String> categories) {
         this.businessMenuItems = businessMenuItems;
         this.categories = categories;
     }
-
-
-
-
 
     public ArrayList<String> getCategories() {
         return categories;
@@ -69,6 +63,14 @@ public class BusinessMenu {
 
     public void removeBusinessMenuItems(String Section, HashMap<String,String> businessMenuItems){
         this.businessMenuItems.get(Section).remove(businessMenuItems);
+    }
+
+    public ArrayList<String> getSections(){
+        return new ArrayList<String>(this.businessMenuItems.keySet());
+    }
+
+    public boolean isEmptyMenu(){
+        return this.businessMenuItems.isEmpty();
     }
 }
 

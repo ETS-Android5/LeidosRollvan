@@ -28,58 +28,73 @@
                 android:id="@+id/notifyNoItems"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Click the add button to add menu items" />
+                android:text="Click the add button to add menu items"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/cat1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Breakfast" />
+                android:text="Breakfast"
+                android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/breakfastSection"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/cat2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lunch" />
+                android:text="Lunch"
+                android:visibility="gone" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lunchSection"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/cat3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Dinner" />
+                android:text="Dinner"
+                android:visibility="gone" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/dinnerSection"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/cat4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Dessert" />
+                android:text="Dessert"
+                android:visibility="gone" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/dessertSection"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/cat5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Drinks" />
+                android:text="Drinks"
+                android:visibility="gone" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/drinksSection"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 
