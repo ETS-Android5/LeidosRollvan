@@ -31,6 +31,8 @@ public class itemRecyclerAdapter extends RecyclerView.Adapter<itemRecyclerAdapte
     private DatabaseReference reference;
     private String businessID;
 
+
+
     public itemRecyclerAdapter(ArrayList<HashMap<String, String>> itemList,String Section) {
         this.itemList = itemList;
         this.Section = Section;
@@ -59,7 +61,7 @@ public class itemRecyclerAdapter extends RecyclerView.Adapter<itemRecyclerAdapte
     public void onBindViewHolder(@NonNull itemRecyclerAdapter.MyViewHolder holder, int position) {
         HashMap<String, String> item = itemList.get(position);
         String name = item.keySet().toArray()[0].toString();
-        String price = item.get(name);
+        String price = "$"+item.get(name);
         holder.foodName.setText(name);
         holder.foodPrice.setText(price);
         holder.deleteImage.setOnClickListener(new View.OnClickListener(){
@@ -79,6 +81,9 @@ public class itemRecyclerAdapter extends RecyclerView.Adapter<itemRecyclerAdapte
                                 Log.i("oldMenu", "onDataChange: "+oldMenu);
                                 oldMenu.removeBusinessMenuItems(Section,item);
                                 itemList.remove(item);
+                                if(itemList.size()==0){
+                                    notifyDataSetChanged();
+                                }
                                 FirebaseDatabase.getInstance().getReference("Business Menu")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(oldMenu);

@@ -92,7 +92,6 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                                 FirebaseDatabase.getInstance().getReference("Business Menu")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(oldMenu);
-                                notifyAll();
 
                             }
                             //Only categories exist
@@ -119,7 +118,6 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                                 FirebaseDatabase.getInstance().getReference("Business Menu")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(newMenu);
-                                notifyAll();
                             }
                         }
 
@@ -152,7 +150,6 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                     FirebaseDatabase.getInstance().getReference("Business Menu")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(newMenu);
-                    notifyAll();
                 }
 
             }
@@ -172,7 +169,8 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
 
     public void clickSave(View v){
         save();
-        startActivity(new Intent(this, BusinessHomeActivity.class));
+        Intent i = new Intent(this, BusinessHomeActivity.class);
+        startActivity(i);
     }
 
     @Override

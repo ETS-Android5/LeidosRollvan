@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,6 +46,7 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
     private Button saveButton,cancelButton;
     private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5;
     private RecyclerView breakfastSection,lunchSection,dinnerSection,dessertSection,drinksSection;
+    private boolean paused = false;
     String[] categories =  {"Asian Cuisine","Kebab","Hot Dogs","Coffee and Tea","Burritos"};
     String[] sections =  {"Breakfast","Lunch","Dinner","Dessert","Drinks"};
     AutoCompleteTextView autoCompleteCategories;
@@ -61,9 +63,17 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_home);
+
+        final SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                load(); // your code
+                pullToRefresh.setRefreshing(false);
+            }
+        });
         load();
     }
-
 
     protected void load(){
         cat1 = (TextView) findViewById(R.id.cat1);
@@ -168,18 +178,10 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
             }
         });
     }
-    @Override
-    public void onResume() {
 
-        super.onResume();
-        load();
+    public void refresh(View v){
+        this.recreate();
     }
-    @Override
-    public void onStart() {
-        super.onStart();
-        load();
-    }
-
 
     public void toAddPage(View view){
         startActivity(new Intent(this,  BusinessProductFormActivity.class));
