@@ -42,9 +42,9 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else {
-                    Intent intent = new Intent(SplashActivity.this, BusinessHomeActivity.class);
-                    startActivity(intent);
-                    finish();
+//                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+//                    startActivity(intent);
+//                    finish();
                     String userID = mAuth.getInstance().getCurrentUser().getUid();
 
                     businessReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -54,7 +54,7 @@ public class SplashActivity extends AppCompatActivity {
                                 startActivity(new Intent(SplashActivity.this, BusinessHomeActivity.class));
                                 finish();
                             } else {
-                                startActivity(new Intent(SplashActivity.this, BusinessHomeActivity.class));
+                                startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                 finish();
                             }
                         }

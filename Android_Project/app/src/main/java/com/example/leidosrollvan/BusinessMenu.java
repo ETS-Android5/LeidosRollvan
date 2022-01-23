@@ -11,8 +11,8 @@ public class BusinessMenu {
    // private HashMap<String, Food> Menu = new HashMap<String, Food>();
     //private ArrayList<String> menuSection ;//eg. breakfast, beverages, snacks etc
 
-    private HashMap<String, ArrayList<HashMap<String, String>>> businessMenuItems = new HashMap<String, ArrayList<HashMap<String, String>>>();
-    private ArrayList<String> categories = new ArrayList<String>();
+    public HashMap<String, ArrayList<HashMap<String, String>>> businessMenuItems = new HashMap<String, ArrayList<HashMap<String, String>>>();
+    public ArrayList<String> categories = new ArrayList<String>();
 
     public BusinessMenu(){}
 
