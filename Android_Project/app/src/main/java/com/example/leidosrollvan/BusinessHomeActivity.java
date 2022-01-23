@@ -197,8 +197,8 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
             case R.id.business_home_logout:
                 mAuth.getInstance().signOut();
                 startActivity(new Intent(this, BusinessLoginActivity.class));
-            case R.id.business_home_add:
-                startActivity(new Intent(this, BusinessProductFormActivity.class));
+//            case R.id.business_home_add:
+//                startActivity(new Intent(this, BusinessProductFormActivity.class));
         }
     }
 
