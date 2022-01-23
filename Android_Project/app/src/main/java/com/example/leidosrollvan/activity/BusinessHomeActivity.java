@@ -1,13 +1,11 @@
-package com.example.leidosrollvan;
+package com.example.leidosrollvan.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -21,6 +19,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.leidosrollvan.dataClasses.BusinessMenu;
+import com.example.leidosrollvan.R;
+import com.example.leidosrollvan.adapters.itemRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,13 +30,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BusinessHomeActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button businessHomeLogout;
+    private Button businessHomeLogout, addItemButton, addCategoryButton;
     private ProgressBar businessHomeProgressBar;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -96,6 +95,13 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
         businessID = user.getUid();
         businessHomeLogout = (Button) findViewById(R.id.business_home_logout);
         businessHomeLogout.setOnClickListener(this);
+
+        addItemButton = (Button) findViewById(R.id.business_home_add);
+        addItemButton.setOnClickListener(this);
+
+        addCategoryButton = (Button) findViewById(R.id.business_home_category);
+        addCategoryButton.setOnClickListener(this);
+
         businessHomeProgressBar.setVisibility(View.GONE);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -195,10 +201,16 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.business_home_logout:
-                mAuth.getInstance().signOut();
+                FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this, BusinessLoginActivity.class));
+                break;
+
             case R.id.business_home_add:
                 startActivity(new Intent(this, BusinessProductFormActivity.class));
+                break;
+            case R.id.business_home_category:
+                startActivity(new Intent(this,  BusinessCategoryActivity.class));
+                break;
         }
     }
 

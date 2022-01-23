@@ -1,4 +1,4 @@
-package com.example.leidosrollvan;
+package com.example.leidosrollvan.dataClasses;
 
 import android.util.Log;
 

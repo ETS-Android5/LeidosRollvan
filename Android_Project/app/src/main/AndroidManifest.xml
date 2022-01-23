@@ -17,29 +17,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LeidosRollVan">
         <activity
-            android:name=".businessForgotPassword"
+            android:name=".activity.businessForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".forgotPassword"
+            android:name=".activity.forgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".BusinessHomeActivity"
+            android:name=".activity.BusinessHomeActivity"
             android:launchMode="singleTop"
             android:exported="false" />
-        <activity android:name=".BusinessProductFormActivity"
+        <activity android:name=".activity.BusinessProductFormActivity"
             android:exported="false"
             />
-        <activity android:name=".BusinessCategoryActivity"
+        <activity android:name=".activity.BusinessCategoryActivity"
             android:exported="false"
             />
         <activity
-            android:name=".BusinessRegisterActivity"
+            android:name=".activity.BusinessRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".BusinessLoginActivity"
+            android:name=".activity.BusinessLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:exported="true"
             android:theme="@style/AppTheme1">
             <intent-filter>
@@ -49,19 +49,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activity.RegisterActivity"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".BusinessPageActivity"
+            android:name=".activity.BusinessPageActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan"> <!-- adjustPan makes navbar not scroll up when typing -->
 

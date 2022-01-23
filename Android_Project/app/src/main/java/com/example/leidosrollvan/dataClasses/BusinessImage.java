@@ -1,4 +1,4 @@
-package com.example.leidosrollvan;
+package com.example.leidosrollvan.dataClasses;
 
 public class BusinessImage {
     public String mName;

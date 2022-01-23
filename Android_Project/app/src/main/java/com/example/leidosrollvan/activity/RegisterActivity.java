@@ -1,4 +1,4 @@
-package com.example.leidosrollvan;
+package com.example.leidosrollvan.activity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.leidosrollvan.R;
+import com.example.leidosrollvan.dataClasses.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

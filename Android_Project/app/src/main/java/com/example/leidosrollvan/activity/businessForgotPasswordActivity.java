@@ -1,4 +1,4 @@
-package com.example.leidosrollvan;
+package com.example.leidosrollvan.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,11 +11,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.leidosrollvan.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class businessForgotPassword extends AppCompatActivity {
+public class businessForgotPasswordActivity extends AppCompatActivity {
     private EditText businessEmail;
     private Button businessResetPasswordButton;
     private ProgressBar businessProgressBar;
@@ -58,9 +59,9 @@ public class businessForgotPassword extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(businessForgotPassword.this, "Check your email to reset your password ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(businessForgotPasswordActivity.this, "Check your email to reset your password ", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(businessForgotPassword.this, "email was not sent please try again", Toast.LENGTH_LONG).show();
+                    Toast.makeText(businessForgotPasswordActivity.this, "email was not sent please try again", Toast.LENGTH_LONG).show();
                 }
             }
         });

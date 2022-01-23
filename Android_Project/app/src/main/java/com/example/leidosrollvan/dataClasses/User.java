@@ -1,4 +1,4 @@
-package com.example.leidosrollvan;
+package com.example.leidosrollvan.dataClasses;
 
 public class User {
     public String name, email, mobile;

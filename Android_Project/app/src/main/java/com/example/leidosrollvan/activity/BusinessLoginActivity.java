@@ -1,4 +1,4 @@
-package com.example.leidosrollvan;
+package com.example.leidosrollvan.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.leidosrollvan.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -125,7 +126,7 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
                 startActivity(new Intent(this, BusinessRegisterActivity.class));
                 break;
             case R.id.businessForgotPassword:
-                startActivity(new Intent(this,businessForgotPassword.class));
+                startActivity(new Intent(this, businessForgotPasswordActivity.class));
                 break;
         }
 

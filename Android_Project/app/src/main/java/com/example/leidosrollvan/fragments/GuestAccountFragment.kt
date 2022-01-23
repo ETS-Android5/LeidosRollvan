@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.example.leidosrollvan.LoginActivity
+import com.example.leidosrollvan.activity.LoginActivity
 import com.example.leidosrollvan.R
 
 // TODO: Rename parameter arguments, choose names that match

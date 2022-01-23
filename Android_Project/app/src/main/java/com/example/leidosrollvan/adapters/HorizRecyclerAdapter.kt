@@ -1,4 +1,4 @@
-package com.example.leidosrollvan
+package com.example.leidosrollvan.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,24 +7,28 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.leidosrollvan.dataClasses.Business
+import com.example.leidosrollvan.dataClasses.BusinessImage
+import com.example.leidosrollvan.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
-class CustomRecyclerAdapter(private val businessList: ArrayList<Business>,
-                            private val businessIdList: ArrayList<String>,
-                            onBusiClickListener: OnBusiClickListener
-) : RecyclerView.Adapter<CustomRecyclerAdapter.ViewHolder>()  {
-    private var monBusiClickListener:OnBusiClickListener
+class HorizRecyclerAdapter(private val businessList: ArrayList<Business>,
+                           private val businessIdList: ArrayList<String>,
+                           onBusiClickListener: onBusiClickListener
+) : RecyclerView.Adapter<HorizRecyclerAdapter.ViewHolder>()  {
+    private var monBusiClickListener: onBusiClickListener
     init {
         this.monBusiClickListener=onBusiClickListener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_list_item,
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.horiz_bus,
             parent, false)
         return ViewHolder(itemView,monBusiClickListener)
 
@@ -39,12 +43,10 @@ class CustomRecyclerAdapter(private val businessList: ArrayList<Business>,
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     val uri = snapshot.getValue(BusinessImage::class.java)!!.mImageUrl
-                    holder.businessName.text = currentItem.businessName
-                    holder.businessContact.text = currentItem.businessMobile
+                    holder.businessName.setText(currentItem.businessName)
                     Picasso.with(holder.businessImage.context).load(uri).into(holder.businessImage)
                 }else {
-                    holder.businessName.text = currentItem.businessName
-                    holder.businessContact.text = currentItem.businessMobile
+                    holder.businessName.setText(currentItem.businessName)
                     holder.businessImage.setImageResource(R.drawable.ic_baseline_image_not_supported_24)
                 }
 
@@ -60,11 +62,10 @@ class CustomRecyclerAdapter(private val businessList: ArrayList<Business>,
     }
 
 
-    class ViewHolder(itemView : View, onBusiClickListener: OnBusiClickListener) : RecyclerView.ViewHolder(itemView),View.OnClickListener{
-        val businessName : TextView = itemView.findViewById(R.id.nameRecyclerItem)
-        val businessContact : TextView = itemView.findViewById(R.id.contactRecyclerItem)
-        val businessImage : ImageView = itemView.findViewById(R.id.imageRecyclerItem)
-        lateinit var onBusiClickListener:OnBusiClickListener
+    class ViewHolder(itemView : View, onBusiClickListener: onBusiClickListener) : RecyclerView.ViewHolder(itemView),View.OnClickListener{
+        var businessName : TextView = itemView.findViewById(R.id.businessCard)
+        var businessImage : ImageView = itemView.findViewById(R.id.businessCardImage)
+        var onBusiClickListener: onBusiClickListener
         init {
             itemView.setOnClickListener(this)
             this.onBusiClickListener =onBusiClickListener
@@ -77,7 +78,7 @@ class CustomRecyclerAdapter(private val businessList: ArrayList<Business>,
 
     }
 
-    interface OnBusiClickListener{
+    interface onBusiClickListener{
         fun onBusiClick(position: Int)
     }
 

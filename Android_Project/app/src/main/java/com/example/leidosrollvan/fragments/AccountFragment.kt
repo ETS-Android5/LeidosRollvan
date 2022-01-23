@@ -9,16 +9,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.example.leidosrollvan.LoginActivity
-import com.example.leidosrollvan.MainActivity
+import com.example.leidosrollvan.activity.LoginActivity
 import com.example.leidosrollvan.R
-import com.example.leidosrollvan.User
+import com.example.leidosrollvan.dataClasses.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_account.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -67,7 +63,8 @@ class AccountFragment : Fragment(), View.OnClickListener {
 
         reference.child(userID).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot){
-                val userProfile : User = dataSnapshot.getValue(User::class.java) as User
+                val userProfile : User = dataSnapshot.getValue(
+                    User::class.java) as User
                 if(userProfile != null){
                     val fullName : String = userProfile.name
                     val email : String = userProfile.email

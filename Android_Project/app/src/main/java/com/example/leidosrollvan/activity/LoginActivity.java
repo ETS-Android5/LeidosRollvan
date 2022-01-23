@@ -1,4 +1,4 @@
-package com.example.leidosrollvan;
+package com.example.leidosrollvan.activity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.leidosrollvan.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -132,7 +133,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(this, BusinessLoginActivity.class));
                 break;
             case R.id.forgotPasswordText:
-                startActivity(new Intent(this,forgotPassword.class));
+                startActivity(new Intent(this, forgotPasswordActivity.class));
                 break;
         }
     }

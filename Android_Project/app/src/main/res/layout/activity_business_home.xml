@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BusinessHomeActivity">
+    tools:context=".activity.BusinessHomeActivity">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/pullToRefresh"
@@ -138,7 +138,6 @@
         android:id="@+id/business_home_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="toCategoriesPage"
         android:text="Categories"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -153,7 +152,6 @@
         android:id="@+id/business_home_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="toAddPage"
         android:text="Add"
         android:textColor="@color/black"
         android:textSize="20sp"

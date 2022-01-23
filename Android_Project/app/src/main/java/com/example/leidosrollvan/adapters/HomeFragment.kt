@@ -1,4 +1,4 @@
-package com.example.leidosrollvan.fragments
+package com.example.leidosrollvan.adapters
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +9,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.leidosrollvan.*
 import com.example.leidosrollvan.R
+import com.example.leidosrollvan.activity.BusinessPageActivity
+import com.example.leidosrollvan.dataClasses.Business
 import com.google.firebase.database.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -88,8 +89,10 @@ class HomeFragment : Fragment() {
 
 
                     businessRecyclerView.adapter = CustomRecyclerAdapter(businessList, businessIdList,this )
-                    businessHorizRecyclerView.adapter=HorizRecyclerAdapter(businessList,businessIdList,this)
-                    businessHorizRecyclerView2.adapter=HorizRecyclerAdapter(businessList,businessIdList,this)
+                    businessHorizRecyclerView.adapter=
+                        HorizRecyclerAdapter(businessList,businessIdList,this)
+                    businessHorizRecyclerView2.adapter=
+                        HorizRecyclerAdapter(businessList,businessIdList,this)
 
 
                 }
