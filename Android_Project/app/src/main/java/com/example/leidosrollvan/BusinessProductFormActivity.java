@@ -22,7 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/*
+TODO: Add form validation
+ */
 public class BusinessProductFormActivity extends AppCompatActivity implements View.OnClickListener {
     String[] sections =  {"Breakfast","Lunch","Dinner","Dessert","Drinks"};
     private EditText productName, productPrice;
@@ -63,7 +65,6 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
 
     /*
     Converts form into BusinessMenu Object then save into database.
-    NO FORM VALIDATION
      */
     public void save(){
 
@@ -92,6 +93,7 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                                 FirebaseDatabase.getInstance().getReference("Business Menu")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(oldMenu);
+
                             }
                             //Only categories exist
                             else{
@@ -131,7 +133,6 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                 else{
                     productName = (EditText) findViewById(R.id.productNamePopup);
                     productPrice = (EditText) findViewById(R.id.productPricePopup);
-
                     spinnerSection = findViewById(R.id.spinnerSection);
                     String selectedName = productName.getText().toString().trim();
                     String selectedPrice = productPrice.getText().toString().trim();
@@ -152,7 +153,6 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                             .setValue(newMenu);
                 }
 
-
             }
 
             @Override
@@ -170,7 +170,8 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
 
     public void clickSave(View v){
         save();
-        startActivity(new Intent(this, BusinessHomeActivity.class));
+        Intent i = new Intent(this, BusinessHomeActivity.class);
+        startActivity(i);
     }
 
     @Override
