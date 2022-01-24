@@ -1,6 +1,7 @@
 package com.example.leidosrollvan.fragments;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -19,6 +20,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.leidosrollvan.R;
+import com.example.leidosrollvan.activity.BusinessHomeActivity;
+import com.example.leidosrollvan.activity.MainActivity;
+import com.example.leidosrollvan.dataClasses.BusinessLocation;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -30,16 +34,25 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MapsFragment extends Fragment {
     private SupportMapFragment supportMapFragment;
     private FusedLocationProviderClient client;
     private Geocoder geocoder;
-    private String postCode = "G11 6PE";
-    private Address mAddress;
+    private ArrayList<String> mPostCodes;
+    private DatabaseReference locationRef;
+    private DatabaseReference businessRef;
+
 
 
     public MapsFragment() {
@@ -56,44 +69,33 @@ public class MapsFragment extends Fragment {
 
         client = LocationServices.getFusedLocationProviderClient(requireActivity());
 
+        mPostCodes = new ArrayList<>();
+
         geocoder = new Geocoder(requireActivity());
-        try {
-            List<Address> addresses = geocoder.getFromLocationName(postCode, 1);
-            if(addresses != null && !addresses.isEmpty()){
-                mAddress = addresses.get(0);
-            }else {
-                Toast.makeText(requireActivity(), "Unable to get address", Toast.LENGTH_SHORT).show();
+
+        locationRef = FirebaseDatabase.getInstance().getReference("Business Locations");
+        locationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for(DataSnapshot locationSnapshot : snapshot.getChildren()){
+                        BusinessLocation location = locationSnapshot.getValue(BusinessLocation.class);
+                        mPostCodes.add(location.getPostCode());
+                    }
+                }
             }
-        }catch (IOException e ){
-            Toast.makeText(requireActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
-        getCurrentLocation();
+        businessRef = FirebaseDatabase.getInstance().getReference("Businesses");
 
-
-//        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-//            @Override
-//            public void onMapReady(@NonNull GoogleMap googleMap) {
-//                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-//                    @Override
-//                    public void onMapClick(@NonNull LatLng latLng) {
-//                        MarkerOptions markerOptions = new MarkerOptions();
-//                        markerOptions.position(latLng);
-//                        markerOptions.title(latLng.latitude + " : " + latLng.longitude);
-//                        googleMap.clear();
-//                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-//                                latLng, 10
-//                        ));
-//                        googleMap.addMarker(markerOptions);
-//                    }
-//                });
-//            }
-//        });
-
+        loadMap();
         return view;
     }
 
-    private void getCurrentLocation() {
+    private void loadMap() {
         if (ActivityCompat.checkSelfPermission(requireActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             Task<Location> task = client.getLastLocation();
@@ -108,20 +110,26 @@ public class MapsFragment extends Fragment {
                                 LatLng myLatLng = new LatLng(location.getLatitude(),
                                         location.getLongitude());
 
-                                LatLng addressLatLng = new LatLng(mAddress.getLatitude(),
-                                        mAddress.getLongitude());
-
-                                MarkerOptions options = new MarkerOptions().position(addressLatLng)
-                                        .title("Set location").icon(BitmapDescriptorFactory
-                                                .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-
                                 // set current location
                                 if (ActivityCompat.checkSelfPermission(requireActivity(),
                                         Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                                     googleMap.setMyLocationEnabled(true);
                                 }
                                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myLatLng, 10));
-                                googleMap.addMarker(options);
+
+
+                                for(String code : mPostCodes){
+                                    try{
+                                        Address address = geocoder.getFromLocationName(code, 1).get(0);
+                                        LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+
+                                        MarkerOptions options = new MarkerOptions().position(latLng);
+                                        googleMap.addMarker(options);
+                                    }catch (IOException e){
+                                       Toast.makeText(requireActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+
+                                }
                             }
                         });
                     }
@@ -137,7 +145,7 @@ public class MapsFragment extends Fragment {
             new ActivityResultContracts.RequestPermission(),
             result -> {
                 if(result){
-                    getCurrentLocation();
+                    loadMap();
                 }
             }
     );
