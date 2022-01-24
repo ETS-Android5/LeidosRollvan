@@ -1,4 +1,4 @@
-package com.example.leidosrollvan.adapters
+package com.example.leidosrollvan.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.leidosrollvan.R
 import com.example.leidosrollvan.activity.BusinessPageActivity
+import com.example.leidosrollvan.adapters.CustomRecyclerAdapter
+import com.example.leidosrollvan.adapters.HorizRecyclerAdapter
 import com.example.leidosrollvan.dataClasses.Business
 import com.google.firebase.database.*
 

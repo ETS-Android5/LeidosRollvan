@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +18,11 @@
         android:roundIcon="@mipmap/ic_launcheer_truck_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LeidosRollVan">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDS5PJ5HwDpY2Y6qlbrZCnHQW5BWgRxzr4"/>
+
         <activity
             android:name=".activity.businessForgotPasswordActivity"
             android:exported="false" />

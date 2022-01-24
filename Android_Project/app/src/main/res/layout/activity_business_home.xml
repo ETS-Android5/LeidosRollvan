@@ -7,15 +7,46 @@
     android:layout_height="match_parent"
     tools:context=".activity.BusinessHomeActivity">
 
+    <LinearLayout
+        android:id="@+id/location_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/business_location_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="20dp"
+            android:hint="Enter location postcode" />
+
+        <Button
+            android:id="@+id/business_location_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Save"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="-10dp"/>
+    </LinearLayout>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="50dp"
+        android:layout_marginTop="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toEndOf="@+id/location_layout"
+        app:layout_constraintTop_toBottomOf="@+id/location_layout">
 
 
         <ScrollView
