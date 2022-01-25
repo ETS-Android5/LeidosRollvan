@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.leidosrollvan">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -39,6 +40,9 @@
             android:name=".activity.BusinessLoginActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.BusinessNotificationActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.SplashActivity"
             android:exported="true"
             android:theme="@style/AppTheme1">
@@ -66,6 +70,15 @@
             android:windowSoftInputMode="adjustPan"> <!-- adjustPan makes navbar not scroll up when typing -->
 
         </activity>
+
+        <service android:name=".activity.MessageServiceActivity"
+            tools:ignore="ExportedService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

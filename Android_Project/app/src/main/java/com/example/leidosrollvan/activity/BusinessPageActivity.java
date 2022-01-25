@@ -16,30 +16,45 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.leidosrollvan.dataClasses.Business;
 import com.example.leidosrollvan.dataClasses.BusinessImage;
 import com.example.leidosrollvan.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 public class BusinessPageActivity extends AppCompatActivity implements View.OnClickListener {
     DatabaseReference reference;
     DatabaseReference imRef;
     Button homeButton;
+    Button notiSubButton;
+    Button notiUnSubButton;
+    String businessName;
+    TextView businessPageName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_business_page);
-
+        if(FirebaseAuth.getInstance().getCurrentUser()==null){
+            setContentView(R.layout.activity_business_page_guest);
+        }
+        else{
+            setContentView(R.layout.activity_business_page);
+            notiSubButton = (Button) findViewById(R.id.noti);
+            notiSubButton.setOnClickListener(this);
+            notiUnSubButton = (Button) findViewById(R.id.notiUn);
+            notiUnSubButton.setOnClickListener(this);
+        }
         homeButton = (Button) findViewById(R.id.home_bus);
         homeButton.setOnClickListener(this);
 
         Bundle bundle = getIntent().getExtras();
         String b_id = bundle.getString("b_id");
 
-        TextView businessPageName = (TextView) findViewById(R.id.business_page_name);
+        businessPageName = (TextView) findViewById(R.id.business_page_name);
         TextView businessPageMob = (TextView) findViewById(R.id.business_page_mob);
         TextView businessPageEmail = (TextView) findViewById(R.id.business_page_email);
         ImageView businessPageImg = (ImageView) findViewById(R.id.busi_page_Image);
@@ -49,7 +64,7 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Business businessProfile = snapshot.getValue(Business.class);
                 if (businessProfile != null) {
-                    String businessName = businessProfile.businessName;
+                    businessName = businessProfile.businessName;
                     String businessMobile = businessProfile.businessMobile;
                     String businessEmail= businessProfile.businessEmail;
                     businessPageName.setText(businessName);
@@ -89,6 +104,28 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         switch (v.getId()){
             case R.id.home_bus:
                 startActivity(new Intent(this, MainActivity.class));
+                break;
+            case R.id.noti:
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+                    FirebaseMessaging.getInstance().subscribeToTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getApplicationContext(), "Subscribed", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    break;
+                }
+            case R.id.notiUn:
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getApplicationContext(), "Unsubscribed", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    break;
+                }
+
         }
     }
 }
