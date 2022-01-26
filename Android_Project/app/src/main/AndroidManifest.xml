@@ -18,10 +18,13 @@
         android:roundIcon="@mipmap/ic_launcheer_truck_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LeidosRollVan">
+        <activity
+            android:name=".activity.MapActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDS5PJ5HwDpY2Y6qlbrZCnHQW5BWgRxzr4"/>
+            android:value="@string/map_key" />
 
         <activity
             android:name=".activity.businessForgotPasswordActivity"
@@ -31,14 +34,14 @@
             android:exported="false" />
         <activity
             android:name=".activity.BusinessHomeActivity"
-            android:launchMode="singleTop"
+            android:exported="false"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.BusinessProductFormActivity"
             android:exported="false" />
-        <activity android:name=".activity.BusinessProductFormActivity"
-            android:exported="false"
-            />
-        <activity android:name=".activity.BusinessCategoryActivity"
-            android:exported="false"
-            />
+        <activity
+            android:name=".activity.BusinessCategoryActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.BusinessRegisterActivity"
             android:exported="false" />

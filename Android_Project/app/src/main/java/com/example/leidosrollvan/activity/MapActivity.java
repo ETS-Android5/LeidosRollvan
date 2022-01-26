@@ -1,38 +1,18 @@
-package com.example.leidosrollvan.fragments;
-
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.nfc.Tag;
-import android.os.Bundle;
+package com.example.leidosrollvan.activity;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-
-import android.preference.PreferenceFragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.leidosrollvan.R;
-import com.example.leidosrollvan.activity.BusinessHomeActivity;
-import com.example.leidosrollvan.activity.MainActivity;
 import com.example.leidosrollvan.dataClasses.BusinessLocation;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -54,11 +34,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MapsFragment extends Fragment {
+public class MapActivity extends AppCompatActivity {
     private SupportMapFragment supportMapFragment;
     private AutocompleteSupportFragment autocompleteSupportFragment;
     private FusedLocationProviderClient client;
@@ -69,26 +59,22 @@ public class MapsFragment extends Fragment {
     private DatabaseReference businessRef;
     private String apiKey;
 
-
-    public MapsFragment() {
-        // Required empty public constructor
-    }
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_map);
+
         // Initialize Map fragment
-        supportMapFragment = (SupportMapFragment)
-                getChildFragmentManager().findFragmentById(R.id.google_map);
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
 
         // initialize Places client
         apiKey = getString(R.string.map_key);
-        Places.initialize(requireActivity(), apiKey);
-        PlacesClient placesClient = Places.createClient(requireActivity());
+        Places.initialize(this, apiKey);
+        PlacesClient placesClient = Places.createClient(this);
 
         // Initialize AutoComplete search bar and set autocomplete parameters
         autocompleteSupportFragment = (AutocompleteSupportFragment)
-                getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
         autocompleteSupportFragment.setTypeFilter(TypeFilter.ADDRESS);
         autocompleteSupportFragment.setLocationBias(RectangularBounds.newInstance(
                 new LatLng(55.836229, -4.252612),
@@ -100,11 +86,11 @@ public class MapsFragment extends Fragment {
         searchMarker = new ArrayList<Marker>();
 
         // Initialize client to get user's last location on device
-        client = LocationServices.getFusedLocationProviderClient(requireActivity());
+        client = LocationServices.getFusedLocationProviderClient(this);
 
         // Initialize geocoder to convert business postcodes to latlng coordinates
         mPostCodes = new ArrayList<>();
-        geocoder = new Geocoder(requireActivity());
+        geocoder = new Geocoder(this);
 
         // Get business locations
         locationRef = FirebaseDatabase.getInstance().getReference("Business Locations");
@@ -129,17 +115,15 @@ public class MapsFragment extends Fragment {
 
         // render the map
         loadMap();
-        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void loadMap() {
-        if (ActivityCompat.checkSelfPermission(requireActivity(),
+        if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             Task<Location> task = client.getLastLocation();
 
@@ -182,7 +166,7 @@ public class MapsFragment extends Fragment {
                                         location.getLongitude());
 
                                 // show current location
-                                if (ActivityCompat.checkSelfPermission(requireActivity(),
+                                if (ActivityCompat.checkSelfPermission(getApplicationContext(),
                                         Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                                     googleMap.setMyLocationEnabled(true);
                                     googleMap.getUiSettings().setZoomControlsEnabled(true);
@@ -198,7 +182,7 @@ public class MapsFragment extends Fragment {
                                         MarkerOptions options = new MarkerOptions().position(latLng);
                                         googleMap.addMarker(options);
                                     }catch (IOException e){
-                                       Toast.makeText(requireActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                                     }
                                 }
                                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myLatLng, 10));
@@ -208,7 +192,7 @@ public class MapsFragment extends Fragment {
                 }
             });
         }else {
-            ActivityCompat.requestPermissions(requireActivity(),
+            ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
     }

@@ -1,5 +1,6 @@
 package com.example.leidosrollvan.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.id_home -> replaceFragment(homeFragment)
                 R.id.id_search -> replaceFragment(searchFragment)
-                R.id.id_map -> replaceFragment(mapFragment)
+                R.id.id_map -> startActivity(Intent(this, MapActivity::class.java))
                 R.id.id_account -> {
                     if(FirebaseAuth.getInstance().currentUser == null){
                         replaceFragment(guestAccountFragment)
@@ -47,5 +48,4 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
-
 }
