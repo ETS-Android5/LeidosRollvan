@@ -74,17 +74,16 @@ public class MapsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         // Initialize Map fragment
-        supportMapFragment = (SupportMapFragment)
-                getChildFragmentManager().findFragmentById(R.id.google_map);
+        supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.google_map);
 
         // initialize Places client
         apiKey = getString(R.string.map_key);
-        Places.initialize(requireActivity(), apiKey);
-        PlacesClient placesClient = Places.createClient(requireActivity());
+        Places.initialize(requireContext(), apiKey);
+        PlacesClient placesClient = Places.createClient(requireContext());
 
         // Initialize AutoComplete search bar and set autocomplete parameters
         autocompleteSupportFragment = (AutocompleteSupportFragment)
@@ -100,11 +99,11 @@ public class MapsFragment extends Fragment {
         searchMarker = new ArrayList<Marker>();
 
         // Initialize client to get user's last location on device
-        client = LocationServices.getFusedLocationProviderClient(requireActivity());
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
 
         // Initialize geocoder to convert business postcodes to latlng coordinates
         mPostCodes = new ArrayList<>();
-        geocoder = new Geocoder(requireActivity());
+        geocoder = new Geocoder(getActivity());
 
         // Get business locations
         locationRef = FirebaseDatabase.getInstance().getReference("Business Locations");
@@ -126,6 +125,60 @@ public class MapsFragment extends Fragment {
 
         // initialize reference to business table
         businessRef = FirebaseDatabase.getInstance().getReference("Businesses");
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        // Initialize Map fragment
+//        supportMapFragment = (SupportMapFragment)
+//                getChildFragmentManager().findFragmentById(R.id.google_map);
+//
+//        // initialize Places client
+//        apiKey = getString(R.string.map_key);
+//        Places.initialize(requireActivity(), apiKey);
+//        PlacesClient placesClient = Places.createClient(requireActivity());
+//
+//        // Initialize AutoComplete search bar and set autocomplete parameters
+//        autocompleteSupportFragment = (AutocompleteSupportFragment)
+//                getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+//        autocompleteSupportFragment.setTypeFilter(TypeFilter.ADDRESS);
+//        autocompleteSupportFragment.setLocationBias(RectangularBounds.newInstance(
+//                new LatLng(55.836229, -4.252612),
+//                new LatLng(55.897463, -4.325364)));
+//        autocompleteSupportFragment.setCountries("UK");
+//        autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG));
+//
+//        // initialize search marker list
+//        searchMarker = new ArrayList<Marker>();
+//
+//        // Initialize client to get user's last location on device
+//        client = LocationServices.getFusedLocationProviderClient(requireActivity());
+//
+//        // Initialize geocoder to convert business postcodes to latlng coordinates
+//        mPostCodes = new ArrayList<>();
+//        geocoder = new Geocoder(requireActivity());
+//
+//        // Get business locations
+//        locationRef = FirebaseDatabase.getInstance().getReference("Business Locations");
+//        locationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()){
+//                    for(DataSnapshot locationSnapshot : snapshot.getChildren()){
+//                        BusinessLocation location = locationSnapshot.getValue(BusinessLocation.class);
+//                        mPostCodes.add(location.getPostCode());
+//                    }
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Log.i("Location error", "Error retrieving location: ", error.toException().getCause());
+//            }
+//        });
+//
+//        // initialize reference to business table
+//        businessRef = FirebaseDatabase.getInstance().getReference("Businesses");
 
         // render the map
         loadMap();
