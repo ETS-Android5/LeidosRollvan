@@ -5,6 +5,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefreshNoti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,8 +22,8 @@
 
         <ImageView
             android:id="@+id/newlisticon"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:background="@drawable/ic_food_truck_svgrepo_com"
             android:layout_gravity="center"
             android:layout_marginTop="35dp"
@@ -22,11 +32,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Send Notifications To Your Subscribed Users !!"
+            android:text="Send Notifications Of Offers To Your Subscribed Users !!"
             android:gravity="center"
             android:layout_marginTop="50dp"
-            android:textSize="30dp"
-            android:textStyle="bold"/>
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputNotiBody"
@@ -36,13 +47,15 @@
             <EditText
                 android:id="@+id/editTextNotiBody"
                 style="@style/modifiedEditText"
-                android:hint="Notification Body"
+                android:hint="Offer Text (Max 30 Characters)"
                 android:inputType="text"
                 android:maxLines="1"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
-                android:textSize="20dp"
-                android:layout_marginTop="100dp"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="50dp"
+                android:maxLength="30"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <Button
@@ -51,7 +64,26 @@
             android:id="@+id/send"
             android:text="send"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/activeOffer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Active Offers"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/offerSection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
     </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

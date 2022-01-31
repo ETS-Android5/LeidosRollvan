@@ -132,7 +132,7 @@
                 />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/businessHorizRecyclerView2"
+                android:id="@+id/businessHorizRecyclerViewDeals"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
@@ -153,30 +153,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-
-            <ImageButton
-                android:id="@+id/button25"
-                android:layout_width="400dp"
-                android:layout_height="175dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginBottom="10dp"
-                android:adjustViewBounds="true"
-                android:backgroundTint="@color/white"
-
-                android:src="@drawable/map_edit" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Need help finding what you're looking for?" />
-
-            <Button
-                android:id="@+id/button15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="View all businesses"
-                android:textColor="@color/black"/>
         </LinearLayout>
     </ScrollView>
 
