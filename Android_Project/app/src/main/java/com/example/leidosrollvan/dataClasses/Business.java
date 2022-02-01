@@ -14,6 +14,10 @@ public class Business {
         this.businessEmail = businessEmail;
     }
 
+    public String getBusinessName() {
+        return businessName;
+    }
+
     /*public Business(String businessName, String businessMobile, String businessEmail, BusinessMenu businessMenu) {
         this.businessName = businessName;
         this.businessMobile = businessMobile;

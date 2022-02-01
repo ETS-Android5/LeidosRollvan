@@ -4,7 +4,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-public class BusinessMenu {
+public class BusinessMenu extends Business {
 
     //key can be menuSection
    // private ArrayList<String> categories;//Eg. Asian food, Indian etc.
