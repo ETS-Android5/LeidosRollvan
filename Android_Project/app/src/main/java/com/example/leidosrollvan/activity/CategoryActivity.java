@@ -1,12 +1,13 @@
 package com.example.leidosrollvan.activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -18,68 +19,54 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CategoryActivity extends AppCompatActivity {
     DatabaseReference reference;
     DatabaseReference imRef;
     List<String> Categories;
-    ArrayList<BusinessMenu> arrayList;
-    ArrayList<Business> arrayList2;
-    ArrayList<String> ds;
-    ArrayList<String> test;
-    ArrayAdapter<String> arrayAdapter;
     RecyclerView recyclerView;
     CategoryAdapter myAdapter;
-    ArrayList<String> businessIdList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-
-        //listView = findViewById(R.id.listView5);
-
         Categories = new ArrayList<>();
-        //displayList = new ArrayList<>();
-//ArrayList.contains("StringToBeChecked");
+
         Bundle bundle = getIntent().getExtras();
         String categoryName1 = bundle.getString("category");
         TextView theTextView = (TextView) findViewById(R.id.CategotyTesting);
         theTextView.setText(categoryName1);
 
         recyclerView = findViewById(R.id.CategoryRecyclerView);
-        //listView = (ListView) findViewById(R.id.listView5);
-        reference = FirebaseDatabase.getInstance().getReference("Businesses");
-        recyclerView.setHasFixedSize(true);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ds = new ArrayList<>();
-        arrayList = new ArrayList<BusinessMenu>();
-        arrayList2= new ArrayList<Business>();
-        businessIdList = new ArrayList<>();
-        test = new ArrayList<String>();
-
-        myAdapter = new CategoryAdapter(this, arrayList2);
+        myAdapter = new CategoryAdapter(this);
         recyclerView.setAdapter(myAdapter);
 
-        imRef = FirebaseDatabase.getInstance().getReference("Businesses Menu").child("categories");
+        imRef = FirebaseDatabase.getInstance().getReference("Business Menu");
 
         imRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    arrayList.clear();
-                    for (DataSnapshot dss : snapshot.getChildren()) {
-                        BusinessMenu CatName = dss.getValue(BusinessMenu.class);
-                        ArrayList<String> BusinessTest = CatName.getCategories();
-                        if(BusinessTest.contains(categoryName1)){
-                            test.add(dss.getKey());
-                        }
+                    GenericTypeIndicator<HashMap<String, BusinessMenu>> t = new GenericTypeIndicator<HashMap<String, BusinessMenu>>() {
+                    };
+
+                    HashMap<String, BusinessMenu> menuMap = snapshot.getValue(t);
+                    if (menuMap != null) {
+
+                        processBusinessSelection(menuMap, categoryName1);
                     }
                 }
             }
@@ -90,66 +77,40 @@ public class CategoryActivity extends AppCompatActivity {
             }
         });
 
-        for(int i =0; i<test.size();i++){
-            reference = FirebaseDatabase.getInstance().getReference("Businesses");
-            reference.child(test.get(i)).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                        Business business = dataSnapshot.getValue(Business.class);
-                        arrayList2.add(business);
-
-
-                    }
-                    myAdapter.notifyDataSetChanged();
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
-
-        }
-
-
-
-
-
-
     }
 
-        /*public void DisplayInfo (View view)
-        {
+    private void processBusinessSelection(HashMap<String, BusinessMenu> menuMap, String category) {
+        reference = FirebaseDatabase.getInstance().getReference("Businesses");
+        reference.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    GenericTypeIndicator<HashMap<String, Business>> t = new GenericTypeIndicator<HashMap<String, Business>>() {
+                    };
 
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    HashMap<String, Business> businessMap = snapshot.getValue(t);
+                    if (businessMap != null) {
 
-                        Business business = dataSnapshot.getValue(Business.class);
-                        arrayList.add(business);
-
-
+                        HashMap<String, BusinessMenu> filteredMap = new HashMap<>(
+                                menuMap.entrySet().stream().filter(
+                                        a -> a.getValue().categories.contains(category)
+                                ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
+                        );
+                        List<Business> listData =
+                                businessMap.entrySet().stream().filter(
+                                        a -> filteredMap.containsKey(a.getKey())
+                                ).map(Map.Entry::getValue).collect(Collectors.toList());
+                        myAdapter.setData(new ArrayList<>(listData));
                     }
-                    myAdapter.notifyDataSetChanged();
-
-
                 }
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }*/
-
-
-        //theTextView.setText(categoryName1);
-
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 
 
 }

@@ -17,13 +17,17 @@ import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
     Context context;
-    ArrayList<Business> list2;
+    ArrayList<Business> list2 = new ArrayList<>();
 
 
-    public CategoryAdapter(Context context, ArrayList<Business> list2) {
+    public CategoryAdapter(Context context) {
         this.context = context;
-        this.list2 = list2;
+    }
 
+    public void setData(ArrayList<Business> list) {
+        list2.clear();
+        list2 = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
