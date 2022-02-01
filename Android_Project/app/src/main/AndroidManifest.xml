@@ -20,9 +20,6 @@
             android:name=".activity.CategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".fragments.SearchByNameFragment"
-            android:exported="false" />
-        <activity
             android:name=".activity.businessForgotPasswordActivity"
             android:exported="false" />
         <activity
