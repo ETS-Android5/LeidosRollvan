@@ -42,7 +42,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -52,15 +51,12 @@ import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,6 +64,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class MapActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback{
     private SupportMapFragment supportMapFragment;
@@ -156,11 +153,16 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
-                if(marker.getTag() != null){
-                    String businessID = (String) marker.getTag();
-                    showBottomSheetDialog(businessID);
+                ArrayList<String> tags = (ArrayList<String>) marker.getTag();
+                if(tags.get(0) == "Business"){
+                    String businessID = (String) tags.get(1);
+                    String distanceTo = (String) tags.get(2);
+                    showBottomSheetDialog(businessID, distanceTo);
+
+                }else {
+                    marker.showInfoWindow();
                 }
-                return true;
+                return false;
             }
         });
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -196,7 +198,7 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
 
                                 MarkerOptions placeOptions = new MarkerOptions().position(placeLatLng)
                                         .title(place.getName())
-                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                                        .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_push_pin_24));
 
                                 if(!searchMarker.isEmpty()){
                                     Marker searchedMarker = searchMarker.get(0);
@@ -204,7 +206,12 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
                                     searchedMarker.remove();
                                 }
 
+                                ArrayList<String> tags = new ArrayList<>();
+                                tags.add("Search");
+                                tags.add(placeLatLng.toString());
+
                                 final Marker marker  = mMap.addMarker(placeOptions);
+                                marker.setTag(tags);
                                 searchMarker.add(marker);
                                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(placeLatLng, 15));
                             }
@@ -228,10 +235,19 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
                                         .get(0);
                                 LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
+                                String distance = getDistance(myLatLng, latLng);
+
                                 MarkerOptions options = new MarkerOptions().position(latLng)
                                         .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_restaurant_24));
 
-                                mMap.addMarker(options).setTag(businessID);
+                                ArrayList<String> tags = new ArrayList<>();
+                                tags.add("Business");
+                                tags.add(businessID);
+                                tags.add(distance);
+
+                                Marker marker = mMap.addMarker(options);
+                                marker.setTag(tags);
+                                marker.showInfoWindow();
 
                             }catch (IOException e){
                                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -251,7 +267,8 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
             new ActivityResultContracts.RequestPermission(),
             result -> {
                 if(result){
-                    loadMap();
+                    finish();
+                    startActivity(getIntent());
                 }
             }
     );
@@ -283,7 +300,7 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    private void showBottomSheetDialog(String businessID){
+    private void showBottomSheetDialog(String businessID, String distanceTo){
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setContentView(R.layout.map_bottom_sheet);
 
@@ -300,7 +317,15 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
                 if(snapshot.hasChild(businessID)){
                     Business businessData = snapshot.child(businessID).getValue(Business.class);
 
+                    float totalDist = Float.parseFloat(distanceTo);
+                    float timeTo = (totalDist/5)*60;
+
+                    String distanceDisplay = distanceTo + " km away";
+                    String timeDisplay = String.format(Locale.UK, "%.2f", timeTo) + " mins";
+
                     header.setText(businessData.businessName);
+                    distance.setText(distanceDisplay);
+                    time.setText(timeDisplay);
                     visit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -345,6 +370,16 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
         bottomSheetDialog.setContentView(R.layout.map_bottom_sheet);
 
         bottomSheetDialog.dismiss();
+    }
+
+    private String getDistance(LatLng currentLocation, LatLng newLocation){
+        float[] distance = new float[1];
+        Location.distanceBetween(currentLocation.latitude, currentLocation.longitude,
+                newLocation.latitude, newLocation.longitude, distance);
+
+        String finalDistance  = String.format(Locale.UK, "%.2f", distance[0]/1000);
+        return finalDistance;
+
     }
 
 }

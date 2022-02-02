@@ -3,7 +3,7 @@
     android:width="50dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <path
-            android:name="circle"
+            android:name="square"
             android:fillColor="@color/quantum_yellow"
             android:pathData="M0,0 L24,0 L24,24 L0,24" />
         <path android:fillColor="@color/black"
