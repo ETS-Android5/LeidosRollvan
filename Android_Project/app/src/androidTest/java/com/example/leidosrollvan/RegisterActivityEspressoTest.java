@@ -28,17 +28,104 @@ import org.junit.runner.RunWith;
 public class RegisterActivityEspressoTest {
 
     @Rule
-    public ActivityScenarioRule<RegisterActivity> loginActivityActivityScenarioRule =
+    public ActivityScenarioRule<RegisterActivity> registerActivityActivityScenarioRule =
             new ActivityScenarioRule<RegisterActivity>(RegisterActivity.class);
 
 
-    @Test //Clicking register now button correctly navigates to register page
-    public void test_registerNow_navigation() {
-        onView(withId(R.id.register))
+    @Test
+    public void test_registerNow_noDetails_navigation() {
+        onView(withId(R.id.cirRegisterButton))
+                .perform(click());
+        onView(withId(R.id.customer_register_page)).check(matches(isDisplayed()));
+    }
+
+//    @Test
+//    public void test_registerNow_correctDetails_navigation() {
+//        onView(withId(R.id.editTextName))
+//                .perform(typeText("TestName"), ViewActions.closeSoftKeyboard());
+//        onView(withId(R.id.editTextEmail))
+//                .perform(typeText("18chakah1@gmail.com"),ViewActions.closeSoftKeyboard());
+//        onView(withId(R.id.editTextMobile))
+//                .perform(typeText("123456789"), ViewActions.closeSoftKeyboard());
+//        onView(withId(R.id.editTextPassword))
+//                .perform(typeText("Password123"),ViewActions.closeSoftKeyboard());
+//        onView(withId(R.id.cirRegisterButton))
+//                .perform(click());
+//        onView(withId(R.id.customer_login_page)).check(matches(isDisplayed()));
+//    }
+
+    @Test
+    public void test_registerNow_noPassword_navigation() {
+        onView(withId(R.id.editTextName))
+                .perform(typeText("TestName"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editTextEmail))
+                .perform(typeText("18chakah1@gmail.com"),ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editTextMobile))
+                .perform(typeText("123456789"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.cirRegisterButton))
+                .perform(click());
+        onView(withId(R.id.customer_register_page)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void test_registerNow_badPassword_navigation() {
+        onView(withId(R.id.editTextName))
+                .perform(typeText("TestName"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editTextEmail))
+                .perform(typeText("18chakah1@gmail.com"),ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editTextMobile))
+                .perform(typeText("123456789"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editTextPassword))
+                .perform(typeText("a"),ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.cirRegisterButton))
                 .perform(click());
         onView(withId(R.id.customer_register_page)).check(matches(isDisplayed()));
     }
 
 
+    @Test
+    public void test_registerNow_noEmail_navigation() {
+        onView(withId(R.id.editTextName))
+                .perform(typeText("TestName"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editTextEmail))
+                .perform(typeText("123456789"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editTextPassword))
+                .perform(typeText("Password123"),ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.cirRegisterButton))
+                .perform(click());
+        onView(withId(R.id.customer_register_page)).check(matches(isDisplayed()));
+    }
+    @Test
+    public void test_registerNow_noPhone_navigation() {
+        onView(withId(R.id.editTextName))
+                .perform(typeText("TestName"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editTextEmail))
+                .perform(typeText("badEmail"),ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editTextMobile))
+                .perform(typeText("Password123"),ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.cirRegisterButton))
+                .perform(click());
+        onView(withId(R.id.customer_register_page)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void test_registerNow_noName_navigation() {
+        onView(withId(R.id.editTextEmail))
+                .perform(typeText("18chakah1@gmail.com"),ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editTextMobile))
+                .perform(typeText("123456789"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editTextPassword))
+                .perform(typeText("a"),ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.cirRegisterButton))
+                .perform(click());
+        onView(withId(R.id.customer_register_page)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void test_existingAccount_navigation(){
+        onView(withId(R.id.existingAccount))
+                .perform(click());
+        onView(withId(R.id.customer_login_page)).check(matches(isDisplayed()));
+    }
 
 }
