@@ -72,6 +72,8 @@ public class BusinessMenu {
     public boolean isEmptyMenu(){
         return this.businessMenuItems.isEmpty();
     }
+    
 }
+
 
 

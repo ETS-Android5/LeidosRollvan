@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.leidosrollvan.R
-import com.example.leidosrollvan.adapters.HomeFragment
+
 import com.example.leidosrollvan.fragments.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
