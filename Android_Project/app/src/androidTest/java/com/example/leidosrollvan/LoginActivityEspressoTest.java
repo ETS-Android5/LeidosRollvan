@@ -97,6 +97,7 @@ public class LoginActivityEspressoTest {
     }
 
 
+    //Login UI test
     @Test
     public void test_login_incorrectDetails_navigation(){
         onView(withId(R.id.editLoginTextEmail))
