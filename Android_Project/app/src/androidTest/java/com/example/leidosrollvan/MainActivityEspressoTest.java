@@ -14,9 +14,11 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import com.example.leidosrollvan.activity.BusinessRegisterActivity;
 import com.example.leidosrollvan.activity.RegisterActivity;
 import com.example.leidosrollvan.activity.MainActivity;
+import com.example.leidosrollvan.fragments.HelpFragment;
 import com.example.leidosrollvan.fragments.HomeFragment;
 
 
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -125,12 +127,14 @@ public class MainActivityEspressoTest {
 //        pressBack();
 //        onView(withId(R.id.customer_home_page)).check(matches(isDisplayed()));
 //    }
-    @Test
-    public void test_navbar_home2account_navigation(){
-        onView(withId(R.id.id_account))
-                .perform(click());
-        onView(withId(R.id.customer_account_page)).check(matches(isDisplayed()));
-    }
+    //
+//    @Test
+//    public void test_navbar_home2account_navigation(){
+//        onView(withId(R.id.id_account))
+//                .perform(click());
+//        onView(withId(R.id.customer_guest_account_page)).check(matches(isDisplayed()));
+//        onView(withId(R.id.customer_account_page)).check(matches(isDisplayed()));
+//    }
 //    @Test
 //    public void test_navbar_home2account_back_navigation(){
 //        onView(withId(R.id.id_account))
