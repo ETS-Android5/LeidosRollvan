@@ -6,10 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,11 +16,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.leidosrollvan.R;
 import com.example.leidosrollvan.adapters.businessItemRecyclerAdapter;
-import com.example.leidosrollvan.adapters.itemRecyclerAdapter;
 import com.example.leidosrollvan.dataClasses.Business;
 import com.example.leidosrollvan.dataClasses.BusinessImage;
-import com.example.leidosrollvan.R;
 import com.example.leidosrollvan.dataClasses.BusinessMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -117,7 +115,6 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         dinnerSection = (RecyclerView) findViewById(R.id.dinnerSection_bpage);
         dessertSection = (RecyclerView) findViewById(R.id.dessertSection_bpage);
         drinksSection = (RecyclerView) findViewById(R.id.drinksSection_bpage);
-
         Bundle bundle = getIntent().getExtras();
         String b_id = bundle.getString("b_id");
         user = mAuth.getInstance().getCurrentUser();

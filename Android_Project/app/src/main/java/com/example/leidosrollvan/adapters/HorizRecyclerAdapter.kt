@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.leidosrollvan.R
 import com.example.leidosrollvan.dataClasses.Business
 import com.example.leidosrollvan.dataClasses.BusinessImage
-import com.example.leidosrollvan.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
