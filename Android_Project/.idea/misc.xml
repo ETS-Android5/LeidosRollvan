@@ -20,6 +20,8 @@
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_register.xml" value="0.30570652173913043" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_splash.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/appbar.xml" value="0.21693840579710144" />
+        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/food_card.xml" value="0.20878623188405798" />
+        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/food_card_business_page.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/form_popup.xml" value="0.26975683890577506" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/fragment_account.xml" value="0.22" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/fragment_guest_account.xml" value="0.33229166666666665" />
@@ -27,6 +29,7 @@
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/fragment_map.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/fragment_search.xml" value="0.21693840579710144" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/simplerow.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/simplerow2.xml" value="0.34427083333333336" />
         <entry key="..\:/Users/kiera/Documents/cs26-main/Android_Project/app/src/main/res/drawable/ic_discount.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/kiera/Documents/cs26-main/Android_Project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/kiera/Documents/cs26-main/Android_Project/app/src/main/res/layout/activity_main.xml" value="0.1" />
