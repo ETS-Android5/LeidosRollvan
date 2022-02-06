@@ -19,9 +19,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.leidosrollvan.dataClasses.BusinessMenu;
 import com.example.leidosrollvan.R;
 import com.example.leidosrollvan.adapters.itemRecyclerAdapter;
+import com.example.leidosrollvan.dataClasses.BusinessMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

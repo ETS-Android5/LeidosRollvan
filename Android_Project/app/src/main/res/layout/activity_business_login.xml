@@ -8,6 +8,7 @@
     android:background="@color/login_bk_color"
     android:focusableInTouchMode="true"
     android:gravity="center"
+    android:id="@+id/business_login_page"
     tools:context=".activity.BusinessLoginActivity">
 
     <ScrollView
@@ -74,10 +75,11 @@
             <TextView
                 android:id="@+id/businessForgotPassword"
                 style="@style/viewParent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="10dp"
-                android:text="Forgot Password?"
                 android:clickable="true"
+                android:text="Forgot Password?"
                 android:textColor="@color/black"
                 android:textSize="@dimen/newsMoreTextSize" />
 
@@ -185,6 +187,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
+        android:id="@+id/business_login_sidebutton"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
