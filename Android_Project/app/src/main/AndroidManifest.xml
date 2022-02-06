@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LeidosRollVan">
         <activity
+            android:name=".activity.CategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.businessForgotPasswordActivity"
             android:exported="false" />
         <activity
@@ -24,14 +27,14 @@
             android:exported="false" />
         <activity
             android:name=".activity.BusinessHomeActivity"
-            android:launchMode="singleTop"
+            android:exported="false"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.BusinessProductFormActivity"
             android:exported="false" />
-        <activity android:name=".activity.BusinessProductFormActivity"
-            android:exported="false"
-            />
-        <activity android:name=".activity.BusinessCategoryActivity"
-            android:exported="false"
-            />
+        <activity
+            android:name=".activity.BusinessCategoryActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.BusinessRegisterActivity"
             android:exported="false" />

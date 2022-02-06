@@ -1,11 +1,19 @@
 package com.example.leidosrollvan.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.ImageButton
+import android.widget.LinearLayout
+import android.widget.SearchView
 import com.example.leidosrollvan.R
+import com.example.leidosrollvan.activity.BusinessPageActivity
+import com.example.leidosrollvan.activity.CategoryActivity
+import com.example.leidosrollvan.activity.LoginActivity
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_search.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,10 +25,12 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SearchFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private var searchByNameFragment = SearchByNameFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,26 +45,65 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val view: View = inflater!!.inflate(R.layout.fragment_search, container, false)
+
+        val SearchByName: ImageButton = view.findViewById(R.id.searchByName)
+        SearchByName.setOnClickListener(this)
+
+        val Category1: LinearLayout = view.findViewById(R.id.btn1)
+        Category1.setOnClickListener(this)
+        val Category2: LinearLayout = view.findViewById(R.id.btn2)
+        Category2.setOnClickListener(this)
+        val Category3: LinearLayout = view.findViewById(R.id.btn3)
+        Category3.setOnClickListener(this)
+        val Category4: LinearLayout = view.findViewById(R.id.btn4)
+        Category4.setOnClickListener(this)
+        val Category5: LinearLayout = view.findViewById(R.id.btn5)
+        Category5.setOnClickListener(this)
+        val Category6: LinearLayout = view.findViewById(R.id.btn6)
+        Category6.setOnClickListener(this)
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SearchFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun replaceFragment(fragment : Fragment){
+        if(fragment != null){
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, fragment)
+            transaction.commit()
+        }
     }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.searchByName -> {
+                replaceFragment(searchByNameFragment)
+            }
+            R.id.btn1-> {
+                val categoryName1 = "Kebab"
+                startActivity(Intent(activity, CategoryActivity::class.java).putExtra("category", categoryName1))
+            }
+            R.id.btn2-> {
+                val categoryName1 = "Hot Dogs"
+                startActivity(Intent(activity, CategoryActivity::class.java).putExtra("category", categoryName1))
+            }
+            R.id.btn3-> {
+                val categoryName1 = "Burritos"
+                startActivity(Intent(activity, CategoryActivity::class.java).putExtra("category", categoryName1))
+            }
+            R.id.btn4-> {
+                val categoryName1 = "Burger"
+                startActivity(Intent(activity, CategoryActivity::class.java).putExtra("category", categoryName1))
+            }
+            R.id.btn5-> {
+                val categoryName1 = "Coffee and Tea"
+                startActivity(Intent(activity, CategoryActivity::class.java).putExtra("category", categoryName1))
+            }
+            R.id.btn6-> {
+                val categoryName1 = "Asian Cuisine"
+                startActivity(Intent(activity, CategoryActivity::class.java).putExtra("category", categoryName1))
+            }
+        }
+    }
+
 }
