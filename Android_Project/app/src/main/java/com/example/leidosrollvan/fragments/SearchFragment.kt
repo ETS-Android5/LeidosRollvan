@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.SearchView
+import androidx.fragment.app.Fragment
 import com.example.leidosrollvan.R
 import com.example.leidosrollvan.activity.BusinessPageActivity
 import com.example.leidosrollvan.activity.CategoryActivity
