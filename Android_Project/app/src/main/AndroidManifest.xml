@@ -18,14 +18,15 @@
         android:roundIcon="@mipmap/ic_launcheer_truck_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LeidosRollVan">
-        <activity
-            android:name=".activity.MapActivity"
-            android:exported="false" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
-
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <activity
+            android:name=".activity.MapActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.businessForgotPasswordActivity"
             android:exported="false" />
