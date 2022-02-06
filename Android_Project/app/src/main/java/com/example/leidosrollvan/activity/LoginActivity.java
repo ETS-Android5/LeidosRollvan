@@ -16,9 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.leidosrollvan.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
@@ -98,8 +100,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    progressBar.setVisibility(View.GONE);
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    if(user.isEmailVerified() == true){
+                        progressBar.setVisibility(View.GONE);
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    }
+                    else{
+                        mAuth.signOut();
+                        Toast.makeText(LoginActivity.this, "Verify your email before logging in",Toast.LENGTH_SHORT).show();
+                        user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(LoginActivity.this, "Verification email has been sent.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
                 }else {
                     Toast.makeText(LoginActivity.this, "Failed to Login! Please check your credentials!", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
