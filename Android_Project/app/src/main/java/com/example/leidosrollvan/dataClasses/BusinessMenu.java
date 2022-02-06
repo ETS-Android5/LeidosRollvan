@@ -1,7 +1,5 @@
 package com.example.leidosrollvan.dataClasses;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 public class BusinessMenu {
