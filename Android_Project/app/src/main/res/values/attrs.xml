@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="ds">
+        <attr name="button_color" format="color"/>
+        <attr name="text_color" format="color"/>
+        <attr name="edittext_background" format="color"/>
+        <attr name="hint_color" format="color"/>
+    </declare-styleable>
+</resources>

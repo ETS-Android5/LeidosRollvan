@@ -1,11 +1,14 @@
 package com.example.leidosrollvan.activity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -50,9 +53,8 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
         user = FirebaseAuth.getInstance().getCurrentUser();
         //spinnerCategory = findViewById(R.id.spinnerCategory);
         spinnerSection = findViewById(R.id.spinnerSection);
-
         //populate adapter
-        ArrayAdapter adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item,sections);
+        ArrayAdapter adapter2 = new ArrayAdapter(this,R.layout.spinner_section,sections);
 
 
         //choose style of dropdown table
