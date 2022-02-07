@@ -7,12 +7,31 @@
     android:layout_height="match_parent"
     android:id="@+id/business_home_page"
     tools:context=".activity.BusinessHomeActivity">
+    <include
+        android:id="@+id/include"
+        layout="@layout/appbar"
+        />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Business Home"
+        android:textColor="?attr/text_color"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="50dp"
+        android:layout_marginTop="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,12 +67,25 @@
                     android:visibility="gone" />
 
                 <TextView
+                    android:id="@+id/menuText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Menu"
+                    android:textColor="?attr/text_color"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
                     android:id="@+id/cat1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="Breakfast"
+                    android:textColor="?attr/text_color"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:visibility="gone" />
@@ -70,6 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:textColor="?attr/text_color"
                     android:text="Lunch"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -88,6 +121,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="Dinner"
+                    android:textColor="?attr/text_color"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:visibility="gone" />
@@ -102,6 +136,7 @@
                     android:id="@+id/cat4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/text_color"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="Dessert"
@@ -122,6 +157,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="Drinks"
+                    android:textColor="?attr/text_color"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:visibility="gone" />
@@ -137,45 +173,44 @@
 
     <Button
         android:id="@+id/business_home_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="48dp"
+        android:backgroundTint="?attr/button_color"
         android:text="Categories"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.409"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/business_home_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add"
-        android:textColor="@color/black"
+        android:layout_width="180dp"
+        android:layout_height="48dp"
+        android:backgroundTint="?attr/button_color"
+        android:text="Add Items"
+        android:textColor="?attr/text_color"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toStartOf="@+id/business_home_category"
+        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/business_home_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="69dp"
+        android:layout_height="52dp"
+        android:backgroundTint="@color/red"
         android:text="Logout"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textColor="?attr/text_color"
+        android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ProgressBar
         android:id="@+id/business_home_progressBar"

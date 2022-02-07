@@ -4,5 +4,6 @@
         <attr name="text_color" format="color"/>
         <attr name="edittext_background" format="color"/>
         <attr name="hint_color" format="color"/>
+        <attr name="appbar_color" format="color"/>
     </declare-styleable>
 </resources>

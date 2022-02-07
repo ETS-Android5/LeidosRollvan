@@ -17,5 +17,6 @@
         <item name="button_color">@color/colorPrimaryButtonDark</item>
         <item name="edittext_background">@color/grey</item>
         <item name="hint_color">@color/white</item>
+        <item name="appbar_color">@color/colorPrimaryButtonDark</item>
     </style>
 </resources>

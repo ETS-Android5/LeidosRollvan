@@ -43,7 +43,7 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
     private EditText productName, productPrice;
     private String productCategory,productSection;
     private Button saveButton,cancelButton;
-    private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5;
+    private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5,menuText;
     private RecyclerView breakfastSection,lunchSection,dinnerSection,dessertSection,drinksSection;
     private boolean paused = false;
     String[] categories =  {"Asian Cuisine","Kebab","Hot Dogs","Coffee and Tea","Burritos"};
@@ -80,6 +80,7 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
         cat3 = (TextView) findViewById(R.id.cat3);
         cat4 = (TextView) findViewById(R.id.cat4);
         cat5 = (TextView) findViewById(R.id.cat5);
+        menuText = (TextView) findViewById(R.id.menuText);
         notifyNoItems = (TextView) findViewById(R.id.notifyNoItems);
         breakfastSection = (RecyclerView) findViewById(R.id.breakfastSection);
         lunchSection = (RecyclerView) findViewById(R.id.lunchSection);
@@ -115,6 +116,7 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
                                 return;
                             }
                             ArrayList<String> sections = oldMenu.getSections();
+                            menuText.setVisibility(View.VISIBLE);
                             if (sections.contains("Breakfast")) {
                                 cat1.setVisibility(View.VISIBLE);
                                 breakfastSection.setVisibility(View.VISIBLE);

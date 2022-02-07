@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:text="Food"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/text_color"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/foodName"
+            android:textColor="?attr/text_color"
             android:layout_marginStart="8dp"
             android:text="Price"
             android:textSize="15sp" />
