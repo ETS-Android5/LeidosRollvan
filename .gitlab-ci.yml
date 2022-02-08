@@ -86,8 +86,3 @@ debugTests:
   script:
     - cd Android_Project
     - ./gradlew -Pci --console=plain :app:testDebug
-  artifacts:
-    paths:
-      - Android_Project/app/build/test-results/**/TEST-*.xml
-    reports:
-      junit: Android_Project/app/build/test-results/**/TEST-*.xml
