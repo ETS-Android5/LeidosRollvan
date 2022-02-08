@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,11 +35,13 @@ import java.util.ArrayList;
 
 public class BusinessPageActivity extends AppCompatActivity implements View.OnClickListener {
     DatabaseReference reference;
-    DatabaseReference imRef;
+    DatabaseReference imRef, favRef;
     Button homeButton;
+    ImageButton faveButton;
+    boolean userClick = false;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private String businessID;
+    private String userID, businessID;
     private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5;
     businessItemRecyclerAdapter adapter;
     private RecyclerView breakfastSection,lunchSection,dinnerSection,dessertSection,drinksSection;
@@ -53,6 +56,14 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
 
         homeButton = (Button) findViewById(R.id.home_bus);
         homeButton.setOnClickListener(this);
+
+
+        user = mAuth.getInstance().getCurrentUser();
+        if(user!= null) {
+            userID = user.getUid();
+        }
+        faveButton = (ImageButton) findViewById(R.id.faveButton);
+        faveButton.setOnClickListener(this);
 
         Bundle bundle = getIntent().getExtras();
         String b_id = bundle.getString("b_id");
@@ -101,8 +112,63 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
             }
         });
         load();
+        businessID = b_id;
 
+        favRef = FirebaseDatabase.getInstance().getReference("Favourites");
+        if(user != null) {
+            getFaveStatus(businessID, userID);
+        }
     }
+
+    public void getFaveStatus(String businessID, String userID){
+        favRef = FirebaseDatabase.getInstance().getReference("Favourites");
+        favRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(businessID).hasChild(userID)){
+                    faveButton.setImageResource(R.drawable.heart_filled);
+                }
+                else{
+                    faveButton.setImageResource(R.drawable.heart_outline);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void setFave(String businessID, String userID){
+        userClick = true;
+        favRef = FirebaseDatabase.getInstance().getReference("Favourites");
+        favRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(user != null) {
+                    if (userClick == true) {
+
+                        if (snapshot.child(businessID).hasChild(userID)) {
+                            favRef.child(businessID).child(userID).removeValue();
+                        } else {
+                            favRef.child(businessID).child(userID).setValue(true);
+                        }
+                    }
+                }
+                else{
+                    Toast.makeText(BusinessPageActivity.this, "login to add to favourites", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     protected void load() {
         cat1 = (TextView) findViewById(R.id.cat1_bpage);
         cat2 = (TextView) findViewById(R.id.cat2_bpage);
@@ -207,6 +273,10 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         switch (v.getId()){
             case R.id.home_bus:
                 startActivity(new Intent(this, MainActivity.class));
+                break;
+            case R.id.faveButton:
+                setFave(businessID, userID);
+                break;
         }
     }
 }
