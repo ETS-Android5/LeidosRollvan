@@ -86,11 +86,8 @@ debugTests:
   script:
     - cd Android_Project
     - ./gradlew -Pci --console=plain :app:testDebug
-java:
-  stage: test
-  script:
-    - gradle test
   artifacts:
-    when: always
+    paths:
+      - Android_Project/app/build/test-results/**/TEST-*.xml
     reports:
-      junit: build/test-results/test/**/TEST-*.xml
+      junit: Android_Project/app/build/test-results/**/TEST-*.xml
