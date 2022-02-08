@@ -36,7 +36,7 @@ import java.util.ArrayList;
 public class BusinessPageActivity extends AppCompatActivity implements View.OnClickListener {
     DatabaseReference reference;
     DatabaseReference imRef;
-    Button homeButton;
+    Button homeButton, notiSubButton, notiUnSubButton;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private String businessID;
