@@ -13,6 +13,7 @@ import com.example.leidosrollvan.R
 import com.example.leidosrollvan.activity.BusinessPageActivity
 import com.example.leidosrollvan.adapters.CustomRecyclerAdapter
 import com.example.leidosrollvan.adapters.HorizRecyclerAdapter
+import com.example.leidosrollvan.adapters.DealRecyclerAdapter
 import com.example.leidosrollvan.dataClasses.Business
 import com.example.leidosrollvan.dataClasses.Offer
 import com.google.firebase.database.*
