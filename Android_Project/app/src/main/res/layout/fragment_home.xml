@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/customer_home_page"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".adapters.HomeFragment">
+    tools:context=".fragments.HomeFragment">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -91,7 +92,7 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/button"
+                android:id="@+id/cola_ad"
                 android:layout_width="400dp"
                 android:layout_height="175dp"
                 android:adjustViewBounds="true"

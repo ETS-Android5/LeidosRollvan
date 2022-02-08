@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/customer_account_page"
     tools:context=".fragments.AccountFragment"
     android:fillViewport="false">
 
@@ -106,7 +107,7 @@
 
 <include
     android:id="@+id/include"
-    layout="@layout/appbar" />
+    layout="@layout/appbar"/>
 
     <ImageButton
         android:id="@+id/profilePic"

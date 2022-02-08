@@ -2,6 +2,8 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#000</color>
+    <color name="colorPrimaryButton">#b6f899</color>
+    <color name="colorPrimaryButtonDark">#FF4CAF50</color>
     <color name="colorAccent">#11CFC5</color>
     <color name="themeColor">#000001</color>
     <color name="darkTextColor">#020000</color>
@@ -19,5 +21,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lgreen">#b6f899</color>
     <color name="red">#FF0000</color>
+    <color name="grey">#808080</color>
     <color name="ic_launcheer_truck_background">#3DDC84</color>
 </resources>
