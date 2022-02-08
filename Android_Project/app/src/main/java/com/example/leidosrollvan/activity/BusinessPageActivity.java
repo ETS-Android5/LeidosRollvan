@@ -21,6 +21,7 @@ import com.example.leidosrollvan.adapters.businessItemRecyclerAdapter;
 import com.example.leidosrollvan.dataClasses.Business;
 import com.example.leidosrollvan.dataClasses.BusinessImage;
 import com.example.leidosrollvan.dataClasses.BusinessMenu;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,7 +40,9 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
     Button homeButton, notiSubButton, notiUnSubButton;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private String businessID;
+    private String businessID, businessName, businessMobile, businessEmail; 
+    private TextView businessPageName, businessPageMob, businessPageEmail;
+    private ImageView businessPageImg;
     private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5;
     businessItemRecyclerAdapter adapter;
     private RecyclerView breakfastSection,lunchSection,dinnerSection,dessertSection,drinksSection;
@@ -67,9 +70,9 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         String b_id = bundle.getString("b_id");
 
         businessPageName = (TextView) findViewById(R.id.business_page_name);
-        TextView businessPageMob = (TextView) findViewById(R.id.business_page_mob);
-        TextView businessPageEmail = (TextView) findViewById(R.id.business_page_email);
-        ImageView businessPageImg = (ImageView) findViewById(R.id.busi_page_Image);
+        businessPageMob = (TextView) findViewById(R.id.business_page_mob);
+        businessPageEmail = (TextView) findViewById(R.id.business_page_email);
+        businessPageImg = (ImageView) findViewById(R.id.busi_page_Image);
         reference = FirebaseDatabase.getInstance().getReference("Businesses");
         reference.child(b_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -77,8 +80,8 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                 Business businessProfile = snapshot.getValue(Business.class);
                 if (businessProfile != null) {
                     businessName = businessProfile.businessName;
-                    String businessMobile = businessProfile.businessMobile;
-                    String businessEmail= businessProfile.businessEmail;
+                    businessMobile = businessProfile.businessMobile;
+                    businessEmail= businessProfile.businessEmail;
                     businessPageName.setText(businessName);
                     businessPageMob.setText(businessMobile);
                     businessPageEmail.setText(businessEmail);
@@ -211,7 +214,7 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
     }
 
 
-            @Override
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.home_bus:
