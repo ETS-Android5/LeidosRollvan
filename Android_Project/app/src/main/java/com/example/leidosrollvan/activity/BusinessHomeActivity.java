@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BusinessHomeActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button businessHomeLogout, addItemButton, addCategoryButton;
+    private Button businessHomeLogout, addItemButton, addCategoryButton,notiButton;
     private ProgressBar businessHomeProgressBar;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -102,6 +102,9 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
 
         addCategoryButton = (Button) findViewById(R.id.business_home_category);
         addCategoryButton.setOnClickListener(this);
+
+        notiButton = (Button) findViewById(R.id.business_home_notifications);
+        notiButton.setOnClickListener(this);
 
         businessHomeProgressBar.setVisibility(View.GONE);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -212,6 +215,9 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.business_home_category:
                 startActivity(new Intent(this,  BusinessCategoryActivity.class));
+                break;
+            case R.id.business_home_notifications:
+                startActivity(new Intent(this,  BusinessNotificationActivity.class));
                 break;
         }
     }
