@@ -6,57 +6,159 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.AboutFragment">
 
-    <TextView
-        android:id="@+id/helpText"
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="36dp"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:paddingTop="120dp"
-        tools:ignore="MissingConstraints"
-        android:text="HELP" />
+        tools:ignore="MissingConstraints">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:src="@drawable/ic_food_truck_svgrepo_com"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helpText"
-        tools:ignore="MissingConstraints" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/helpBodyText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp"
-        android:text="For any help queries please contact us at:"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        tools:ignore="MissingConstraints" />
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_food_truck_svgrepo_com" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingTop="30dp"
-        android:paddingRight="20dp"
-        android:text="leidos.rollvan@gmail.com"
-        android:textAlignment="center"
-        android:textColor="@color/lgreen"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helpBodyText"
-        tools:ignore="MissingConstraints" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Tap to Expand or Minimize"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:textSize="20dp"
+
+                />
+
+            <Button
+                android:id="@+id/unablesignbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="I'm unable sign in"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/unablesignText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To get a forgot your password email click below"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:visibility="gone"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:id="@+id/forgotbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Forgot your password"
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/teal_200"
+                android:textStyle="italic"/>
+
+            <Button
+                android:id="@+id/favbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="How to favourite places"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/favText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="To favourite a business please navigate to the business page and press the star button "
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:textSize="20dp"
+
+                 />
+
+            <Button
+                android:id="@+id/requestrembtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Request removal of a business"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/requestremText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Please email us with the name of the business and the reason for removal "
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:textSize="20dp"
+
+                 />
+
+            <Button
+                android:id="@+id/cantssearchbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="I cant find the search"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/cantssearchText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Navigate to the search  page and click the icon top right to search by text or click a category"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:textSize="20dp"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:paddingRight="20dp"
+                android:text="Any other queries contact:\nleidos.rollvan@gmail.com"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                 />
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
