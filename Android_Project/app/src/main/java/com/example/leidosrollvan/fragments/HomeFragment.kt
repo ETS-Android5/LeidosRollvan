@@ -41,20 +41,6 @@ class HomeFragment : Fragment() {
     private lateinit var offerIdList : ArrayList<String>
     private lateinit var businessIdList : ArrayList<String>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-            //businessRecyclerView = view?.findViewById(R.id.businessRecyclerView)!!
-            //businessRecyclerView.layoutManager = LinearLayoutManager(activity)
-            //businessRecyclerView.setHasFixedSize(true)
-
-            //businessList = arrayListOf<Business>()
-
-            //getBusinessData();
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
