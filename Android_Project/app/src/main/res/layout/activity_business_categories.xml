@@ -32,8 +32,9 @@
 
     <LinearLayout
         android:id="@+id/checkboxes"
-        android:layout_width="129dp"
-        android:layout_height="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

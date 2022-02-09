@@ -2,6 +2,7 @@ package com.example.leidosrollvan.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +64,9 @@ public class BusinessCategoryActivity extends AppCompatActivity{
                             for (String category : categories) {
                                 CheckBox checkBox = new CheckBox(context);
                                 checkBox.setText(category);
+                                checkBox.setTextSize(30);
+                                checkBox.setTypeface(null, Typeface.BOLD);
+                                checkBox.setPadding(0,0,0,5);
                                 checkBox.setId(count);
                                 count++;
                                 //if category was previously selected and saved, show as ticked on load.
@@ -86,6 +90,9 @@ public class BusinessCategoryActivity extends AppCompatActivity{
                     for (String category : categories) {
                         CheckBox checkBox = new CheckBox(context);
                         checkBox.setText(category);
+                        checkBox.setPadding(0,0,0,5);
+                        checkBox.setTypeface(null, Typeface.BOLD);
+                        checkBox.setTextSize(30);
                         checkBox.setId(count);
                         count++;
                         checkboxContainer.addView(checkBox);

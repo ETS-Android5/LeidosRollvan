@@ -43,6 +43,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         Business business = list2.get(position);
         holder.businessName.setText(business.getBusinessName());
 
+
     }
 
     @Override
@@ -56,7 +57,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             businessName = itemView.findViewById(R.id.nameRecyclerItem);
 
 
