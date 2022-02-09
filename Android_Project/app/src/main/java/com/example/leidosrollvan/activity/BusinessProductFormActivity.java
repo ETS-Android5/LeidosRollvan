@@ -71,9 +71,39 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
     Converts form into BusinessMenu Object then save into database.
      */
     public void save(){
-
         reference = FirebaseDatabase.getInstance().getReference("Business Menu");
         businessID = user.getUid();
+        productName = (EditText) findViewById(R.id.productNamePopup);
+        productPrice = (EditText) findViewById(R.id.productPricePopup);
+        String selectedSection = spinnerSection.getSelectedItem().toString().trim();
+        if(productName.getText().toString().replaceAll(" ", "").equals("")){
+            productName.setError("Invalid name");
+            productName.requestFocus();
+            return;
+        }
+        if(productPrice.getText().toString().equals("")){
+            productPrice.setError("Invalid price");
+            productPrice.requestFocus();
+            return;
+        }
+        boolean validNum = true;
+        validNum = productPrice.getText().toString().matches("-?\\d+(\\.\\d+)?");
+        if(!validNum){
+            productPrice.setError("Invalid price");
+            productPrice.requestFocus();
+            return;
+        }
+        if(productPrice.length()>=10){
+            productPrice.setError("Invalid price");
+            productPrice.requestFocus();
+            return;
+        }
+        if(productName.length()>=40){
+            productPrice.setError("Invalid price");
+            productPrice.requestFocus();
+            return;
+        }
+
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -84,12 +114,10 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                             //Menu exists
                             if(snapshot.hasChild("businessMenuItems")){
                                 BusinessMenu oldMenu = snapshot.getValue(BusinessMenu.class);
-                                productName = (EditText) findViewById(R.id.productNamePopup);
-                                productPrice = (EditText) findViewById(R.id.productPricePopup);
                                 spinnerSection = findViewById(R.id.spinnerSection);
                                 String selectedName = productName.getText().toString().trim();
-                                String selectedPrice = productPrice.getText().toString().trim();
-                                String selectedSection = spinnerSection.getSelectedItem().toString().trim();
+                                Double selectedPriceD = Double.parseDouble(productPrice.getText().toString());
+                                String selectedPrice = String.format("%.2f",selectedPriceD).trim();
                                 HashMap<String, String> item = new HashMap<String, String>();
                                 item.put(selectedName,selectedPrice);
                                 oldMenu.addMenuItems(selectedSection,item);
@@ -102,12 +130,10 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                             //Only categories exist
                             else{
                                 BusinessMenu oldMenu = snapshot.getValue(BusinessMenu.class);
-                                productName = (EditText) findViewById(R.id.productNamePopup);
-                                productPrice = (EditText) findViewById(R.id.productPricePopup);
                                 spinnerSection = findViewById(R.id.spinnerSection);
                                 String selectedName = productName.getText().toString().trim();
-                                String selectedPrice = productPrice.getText().toString().trim();
-
+                                Double selectedPriceD = Double.parseDouble(productPrice.getText().toString());
+                                String selectedPrice = String.format("%.2f",selectedPriceD).trim();
                                 String selectedSection = spinnerSection.getSelectedItem().toString().trim();
                                 HashMap<String, String> item = new HashMap<String, String>();
                                 HashMap<String, ArrayList<HashMap<String,String>>> businessMenuItems = new HashMap<String, ArrayList<HashMap<String,String>>>();
@@ -135,11 +161,10 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                 }
                 //Menu and categories don't exist
                 else{
-                    productName = (EditText) findViewById(R.id.productNamePopup);
-                    productPrice = (EditText) findViewById(R.id.productPricePopup);
                     spinnerSection = findViewById(R.id.spinnerSection);
                     String selectedName = productName.getText().toString().trim();
-                    String selectedPrice = productPrice.getText().toString().trim();
+                    Double selectedPriceD = Double.parseDouble(productPrice.getText().toString());
+                    String selectedPrice = String.format("%.2f",selectedPriceD).trim();
                     String selectedSection = spinnerSection.getSelectedItem().toString().trim();
                     HashMap<String, String> item = new HashMap<String, String>();
                     HashMap<String, ArrayList<HashMap<String,String>>> businessMenuItems = new HashMap<String, ArrayList<HashMap<String,String>>>();
@@ -164,7 +189,8 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                 Toast.makeText(BusinessProductFormActivity.this, "Something Went Wrong!", Toast.LENGTH_LONG).show();
             }
         });
-
+        Intent i = new Intent(this, BusinessHomeActivity.class);
+        startActivity(i);
     }
 
     public void cancel(View v){
@@ -174,8 +200,6 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
 
     public void clickSave(View v){
         save();
-        Intent i = new Intent(this, BusinessHomeActivity.class);
-        startActivity(i);
     }
 
     @Override
