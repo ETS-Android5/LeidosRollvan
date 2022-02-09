@@ -179,31 +179,32 @@
 
     <Button
         android:id="@+id/business_home_category"
-        android:layout_width="180dp"
+        android:layout_width="133dp"
         android:layout_height="48dp"
         android:backgroundTint="?attr/button_color"
         android:text="Categories"
         android:textColor="?attr/text_color"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.43"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.998" />
 
     <Button
         android:id="@+id/business_home_add"
-        android:layout_width="180dp"
+        android:layout_width="121dp"
         android:layout_height="48dp"
         android:backgroundTint="?attr/button_color"
         android:text="Add Items"
         android:textColor="?attr/text_color"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/business_home_category"
-        app:layout_constraintHorizontal_bias="0.372"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.998" />
 
     <Button
         android:id="@+id/business_home_logout"
@@ -215,23 +216,25 @@
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
+
     <Button
         android:id="@+id/business_home_notifications"
-        android:layout_width="wrap_content"
+        android:layout_width="121dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="?attr/button_color"
         android:text="Offers"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/business_home_logout"
+        android:textColor="?attr/text_color"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.944"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.998" />
 
     <ProgressBar
         android:id="@+id/business_home_progressBar"
