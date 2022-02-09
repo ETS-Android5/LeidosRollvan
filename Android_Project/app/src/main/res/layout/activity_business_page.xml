@@ -22,8 +22,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
-
 
                 <Button
                     android:id="@+id/home_bus"
@@ -50,33 +50,43 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
                     android:layout_gravity="center"
                     android:backgroundTint="?attr/button_color"
                     android:text="Unsubscribe"
                     android:textColor="?attr/text_color"
                     android:visibility="visible" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/business_page_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="BUSINESS NAME"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="28sp"
+                    android:visibility="visible" />
+
                 <ImageButton
                     android:id="@+id/faveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="3dp"
-                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/heart_outline" />
+                    android:src="@drawable/heart_outline"
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/business_page_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:textColor="?android:textColorPrimary"
-                android:text="BUSINESS NAME"
-                android:textSize="28sp"
-                android:visibility="visible" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -146,10 +156,12 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:text="Business Menu"
                 android:textColor="?android:textColorPrimary"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="45sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/notifyBusinessNoItems"
@@ -160,7 +172,7 @@
                 android:layout_marginBottom="10dp"
                 android:text="This Business currently has no menu"
                 android:textColor="?attr/text_color"
-                android:textSize="16sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
@@ -168,57 +180,57 @@
                 android:id="@+id/cat1_bpage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="5dp"
-                android:textColor="?attr/text_color"
                 android:text="Breakfast"
-                android:textSize="16sp"
+                android:textColor="?attr/text_color"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/breakfastSection_bpage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:visibility="gone" />
 
             <TextView
                 android:id="@+id/cat2_bpage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="5dp"
-                android:textColor="?attr/text_color"
                 android:text="Lunch"
-                android:textSize="16sp"
+                android:textColor="?attr/text_color"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lunchSection_bpage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:visibility="gone" />
 
             <TextView
                 android:id="@+id/cat3_bpage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="5dp"
-                android:textColor="?attr/text_color"
                 android:text="Dinner"
-                android:textSize="16sp"
+                android:textColor="?attr/text_color"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/dinnerSection_bpage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:visibility="gone" />
 
             <TextView
@@ -230,14 +242,14 @@
                 android:layout_marginStart="5dp"
                 android:textColor="?attr/text_color"
                 android:text="Dessert"
-                android:textSize="16sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/dessertSection_bpage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:visibility="gone" />
 
             <TextView
@@ -249,14 +261,14 @@
                 android:layout_marginStart="5dp"
                 android:textColor="?attr/text_color"
                 android:text="Drinks"
-                android:textSize="16sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/drinksSection_bpage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:visibility="gone" />
 
         </LinearLayout>

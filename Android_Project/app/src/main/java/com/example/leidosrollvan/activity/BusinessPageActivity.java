@@ -50,7 +50,7 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
     businessItemRecyclerAdapter adapter;
     private RecyclerView breakfastSection,lunchSection,dinnerSection,dessertSection,drinksSection;
     private boolean paused = false;
-    String[] categories =  {"Asian Cuisine","Kebab","Hot Dogs","Coffee and Tea","Burritos"};
+    String[] categories =  {"Vegan","Tea and Coffee","Healthy","Fast Food","Desserts","Rolls"};
     String[] sections =  {"Breakfast","Lunch","Dinner","Dessert","Drinks"};
 
     @Override
@@ -298,6 +298,7 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                     });
                     break;
                 }
+
             case R.id.notiUn:
                 if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
                     FirebaseMessaging.getInstance().unsubscribeFromTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
