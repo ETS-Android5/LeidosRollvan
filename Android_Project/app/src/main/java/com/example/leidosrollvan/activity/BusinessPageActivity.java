@@ -53,15 +53,14 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(FirebaseAuth.getInstance().getCurrentUser()==null){
-            setContentView(R.layout.activity_business_page_guest);
-        }
-        else{
-            setContentView(R.layout.activity_business_page);
+        setContentView(R.layout.activity_business_page);
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null){
             notiSubButton = (Button) findViewById(R.id.noti);
             notiSubButton.setOnClickListener(this);
             notiUnSubButton = (Button) findViewById(R.id.notiUn);
             notiUnSubButton.setOnClickListener(this);
+            notiSubButton.setVisibility(View.VISIBLE);
+            notiUnSubButton.setVisibility(View.VISIBLE);
         }
         homeButton = (Button) findViewById(R.id.home_bus);
         homeButton.setOnClickListener(this);
