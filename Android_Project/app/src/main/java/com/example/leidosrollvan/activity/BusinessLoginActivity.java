@@ -16,9 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.leidosrollvan.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
@@ -100,8 +102,21 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    progressBar.setVisibility(View.GONE);
-                    startActivity(new Intent(BusinessLoginActivity.this, BusinessHomeActivity.class));
+                    FirebaseUser user =mAuth.getCurrentUser();
+                    if(user.isEmailVerified() == true) {
+                        progressBar.setVisibility(View.GONE);
+                        startActivity(new Intent(BusinessLoginActivity.this, BusinessHomeActivity.class));
+                    }
+                    else{
+                        mAuth.signOut();
+                        Toast.makeText(BusinessLoginActivity.this, "Verify your email before logging in", Toast.LENGTH_SHORT).show();
+                        user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(BusinessLoginActivity.this, "Verification email has been sent.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
                 }else {
                     Toast.makeText( BusinessLoginActivity.this, "Failed to Login! Please check your credentials!", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);

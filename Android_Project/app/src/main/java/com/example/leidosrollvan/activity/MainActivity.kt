@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
     private val searchFragment = SearchFragment()
-    private val mapFragment = MapsFragment()
     private val accountFragment = AccountFragment()
     private val guestAccountFragment = GuestAccountFragment()
 
