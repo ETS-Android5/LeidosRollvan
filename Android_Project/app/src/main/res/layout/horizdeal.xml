@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="1dp"
-    card_view:cardBackgroundColor="@color/register_bk_color"
+    card_view:cardBackgroundColor="?attr/button_color"
     card_view:cardCornerRadius="20dp"
     card_view:cardElevation="50dp"
     card_view:contentPadding="8dp">
@@ -20,7 +20,7 @@
             android:layout_height="100dp"
             android:scaleType="centerCrop"
             android:src="@drawable/croiss"
-            android:alpha="0.25"
+            android:alpha="0.5"
             />
         <TextView
             android:id="@+id/offerText"
@@ -30,7 +30,7 @@
             android:text="offerText"
             android:textSize="15dp"
             android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="?attr/text_color"/>
 
 
         <TextView
@@ -40,7 +40,7 @@
             android:text="Business Name"
             android:layout_below="@id/offerText"
             android:layout_centerInParent="true"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:textSize="20dp"
             android:textStyle="bold"
             />

@@ -46,7 +46,8 @@
                 android:layout_gravity="center"
                 android:text="I'm unable sign in"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/black"/>
+                android:backgroundTint="?attr/button_color"
+                android:textColor="?attr/text_color"/>
 
             <TextView
                 android:id="@+id/unablesignText"
@@ -78,8 +79,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="How to favourite places"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/black"/>
+                android:backgroundTint="?attr/button_color"
+                android:textColor="?attr/text_color"
+                android:layout_marginTop="20dp" />
 
             <TextView
                 android:id="@+id/favText"
@@ -103,7 +105,8 @@
                 android:layout_gravity="center"
                 android:text="Request removal of a business"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/black"/>
+                android:backgroundTint="?attr/button_color"
+                android:textColor="?attr/text_color"/>
 
             <TextView
                 android:id="@+id/requestremText"
@@ -127,7 +130,8 @@
                 android:layout_gravity="center"
                 android:text="I cant find the search"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/black"/>
+                android:backgroundTint="?attr/button_color"
+                android:textColor="?attr/text_color"/>
 
             <TextView
                 android:id="@+id/cantssearchText"
@@ -152,7 +156,7 @@
                 android:paddingRight="20dp"
                 android:text="Any other queries contact:\nleidos.rollvan@gmail.com"
                 android:layout_gravity="center"
-                android:textColor="@color/black"
+                android:textColor="?attr/text_color"
                 android:textSize="15dp"
                  />
         </LinearLayout>

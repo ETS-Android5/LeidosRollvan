@@ -81,27 +81,27 @@ class SearchFragment : Fragment(), View.OnClickListener {
                 replaceFragment(searchByNameFragment)
             }
             R.id.btn1-> {
-                val categoryName1 = "Kebab"
+                val categoryName1 = "Vegan"
                 startActivity(Intent(activity, CategoryActivity::class.java).putExtra("category", categoryName1))
             }
             R.id.btn2-> {
-                val categoryName1 = "Hot Dogs"
+                val categoryName1 = "Tea and Coffee"
                 startActivity(Intent(activity, CategoryActivity::class.java).putExtra("category", categoryName1))
             }
             R.id.btn3-> {
-                val categoryName1 = "Burritos"
+                val categoryName1 = "Healthy"
                 startActivity(Intent(activity, CategoryActivity::class.java).putExtra("category", categoryName1))
             }
             R.id.btn4-> {
-                val categoryName1 = "Burger"
+                val categoryName1 = "Fast Food"
                 startActivity(Intent(activity, CategoryActivity::class.java).putExtra("category", categoryName1))
             }
             R.id.btn5-> {
-                val categoryName1 = "Coffee and Tea"
+                val categoryName1 = "Desserts"
                 startActivity(Intent(activity, CategoryActivity::class.java).putExtra("category", categoryName1))
             }
             R.id.btn6-> {
-                val categoryName1 = "Asian Cuisine"
+                val categoryName1 = "Rolls"
                 startActivity(Intent(activity, CategoryActivity::class.java).putExtra("category", categoryName1))
             }
         }

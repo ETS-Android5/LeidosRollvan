@@ -49,7 +49,7 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
     private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5,menuText;
     private RecyclerView breakfastSection,lunchSection,dinnerSection,dessertSection,drinksSection;
     private boolean paused = false;
-    String[] categories =  {"Asian Cuisine","Kebab","Hot Dogs","Coffee and Tea","Burritos"};
+    String[] categories =  {"Vegan","Tea and Coffee","Healthy","Fast Food","Desserts","Rolls"};
     String[] sections =  {"Breakfast","Lunch","Dinner","Dessert","Drinks"};
     itemRecyclerAdapter adapter;
     HashMap<String, HashMap<String, Double>> menuMap;

@@ -26,7 +26,7 @@ import java.util.HashMap;
 
 public class BusinessCategoryActivity extends AppCompatActivity{
 
-    private final String[] categories = {"Asian Cuisine", "Kebab", "Hot Dogs", "Coffee and Tea", "Burritos"};
+    private final String[] categories =  {"Vegan","Tea and Coffee","Healthy","Fast Food","Desserts","Rolls"};
     private final ArrayList<String> initialCategories = new ArrayList<String>();
     private final ArrayList<String> finalCategories = new ArrayList<String>();
     private DatabaseReference reference;

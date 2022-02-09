@@ -12,20 +12,6 @@
         layout="@layout/appbar"
         />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="Business Home"
-        android:textColor="?attr/text_color"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <LinearLayout
         android:id="@+id/location_layout"
         android:layout_width="match_parent"
@@ -37,23 +23,42 @@
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/business_home_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/red"
+            android:maxLines="1"
+            android:text="Logout"
+            android:textColor="?attr/text_color"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/business_location_edit"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter location postcode"
             android:textColor="?android:textColorPrimary"
-            android:textSize="20dp"
-            android:hint="Enter location postcode" />
+            android:textSize="17dp" />
 
         <Button
             android:id="@+id/business_location_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@color/blue"
             android:gravity="center"
+            android:textStyle="bold"
             android:text="Save"
-            android:textSize="15dp"
-            android:textColor="@color/black"
-            android:layout_marginTop="-10dp"/>
+            android:textColor="?attr/text_color"
+            android:textSize="15dp" />
+
+
+
     </LinearLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -99,27 +104,27 @@
                     android:id="@+id/menuText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="Menu"
-                    android:layout_marginStart="5dp"
                     android:textColor="?attr/text_color"
-                    android:textSize="24sp"
+                    android:textSize="45sp"
                     android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/cat1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="Breakfast"
                     android:textColor="?attr/text_color"
-                    android:layout_marginStart="5dp"
-                    android:textSize="16sp"
+                    android:textSize="25sp"
                     android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/breakfastSection"
@@ -136,7 +141,7 @@
                     android:layout_marginStart="5dp"
                     android:textColor="?attr/text_color"
                     android:text="Lunch"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:visibility="gone" />
 
@@ -155,7 +160,7 @@
                     android:layout_marginStart="5dp"
                     android:text="Dinner"
                     android:textColor="?attr/text_color"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:visibility="gone" />
 
@@ -174,7 +179,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="Dessert"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:visibility="gone" />
 
@@ -193,7 +198,7 @@
                     android:layout_marginStart="5dp"
                     android:textColor="?attr/text_color"
                     android:text="Drinks"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:visibility="gone" />
 
@@ -206,65 +211,49 @@
         </ScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <Button
-        android:id="@+id/business_home_category"
-        android:layout_width="133dp"
-        android:layout_height="48dp"
-        android:backgroundTint="?attr/button_color"
-        android:text="Categories"
-        android:textColor="?attr/text_color"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.998" />
-
-    <Button
-        android:id="@+id/business_home_add"
-        android:layout_width="121dp"
-        android:layout_height="48dp"
-        android:backgroundTint="?attr/button_color"
-        android:text="Add Items"
-        android:textColor="?attr/text_color"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/business_home_category"
-        app:layout_constraintHorizontal_bias="0.888"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.998" />
-
-    <Button
-        android:id="@+id/business_home_logout"
-        android:layout_width="69dp"
-        android:layout_height="52dp"
-        android:backgroundTint="@color/red"
-        android:text="Logout"
-        android:textColor="?attr/text_color"
-        android:textSize="8sp"
-        android:layout_marginTop="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/business_home_notifications"
-        android:layout_width="121dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="?attr/button_color"
-        android:text="Offers"
-        android:textColor="?attr/text_color"
-        android:textSize="15sp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.944"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.998" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/business_home_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="?attr/button_color"
+            android:maxLines="1"
+            android:text="Add Items"
+            android:textColor="?attr/text_color"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/business_home_category"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?attr/button_color"
+            android:text="Categories"
+            android:textColor="?attr/text_color"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/business_home_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+
+            android:backgroundTint="?attr/button_color"
+            android:maxLines="1"
+            android:text="Offers"
+            android:textColor="?attr/text_color"
+            android:textSize="15sp" />
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/business_home_progressBar"

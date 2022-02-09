@@ -46,7 +46,8 @@
                 android:layout_gravity="center"
                 android:text="About the App"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/black"/>
+                android:backgroundTint="?attr/button_color"
+                android:textColor="?attr/text_color"/>
 
             <TextView
                 android:id="@+id/aboutText"
@@ -54,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:text="We are a service which allows under respresented local food businesses to advertise their services"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="?attr/text_color"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:visibility="gone"
@@ -69,7 +70,8 @@
                 android:layout_gravity="center"
                 android:text="Creators"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/black"/>
+                android:backgroundTint="?attr/button_color"
+                android:textColor="?attr/text_color"/>
 
             <TextView
                 android:id="@+id/creatorsText"
@@ -79,7 +81,7 @@
                 android:paddingRight="20dp"
                 android:text="This app was created by the University of Glasgow students:\n\n - Ben Johnston\n - Anirbit Ghosh\n - Alex Chak\n - Kieran Sharp\n - German Cherstvov"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="?attr/text_color"
                 android:layout_gravity="center"
                 android:visibility="gone"
                 android:textSize="20dp"
@@ -92,8 +94,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="License"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/black"/>
+                android:backgroundTint="?attr/button_color"
+                android:textColor="?attr/text_color"
+                android:layout_marginTop="20dp" />
 
             <TextView
                 android:id="@+id/licenseText"
@@ -103,7 +106,7 @@
                 android:paddingRight="20dp"
                 android:text="Insert License"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="?attr/text_color"
                 android:layout_gravity="center"
                 android:visibility="gone"
                 android:textSize="20dp"
