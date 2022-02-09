@@ -13,8 +13,12 @@ import com.example.leidosrollvan.R
 import com.example.leidosrollvan.activity.BusinessPageActivity
 import com.example.leidosrollvan.adapters.CustomRecyclerAdapter
 import com.example.leidosrollvan.adapters.HorizRecyclerAdapter
+import com.example.leidosrollvan.adapters.DealRecyclerAdapter
 import com.example.leidosrollvan.dataClasses.Business
+import com.example.leidosrollvan.dataClasses.Offer
 import com.google.firebase.database.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,23 +35,11 @@ class HomeFragment : Fragment() {
     private lateinit var reference: DatabaseReference
     private lateinit var businessRecyclerView : RecyclerView
     private lateinit var businessHorizRecyclerView : RecyclerView
-    private lateinit var businessHorizRecyclerView2 : RecyclerView
+    private lateinit var businessHorizRecyclerViewDeals : RecyclerView
     private lateinit var businessList: ArrayList<Business>
+    private lateinit var offerList: ArrayList<String>
+    private lateinit var offerIdList : ArrayList<String>
     private lateinit var businessIdList : ArrayList<String>
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-            //businessRecyclerView = view?.findViewById(R.id.businessRecyclerView)!!
-            //businessRecyclerView.layoutManager = LinearLayoutManager(activity)
-            //businessRecyclerView.setHasFixedSize(true)
-
-            //businessList = arrayListOf<Business>()
-
-            //getBusinessData();
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +54,8 @@ class HomeFragment : Fragment() {
 
         businessIdList = arrayListOf<String>()
         businessList = arrayListOf<Business>()
+        offerList = arrayListOf<String>()
+        offerIdList = arrayListOf<String>()
         businessRecyclerView = view.findViewById(R.id.businessRecyclerView)
         businessRecyclerView.layoutManager = LinearLayoutManager(view.context)
         businessRecyclerView.setHasFixedSize(true)
@@ -69,9 +63,10 @@ class HomeFragment : Fragment() {
         businessHorizRecyclerView = view.findViewById(R.id.businessHorizRecyclerView)
         businessHorizRecyclerView.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
         businessHorizRecyclerView.setHasFixedSize(true)
-        businessHorizRecyclerView2 = view.findViewById(R.id.businessHorizRecyclerView2)
-        businessHorizRecyclerView2.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
-        businessHorizRecyclerView2.setHasFixedSize(true)
+
+        businessHorizRecyclerViewDeals = view.findViewById(R.id.businessHorizRecyclerViewDeals)
+        businessHorizRecyclerViewDeals.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
+        businessHorizRecyclerViewDeals.setHasFixedSize(true)
 
         getBusinessData()
     }
@@ -82,21 +77,18 @@ class HomeFragment : Fragment() {
         reference.addValueEventListener(object : ValueEventListener,
             CustomRecyclerAdapter.OnBusiClickListener, HorizRecyclerAdapter.onBusiClickListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(businessSnapshot in snapshot.children){
-                        val business  = businessSnapshot.getValue(Business::class.java)
+                if (snapshot.exists()) {
+                    for (businessSnapshot in snapshot.children) {
+                        val business = businessSnapshot.getValue(Business::class.java)
                         businessList.add(business!!)
                         businessIdList.add(businessSnapshot.key!!)
                     }
 
 
-                    businessRecyclerView.adapter = CustomRecyclerAdapter(businessList, businessIdList,this )
-                    businessHorizRecyclerView.adapter=
-                        HorizRecyclerAdapter(businessList,businessIdList,this)
-                    businessHorizRecyclerView2.adapter=
-                        HorizRecyclerAdapter(businessList,businessIdList,this)
-
-
+                    businessRecyclerView.adapter =
+                        CustomRecyclerAdapter(businessList, businessIdList, this)
+                    businessHorizRecyclerView.adapter =
+                        HorizRecyclerAdapter(businessList, businessIdList, this)
                 }
             }
 
@@ -112,10 +104,43 @@ class HomeFragment : Fragment() {
                 startActivity(i)
                 activity?.overridePendingTransition(R.anim.slide_in_right, R.anim.stay)
             }
-
-
         })
+
+        reference = FirebaseDatabase.getInstance().getReference("Business Offer")
+
+        reference.addValueEventListener(object : ValueEventListener,
+                CustomRecyclerAdapter.OnBusiClickListener, DealRecyclerAdapter.onBusiClickListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (offerSnapshot in snapshot.children) {
+                            val offer = offerSnapshot.getValue(Offer::class.java)
+                            val offers= offer?.offers
+                            for (item in offers!!){
+                                offerList.add(item!!)
+                                offerIdList.add(offerSnapshot.key!!)
+                            }
+
+                        }
+                        businessHorizRecyclerViewDeals.adapter =
+                            DealRecyclerAdapter(offerList, offerIdList, this)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(activity, "error", Toast.LENGTH_LONG).show()
+                }
+
+            override fun onBusiClick(position: Int) {
+                val bID = offerIdList[position]
+                var i  = Intent(activity,
+                    BusinessPageActivity::class.java)
+                i.putExtra("b_id", bID)
+                startActivity(i)
+                activity?.overridePendingTransition(R.anim.slide_in_right, R.anim.stay)
+            }
+            })
     }
+
 
     companion object {
         /**

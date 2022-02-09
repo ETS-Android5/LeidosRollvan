@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.leidosrollvan">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -8,6 +9,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +19,15 @@
         android:roundIcon="@mipmap/ic_launcheer_truck_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LeidosRollVan">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <activity
+            android:name=".activity.MapActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.CategoryActivity"
             android:exported="false" />
@@ -41,6 +53,9 @@
         <activity
             android:name=".activity.BusinessLoginActivity"
             android:exported="false" />
+        <activity
+            android:name=".activity.BusinessNotificationActivity"
+            android:exported="true" />
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true"
@@ -69,6 +84,19 @@
             android:windowSoftInputMode="adjustPan"> <!-- adjustPan makes navbar not scroll up when typing -->
 
         </activity>
+
+        <service android:name=".activity.MessageServiceActivity"
+            tools:ignore="ExportedService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_food_truck_svgrepo_com" />
+
     </application>
 
 </manifest>

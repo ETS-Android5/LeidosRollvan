@@ -22,6 +22,7 @@ import com.example.leidosrollvan.adapters.businessItemRecyclerAdapter;
 import com.example.leidosrollvan.dataClasses.Business;
 import com.example.leidosrollvan.dataClasses.BusinessImage;
 import com.example.leidosrollvan.dataClasses.BusinessMenu;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -36,12 +38,13 @@ import java.util.ArrayList;
 public class BusinessPageActivity extends AppCompatActivity implements View.OnClickListener {
     DatabaseReference reference;
     DatabaseReference imRef, favRef;
-    Button homeButton;
     ImageButton faveButton;
     boolean userClick = false;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private String userID, businessID;
+    private String userID, businessID, businessName, businessMobile, businessEmail; ;
+    private TextView businessPageName, businessPageMob, businessPageEmail;
+    private ImageView businessPageImg;
     private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5;
     businessItemRecyclerAdapter adapter;
     private RecyclerView breakfastSection,lunchSection,dinnerSection,dessertSection,drinksSection;
@@ -53,7 +56,14 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_page);
-
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+            notiSubButton = (Button) findViewById(R.id.noti);
+            notiSubButton.setOnClickListener(this);
+            notiUnSubButton = (Button) findViewById(R.id.notiUn);
+            notiUnSubButton.setOnClickListener(this);
+            notiSubButton.setVisibility(View.VISIBLE);
+            notiUnSubButton.setVisibility(View.VISIBLE);
+        }
         homeButton = (Button) findViewById(R.id.home_bus);
         homeButton.setOnClickListener(this);
 
@@ -68,19 +78,19 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         Bundle bundle = getIntent().getExtras();
         String b_id = bundle.getString("b_id");
 
-        TextView businessPageName = (TextView) findViewById(R.id.business_page_name);
-        TextView businessPageMob = (TextView) findViewById(R.id.business_page_mob);
-        TextView businessPageEmail = (TextView) findViewById(R.id.business_page_email);
-        ImageView businessPageImg = (ImageView) findViewById(R.id.busi_page_Image);
+        businessPageName = (TextView) findViewById(R.id.business_page_name);
+        businessPageMob = (TextView) findViewById(R.id.business_page_mob);
+        businessPageEmail = (TextView) findViewById(R.id.business_page_email);
+        businessPageImg = (ImageView) findViewById(R.id.busi_page_Image);
         reference = FirebaseDatabase.getInstance().getReference("Businesses");
         reference.child(b_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Business businessProfile = snapshot.getValue(Business.class);
                 if (businessProfile != null) {
-                    String businessName = businessProfile.businessName;
-                    String businessMobile = businessProfile.businessMobile;
-                    String businessEmail= businessProfile.businessEmail;
+                    businessName = businessProfile.businessName;
+                    businessMobile = businessProfile.businessMobile;
+                    businessEmail= businessProfile.businessEmail;
                     businessPageName.setText(businessName);
                     businessPageMob.setText(businessMobile);
                     businessPageEmail.setText(businessEmail);
@@ -268,15 +278,39 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
     }
 
 
-            @Override
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.home_bus:
                 startActivity(new Intent(this, MainActivity.class));
                 break;
+<<<<<<< Android_Project/app/src/main/java/com/example/leidosrollvan/activity/BusinessPageActivity.java
             case R.id.faveButton:
                 setFave(businessID, userID);
                 break;
+=======
+            case R.id.noti:
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+                    FirebaseMessaging.getInstance().subscribeToTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getApplicationContext(), "Subscribed", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    break;
+                }
+            case R.id.notiUn:
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getApplicationContext(), "Unsubscribed", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    break;
+                }
+
+>>>>>>> Android_Project/app/src/main/java/com/example/leidosrollvan/activity/BusinessPageActivity.java
         }
     }
 }

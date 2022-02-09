@@ -48,7 +48,7 @@ public class MainActivityEspressoTest {
     @Test
     public void test_TopDeals_navigation() throws InterruptedException {
         Thread.sleep(1000);
-        onView(withId(R.id.businessHorizRecyclerView2))
+        onView(withId(R.id.businessHorizRecyclerView))
                 .perform(scrollTo(),RecyclerViewActions.actionOnItemAtPosition(0,click()));
         onView(withId(R.id.business_details_page)).check(matches(isDisplayed()));
     }
@@ -56,7 +56,7 @@ public class MainActivityEspressoTest {
     @Test
     public void test_TopDeals_back_navigation() throws InterruptedException {
         Thread.sleep(1000);
-        onView(withId(R.id.businessHorizRecyclerView2))
+        onView(withId(R.id.businessHorizRecyclerView))
                 .perform(scrollTo(),RecyclerViewActions.actionOnItemAtPosition(0,click()));
         onView(withId(R.id.business_details_page)).check(matches(isDisplayed()));
         pressBack();
@@ -102,12 +102,12 @@ public class MainActivityEspressoTest {
 //        pressBack();
 //        onView(withId(R.id.customer_home_page)).check(matches(isDisplayed()));
 //    }
-    @Test
-    public void test_navbar_home2map_navigation(){
-        onView(withId(R.id.id_map))
-                .perform(click());
-        onView(withId(R.id.map_page)).check(matches(isDisplayed()));
-    }
+//    @Test
+//    public void test_navbar_home2map_navigation(){
+//        onView(withId(R.id.id_map))
+//                .perform(click());
+//        onView(withId(R.id.map_page)).check(matches(isDisplayed()));
+//    }
 //    @Test
 //    public void test_navbar_home2map_back_navigation(){
 //        onView(withId(R.id.id_map))
