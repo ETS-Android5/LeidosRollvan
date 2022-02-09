@@ -36,9 +36,10 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class BusinessPageActivity extends AppCompatActivity implements View.OnClickListener {
-    DatabaseReference reference;
-    DatabaseReference imRef, favRef;
-    ImageButton faveButton;
+    private DatabaseReference reference;
+    private DatabaseReference imRef, favRef;
+    private ImageButton faveButton;
+    private Button homeButton, notiSubButton, notiUnSubButton;
     boolean userClick = false;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -284,11 +285,9 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
             case R.id.home_bus:
                 startActivity(new Intent(this, MainActivity.class));
                 break;
-<<<<<<< Android_Project/app/src/main/java/com/example/leidosrollvan/activity/BusinessPageActivity.java
             case R.id.faveButton:
                 setFave(businessID, userID);
                 break;
-=======
             case R.id.noti:
                 if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
                     FirebaseMessaging.getInstance().subscribeToTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -309,8 +308,6 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                     });
                     break;
                 }
-
->>>>>>> Android_Project/app/src/main/java/com/example/leidosrollvan/activity/BusinessPageActivity.java
         }
     }
 }
