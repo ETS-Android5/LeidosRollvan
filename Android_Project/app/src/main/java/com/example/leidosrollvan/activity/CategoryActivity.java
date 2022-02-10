@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -28,12 +30,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class CategoryActivity extends AppCompatActivity {
+public class CategoryActivity extends AppCompatActivity implements CategoryAdapter.RecyclerViewClickInterface {
     DatabaseReference reference;
     DatabaseReference imRef;
     List<String> Categories;
     RecyclerView recyclerView;
     CategoryAdapter myAdapter;
+    List<Business> listData;
+    List<String> offerIdList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,7 @@ public class CategoryActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        myAdapter = new CategoryAdapter(this);
+        myAdapter = new CategoryAdapter(this,this);
         recyclerView.setAdapter(myAdapter);
 
         imRef = FirebaseDatabase.getInstance().getReference("Business Menu");
@@ -85,6 +90,9 @@ public class CategoryActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+
                 if (snapshot.exists()) {
                     GenericTypeIndicator<HashMap<String, Business>> t = new GenericTypeIndicator<HashMap<String, Business>>() {
                     };
@@ -97,22 +105,33 @@ public class CategoryActivity extends AppCompatActivity {
                                         a -> a.getValue().categories.contains(category)
                                 ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
                         );
-                        List<Business> listData =
+                        listData =
                                 businessMap.entrySet().stream().filter(
                                         a -> filteredMap.containsKey(a.getKey())
                                 ).map(Map.Entry::getValue).collect(Collectors.toList());
                         myAdapter.setData(new ArrayList<>(listData));
+                        offerIdList = filteredMap.keySet().stream().collect(Collectors.toList());
+                        if (listData.size() == 0) {
+                            TextView NoAvailable = (TextView) findViewById(R.id.textViewNoAvailable);
+                            NoAvailable.setText("No businesses available");
+                        }
                     }
+
+
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
+
         });
     }
 
-
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, BusinessPageActivity.class);
+        intent.putExtra("b_id", offerIdList.get(position));
+        startActivity(intent);
+    }
 }
-
-

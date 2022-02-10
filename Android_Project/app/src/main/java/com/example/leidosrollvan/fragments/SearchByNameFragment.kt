@@ -1,5 +1,6 @@
 package com.example.leidosrollvan.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,9 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.leidosrollvan.R
+import com.example.leidosrollvan.activity.BusinessPageActivity
+import com.example.leidosrollvan.adapters.CustomRecyclerAdapter
 import com.example.leidosrollvan.adapters.SearchAdapter
 import com.example.leidosrollvan.dataClasses.Business
 import com.example.leidosrollvan.dataClasses.User
@@ -34,10 +38,11 @@ class SearchByNameFragment : Fragment() {
     private lateinit var mBusiness: ArrayList<Business>
     private lateinit var businessIdList : ArrayList<String>
     private lateinit var searchEditTextSearch : EditText
+    private lateinit var noMatches: TextView
 
     //private var mBusiness: ArrayList<Business>? = null
     //private var businessIdList: ArrayList<String>? = null
-    private var searchAdapter: SearchAdapter? = null
+    private lateinit var searchAdapter: RecyclerView
     private var recyclerView: RecyclerView? = null
 
 
@@ -65,14 +70,16 @@ class SearchByNameFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater!!.inflate(R.layout.activity_search_by_name_fragment, container, false)
 
-        recyclerView = view.findViewById(R.id.recyclerView_search)
-        recyclerView!!.setHasFixedSize(true)
-        recyclerView!!.layoutManager = LinearLayoutManager(context)
+        searchAdapter = view.findViewById(R.id.recyclerView_search)
+        searchAdapter!!.setHasFixedSize(true)
+        searchAdapter!!.layoutManager = LinearLayoutManager(context)
 
 
         mBusiness = ArrayList()
         businessIdList = ArrayList()
         getBusinessData()
+
+        noMatches = view.findViewById(R.id.textViewNoMatches)
 
         searchEditTextSearch = view.findViewById(R.id.searchBusinessET)
 
@@ -98,7 +105,7 @@ class SearchByNameFragment : Fragment() {
     private fun getBusinessData() {
         val refUser1 = FirebaseDatabase.getInstance().getReference("Businesses")
 
-        refUser1.addValueEventListener(object : ValueEventListener{
+        refUser1.addValueEventListener(object : ValueEventListener,CustomRecyclerAdapter.OnBusiClickListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 (mBusiness as ArrayList<User>).clear()
                 if(searchEditTextSearch!!.text.toString()==""){
@@ -109,15 +116,24 @@ class SearchByNameFragment : Fragment() {
                     }
 
 
-                        searchAdapter = SearchAdapter(context!!, mBusiness!!,businessIdList!!,false )
-                        recyclerView!!.adapter = searchAdapter
+                    searchAdapter.adapter = CustomRecyclerAdapter(mBusiness,businessIdList,this)
+                    //recyclerView!!.adapter = searchAdapter
 
 
-                    }
                 }
+            }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
+            }
+
+            override fun onBusiClick(position: Int) {
+                val bID = businessIdList[position]
+                var i  = Intent(activity,
+                    BusinessPageActivity::class.java)
+                i.putExtra("b_id", bID)
+                startActivity(i)
+                activity?.overridePendingTransition(R.anim.slide_in_right, R.anim.stay)
             }
         })
     }
@@ -126,30 +142,45 @@ class SearchByNameFragment : Fragment() {
         val refUser12 = FirebaseDatabase.getInstance().reference.child("Businesses").orderByChild("businessName")
 
 
-        refUser12.addValueEventListener(object :ValueEventListener{
+        refUser12.addValueEventListener(object :ValueEventListener,CustomRecyclerAdapter.OnBusiClickListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 (mBusiness as ArrayList<User>).clear()
                 for(businessSnapshot in snapshot.children){
                     val business  = businessSnapshot.getValue(Business::class.java)
                     val businessName = business?.businessName
-                    if(businessName!!.contains(str,ignoreCase = true)){
+                    if(businessName!!.contains(str,ignoreCase = true)) {
                         mBusiness.add(business!!)
                         businessIdList.add(businessSnapshot.key!!)
+                        noMatches.apply {
+                            text = ""
+                        }
                     }
+                    if(mBusiness.size==0){
+                        noMatches.apply {
+                            text = "No Matches"
+                        }
+                    }
+
 
                 }
 
 
-                searchAdapter = SearchAdapter(context!!, mBusiness!!,businessIdList!!,false )
-                recyclerView!!.adapter = searchAdapter
-
-                
-
+                searchAdapter.adapter = CustomRecyclerAdapter(mBusiness,businessIdList,this)
+                //recyclerView!!.adapter = searchAdapter
 
             }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
+            }
+
+            override fun onBusiClick(position: Int) {
+                val bID = businessIdList[position]
+                var i  = Intent(activity,
+                    BusinessPageActivity::class.java)
+                i.putExtra("b_id", bID)
+                startActivity(i)
+                activity?.overridePendingTransition(R.anim.slide_in_right, R.anim.stay)
             }
 
 
@@ -158,3 +189,4 @@ class SearchByNameFragment : Fragment() {
 
 
 }
+

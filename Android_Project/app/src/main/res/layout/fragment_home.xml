@@ -40,41 +40,18 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/discount"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:backgroundTint="?attr/button_color"
-                            android:layout_margin="1dp"
-                            android:drawableTop="@drawable/ic_discount"
-                            android:text="Discounts"
-                            android:textColor="?attr/text_color"
-                            android:textSize="10dp" />
-
-
-                        <Button
-                            android:id="@+id/breakfast"
-                            android:layout_width="100dp"
-                            android:layout_margin="1dp"
-                            android:layout_height="100dp"
-                            android:backgroundTint="?attr/button_color"
-                            android:drawableTop="@drawable/ic_breakfast"
-                            android:text="Breakfast"
-                            android:textColor="?attr/text_color"
-                            android:textSize="10dp" />
-
-                        <Button
-                            android:id="@+id/burger"
+                            android:id="@+id/fastFood"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:backgroundTint="?attr/button_color"
                             android:layout_margin="1dp"
                             android:drawableTop="@drawable/ic_burger"
-                            android:text="Burgers"
+                            android:text="Fast Food"
                             android:textColor="?attr/text_color"
                             android:textSize="10dp" />
 
                         <Button
-                            android:id="@+id/salad"
+                            android:id="@+id/Healthy"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_margin="1dp"
@@ -92,6 +69,29 @@
                             android:layout_margin="1dp"
                             android:drawableTop="@drawable/ic_dessert"
                             android:text="Desserts"
+                            android:textColor="?attr/text_color"
+                            android:textSize="10dp" />
+
+                        <Button
+                            android:id="@+id/CoffeeAndTea"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:backgroundTint="?attr/button_color"
+                            android:layout_margin="1dp"
+                            android:drawableTop="@drawable/ic_breakfast"
+                            android:text="CoffeeAndTea"
+                            android:textColor="?attr/text_color"
+                            android:textSize="10dp" />
+
+
+                        <Button
+                            android:id="@+id/VeganButton"
+                            android:layout_width="100dp"
+                            android:layout_margin="1dp"
+                            android:layout_height="100dp"
+                            android:backgroundTint="?attr/button_color"
+                            android:drawableTop="@drawable/ic_breakfast"
+                            android:text="Vegan"
                             android:textColor="?attr/text_color"
                             android:textSize="10dp" />
 
@@ -124,11 +124,11 @@
                 android:textStyle="bold" />
 
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/businessHorizRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/businessHorizRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
 
             <TextView
                 android:id="@+id/topDeals"
