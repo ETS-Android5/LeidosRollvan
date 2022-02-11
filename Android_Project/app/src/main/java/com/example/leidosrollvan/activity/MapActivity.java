@@ -200,7 +200,7 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
 
                     if (!clickedMarker.isEmpty()) {
                         Marker prevMarker = clickedMarker.get(0);
-                        prevMarker.setIcon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_restaurant_24));
+                        prevMarker.setIcon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_food_truck_map_marker));
                         clickedMarker.remove(prevMarker);
                     }
                     clickedMarker.add(marker);
@@ -294,7 +294,7 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
                                     String distance = getDistance(myLatLng, latLng);
 
                                     MarkerOptions options = new MarkerOptions().position(latLng)
-                                            .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_restaurant_24));
+                                            .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_food_truck_map_marker));
 
                                     ArrayList<String> tags = new ArrayList<>();
                                     tags.add("Business");
