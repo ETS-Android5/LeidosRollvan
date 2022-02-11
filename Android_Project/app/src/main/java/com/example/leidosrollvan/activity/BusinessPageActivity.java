@@ -22,6 +22,7 @@ import com.example.leidosrollvan.adapters.businessItemRecyclerAdapter;
 import com.example.leidosrollvan.dataClasses.Business;
 import com.example.leidosrollvan.dataClasses.BusinessImage;
 import com.example.leidosrollvan.dataClasses.BusinessMenu;
+import com.example.leidosrollvan.dataClasses.Notification;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -290,10 +291,47 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.noti:
                 if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
-                    FirebaseMessaging.getInstance().subscribeToTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    DatabaseReference referenceNoti = FirebaseDatabase.getInstance().getReference("User Notis");
+                    referenceNoti.addListenerForSingleValueEvent(new ValueEventListener() {
+
                         @Override
-                        public void onSuccess(Void unused) {
-                            Toast.makeText(getApplicationContext(), "Subscribed", Toast.LENGTH_LONG).show();
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.hasChild(userID)){
+                                referenceNoti.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        Notification noti = snapshot.getValue(Notification.class);
+                                        ArrayList<String> notis =noti.getNotis();
+                                        if(!notis.contains(businessName)){
+                                            noti.addNoti(businessName);
+                                            referenceNoti.child(userID).setValue(noti);
+                                            FirebaseMessaging.getInstance().subscribeToTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    Toast.makeText(getApplicationContext(), "Subscribed", Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+                                        }else{
+                                            Toast.makeText(getApplicationContext(), "You are already subscribed", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                            }else{
+                                ArrayList<String> notis = new ArrayList<String>();
+                                notis.add(businessName);
+                                Notification noti = new Notification(notis);
+                                referenceNoti.child(userID).setValue(noti);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
                         }
                     });
                     break;
@@ -303,10 +341,42 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                     Toast.makeText(BusinessPageActivity.this, "Login for subscription feature", Toast.LENGTH_SHORT).show();
                 }
                 if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
-                    FirebaseMessaging.getInstance().unsubscribeFromTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    DatabaseReference referenceNoti = FirebaseDatabase.getInstance().getReference("User Notis");
+                    referenceNoti.addListenerForSingleValueEvent(new ValueEventListener() {
+
                         @Override
-                        public void onSuccess(Void unused) {
-                            Toast.makeText(getApplicationContext(), "Unsubscribed", Toast.LENGTH_LONG).show();
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.hasChild(userID)){
+                                referenceNoti.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        Notification noti = snapshot.getValue(Notification.class);
+                                        ArrayList<String> notis =noti.getNotis();
+                                        if(notis.contains(businessName)) {
+                                            noti.deleteNoti(businessName);
+                                            referenceNoti.child(userID).setValue(noti);
+                                            FirebaseMessaging.getInstance().unsubscribeFromTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    Toast.makeText(getApplicationContext(), "Unsubscribed", Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+                                        }else{
+                                            Toast.makeText(getApplicationContext(), "You are not subscribed", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
                         }
                     });
                     break;

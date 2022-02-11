@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Offer {
     public ArrayList<String> offers=new ArrayList<>();
 
-    public Offer(){};
+    public Offer(){}
 
     public Offer(ArrayList<String> offers) {
         this.offers = offers;

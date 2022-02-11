@@ -29,6 +29,9 @@
             android:name=".activity.MapActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.MyNotificationsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.CategoryActivity"
             android:exported="false" />
         <activity
