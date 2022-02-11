@@ -106,5 +106,5 @@ EspressoTest:
     - docker
   script:
     - cd Android_Project
-    - ./gradlew connectedAndroidTest
+    - ./gradlew connectedCheck
 
