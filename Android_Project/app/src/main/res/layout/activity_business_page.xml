@@ -15,14 +15,13 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <Button
@@ -30,32 +29,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_gravity="start"
                     android:backgroundTint="?attr/button_color"
                     android:text="BACK"
                     android:textColor="?attr/text_color" />
 
-                <Button
-                    android:id="@+id/noti"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="?attr/button_color"
-                    android:text="Subscribe"
-                    android:textColor="?attr/text_color"
-                    android:visibility="visible" />
+                    android:layout_marginLeft="200dp">
 
-                <Button
-                    android:id="@+id/notiUn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="?attr/button_color"
-                    android:text="Unsubscribe"
-                    android:textColor="?attr/text_color"
-                    android:visibility="visible" />
+                    <Button
+                        android:id="@+id/noti"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:backgroundTint="?attr/button_color"
+                        android:drawableLeft="@drawable/ic_baseline_notifications_24"
+                        android:textColor="?attr/text_color"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/notiUn"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="end"
+                        android:backgroundTint="@color/darkGrey"
+                        android:drawableLeft="@drawable/ic_baseline_notifications_off_24"
+                        android:textColor="?attr/text_color"
+                        android:visibility="visible" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -63,6 +68,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -72,17 +79,17 @@
                     android:layout_gravity="center"
                     android:text="BUSINESS NAME"
                     android:textColor="?android:textColorPrimary"
-                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textSize="32sp"
                     android:visibility="visible" />
 
                 <ImageButton
                     android:id="@+id/faveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="3dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="3dp"
-                    android:layout_marginBottom="5dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/heart_outline"
                     tools:ignore="TouchTargetSizeCheck" />
@@ -90,14 +97,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:background="@color/grey"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/register_bk_color"
                 android:layout_gravity="center">
 
                 <ImageView
                     android:id="@+id/busi_page_Image"
-                    android:layout_width="110dp"
-                    android:layout_height="110dp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/burger" />
 
@@ -117,6 +126,8 @@
                         android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/grey"
+                        android:layout_marginLeft="10dp"
                         android:text="Business Mobile: " />
 
                     <TextView
@@ -124,16 +135,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="start"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
                         android:text="BUSINESS MOBILE"
-                        android:textColor="?android:textColorPrimary"
+                        android:textColor="@color/black"
                         android:textSize="20sp"
                         android:visibility="visible" />
 
                     <TextView
                         android:id="@+id/textView8"
                         android:layout_width="match_parent"
+                        android:layout_marginLeft="10dp"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/grey"
                         android:text="Business Email: " />
 
                     <TextView
@@ -142,9 +156,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
                         android:text="BUSINESS EMAIL"
-
-                        android:textColor="?android:textColorPrimary"
+                        android:textColor="@color/black"
                         android:textSize="20sp"
                         android:visibility="visible" />
 
@@ -159,8 +173,8 @@
                 android:layout_marginStart="5dp"
                 android:text="Business Menu"
                 android:textColor="?android:textColorPrimary"
-                android:textSize="45sp"
-                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textStyle="italic"
                 android:visibility="visible" />
 
             <TextView

@@ -191,6 +191,7 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
                 ArrayList<String> tags = (ArrayList<String>) marker.getTag();
                 resetSelectedMarker();
                 mSelectedMarker = marker;
+                Log.d("MARKER", tags.toString());
 
                 if(tags.get(0).equals("Business")){
                     String businessID = (String) tags.get(1);

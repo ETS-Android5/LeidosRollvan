@@ -47,11 +47,11 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
     private TextView businessPageName, businessPageMob, businessPageEmail;
     private ImageView businessPageImg;
     private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5;
-    businessItemRecyclerAdapter adapter;
+    private businessItemRecyclerAdapter adapter;
     private RecyclerView breakfastSection,lunchSection,dinnerSection,dessertSection,drinksSection;
     private boolean paused = false;
-    String[] categories =  {"Vegan","Tea and Coffee","Healthy","Fast Food","Desserts","Rolls"};
-    String[] sections =  {"Breakfast","Lunch","Dinner","Dessert","Drinks"};
+    private String[] categories =  {"Vegan","Tea and Coffee","Healthy","Fast Food","Desserts","Rolls"};
+    private String[] sections =  {"Breakfast","Lunch","Dinner","Dessert","Drinks"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
