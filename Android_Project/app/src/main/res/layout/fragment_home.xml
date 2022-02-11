@@ -48,7 +48,7 @@
                             android:drawableTop="@drawable/ic_burger"
                             android:text="Fast Food"
                             android:textColor="?attr/text_color"
-                            android:textSize="10dp" />
+                            android:textSize="9dp" />
 
                         <Button
                             android:id="@+id/Healthy"
@@ -59,7 +59,7 @@
                             android:drawableTop="@drawable/ic_salad"
                             android:text="Healthy"
                             android:textColor="?attr/text_color"
-                            android:textSize="10dp" />
+                            android:textSize="9dp" />
 
                         <Button
                             android:id="@+id/dessert"
@@ -70,19 +70,19 @@
                             android:drawableTop="@drawable/ic_dessert"
                             android:text="Desserts"
                             android:textColor="?attr/text_color"
-                            android:textSize="10dp" />
+                            android:textSize="9dp" />
+
 
                         <Button
                             android:id="@+id/CoffeeAndTea"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:backgroundTint="?attr/button_color"
                             android:layout_margin="1dp"
+                            android:backgroundTint="?attr/button_color"
                             android:drawableTop="@drawable/ic_breakfast"
-                            android:text="CoffeeAndTea"
+                            android:text="Coffee&amp;Tea"
                             android:textColor="?attr/text_color"
-                            android:textSize="10dp" />
-
+                            android:textSize="9dp" />
 
                         <Button
                             android:id="@+id/VeganButton"
@@ -93,7 +93,7 @@
                             android:drawableTop="@drawable/ic_breakfast"
                             android:text="Vegan"
                             android:textColor="?attr/text_color"
-                            android:textSize="10dp" />
+                            android:textSize="9dp" />
 
                     </LinearLayout>
                 </HorizontalScrollView>

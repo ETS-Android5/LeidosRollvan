@@ -168,7 +168,7 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                     }
                 }
                 else{
-                    Toast.makeText(BusinessPageActivity.this, "login to add to favourites", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BusinessPageActivity.this, "Login to add to favourites", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -298,8 +298,10 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                     });
                     break;
                 }
-
             case R.id.notiUn:
+                if(FirebaseAuth.getInstance().getCurrentUser()==null){
+                    Toast.makeText(BusinessPageActivity.this, "Login for subscription feature", Toast.LENGTH_SHORT).show();
+                }
                 if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
                     FirebaseMessaging.getInstance().unsubscribeFromTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
