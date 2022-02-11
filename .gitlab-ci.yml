@@ -99,3 +99,12 @@ unitTest:
     when: always
     reports:
       junit: build/test-results/test/**/TEST-*.xml
+
+EspressoTest:
+  stage: test
+  tags:
+    - docker
+  script:
+    - cd Android_Project
+    - ./gradlew connectedAndroidTest
+
