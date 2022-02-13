@@ -55,72 +55,47 @@ before_script:
 
 # Basic android and gradle stuff
 # Check linting
-# lintDebug:
-#   interruptible: true
-#   stage: build
-#   tags:
-#     - docker
-#   script:
-#     - cd Android_Project
-#     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+lintDebug:
+  interruptible: true
+  stage: build
+  tags:
+    - docker
+  script:
+    - cd Android_Project
+    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
 # # Make Project
-# assembleDebug:
-#   interruptible: true
-#   stage: build
-#   tags:
-#     - docker
-#   script:
-#     - cd Android_Project
-#     - ./gradlew assembleDebug
-#   artifacts:
-#     paths:
-#       - Android_Project/app/build/outputs/
+assembleDebug:
+  interruptible: true
+  stage: build
+  tags:
+    - docker
+  script:
+    - cd Android_Project
+    - ./gradlew assembleDebug
+  artifacts:
+    paths:
+      - Android_Project/app/build/outputs/
 
 # # Run all tests, if any fails, interrupt the pipeline(fail it)
-# debugTests:
-#   interruptible: true
-#   stage: test
-#   tags: 
-#     - docker
-#   script:
-#     - cd Android_Project
-#     - ./gradlew -Pci --console=plain :app:testDebug
+debugTests:
+  interruptible: true
+  stage: test
+  tags: 
+    - docker
+  script:
+    - cd Android_Project
+    - ./gradlew -Pci --console=plain :app:testDebug
 
 
-# unitTest:
-#   stage: test
-#   tags:
-#     - docker
-#   script:
-#     - cd Android_Project
-#     - ./gradlew test
-#   artifacts:
-#     when: always
-#     reports:
-#       junit: build/test-results/test/**/TEST-*.xml
-
-androidTest:
+unitTest:
   stage: test
   tags:
     - docker
   script:
-    - emulator -avd testAVD -no-audio -no-window &
-    - ./ci/android-wait-for-emulator.sh
-    - adb devices
-    - adb shell settings put global window_animation_scale 0 &
-    - adb shell settings put global transition_animation_scale 0 &
-    - adb shell settings put global animator_duration_scale 0 &
-    - adb shell input keyevent 82 &
     - cd Android_Project
-    - ./gradlew connectedAndroidTest
-    - ./ci/stop-emulators.sh
+    - ./gradlew test
   artifacts:
-    name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}"
-    when: on_failure
-    expire_in: 4 days
-    paths:
-      - app/build/reports/androidTests/connected/
-
-
-
+    when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
