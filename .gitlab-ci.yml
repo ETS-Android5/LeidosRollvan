@@ -86,3 +86,18 @@ debugTests:
   script:
     - cd Android_Project
     - ./gradlew -Pci --console=plain :app:testDebug
+
+
+unitTest:
+  stage: test
+  tags:
+    - docker
+  script:
+    - cd Android_Project
+    - ./gradlew test
+  artifacts:
+    when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
+
+
