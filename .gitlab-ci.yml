@@ -73,28 +73,28 @@ debugTests:
     - cd Android_Project
     - ./gradlew -Pci --console=plain :app:testDebug
 
-EspressoTest:
-  stage: test
-  tags:
-    - docker
-  script:
-    - echo y | android-sdk-linux/tools/bin/sdkmanager  "emulator" >/dev/null
-    - echo y | android-sdk-linux/tools/bin/sdkmanager "system-images;android-${ANDROID_COMPILE_SDK};google_apis;x86"
-    - echo y | android-sdk-linux/tools/bin/avdmanager create avd -f -n testAVD -k "system-images;android-${ANDROID_COMPILE_SDK};google_apis;x86"
-    - android-sdk-linux/emulator/emulator -avd testAVD -no-audio -no-window &
-    - ./gradlew connectedAndroidTest
+# EspressoTest:
+#   stage: test
+#   tags:
+#     - docker
+#   script:
+#     - echo y | android-sdk-linux/tools/bin/sdkmanager  "emulator" >/dev/null
+#     - echo y | android-sdk-linux/tools/bin/sdkmanager "system-images;android-${ANDROID_COMPILE_SDK};google_apis;x86"
+#     - echo y | android-sdk-linux/tools/bin/avdmanager create avd -f -n testAVD -k "system-images;android-${ANDROID_COMPILE_SDK};google_apis;x86"
+#     - android-sdk-linux/emulator/emulator -avd testAVD -no-audio -no-window &
+#     - ./gradlew connectedAndroidTest
     
-unitTest:
-  stage: test
-  tags:
-    - docker
-  script:
-    - cd Android_Project
-    - ./gradlew test
-  artifacts:
-    when: always
-    reports:
-      junit: build/test-results/test/**/TEST-*.xml
+# unitTest:
+#   stage: test
+#   tags:
+#     - docker
+#   script:
+#     - cd Android_Project
+#     - ./gradlew test
+#   artifacts:
+#     when: always
+#     reports:
+#       junit: build/test-results/test/**/TEST-*.xml
 
 
 
