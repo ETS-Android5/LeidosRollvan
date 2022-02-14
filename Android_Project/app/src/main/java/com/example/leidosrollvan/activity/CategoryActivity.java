@@ -109,8 +109,8 @@ public class CategoryActivity extends AppCompatActivity implements CategoryAdapt
                                 businessMap.entrySet().stream().filter(
                                         a -> filteredMap.containsKey(a.getKey())
                                 ).map(Map.Entry::getValue).collect(Collectors.toList());
-                        myAdapter.setData(new ArrayList<>(listData));
                         offerIdList = filteredMap.keySet().stream().collect(Collectors.toList());
+                        myAdapter.setData(new ArrayList<>(listData),new ArrayList<>(offerIdList));
                         if (listData.size() == 0) {
                             TextView NoAvailable = (TextView) findViewById(R.id.textViewNoAvailable);
                             NoAvailable.setText("No businesses available");

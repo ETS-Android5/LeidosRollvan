@@ -12,4 +12,8 @@ public class BusinessImage {
         this.mName = name;
         this.mImageUrl = imageUrl;
     }
+
+    public String getImageUrl() {
+        return mImageUrl;
+    }
 }

@@ -30,6 +30,7 @@ import java.util.ArrayList;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
     Context context;
     ArrayList<Business> list2 = new ArrayList<>();
+    ArrayList<String> list1 = new ArrayList<>();
     DatabaseReference imRef;
     private ImageView businessImage;
     private RecyclerViewClickInterface recyclerViewClickInterface;
@@ -40,9 +41,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         this.recyclerViewClickInterface = recyclerViewClickInterface;
     }
 
-    public void setData(ArrayList<Business> list) {
+    public void setData(ArrayList<Business> list,ArrayList<String> listID) {
         list2.clear();
+        list1.clear();
         list2 = list;
+        list1 = listID;
         notifyDataSetChanged();
     }
 
@@ -56,10 +59,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Business business = list2.get(position);
-        holder.businessName.setText(business.getBusinessName());
+        String currentID = list1.get(position);
 
+        imRef = FirebaseDatabase.getInstance().getReference("Business Images");
+        imRef.child(currentID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String uri = snapshot.getValue(BusinessImage.class).getImageUrl();
+                    holder.businessName.setText(business.getBusinessName());
+                    holder.businessContact.setText(business.getContact());
+                    Picasso.with(holder.businessImage.getContext()).load(uri).into(holder.businessImage);
+                }else{
+                    holder.businessName.setText(business.getBusinessName());
+                    holder.businessContact.setText(business.getContact());
+                    holder.businessImage.setImageResource(R.drawable.ic_baseline_image_not_supported_24);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
     }
@@ -73,6 +98,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         View mView;
 
         TextView businessName;
+        TextView businessContact;
         ImageView businessImage;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -81,6 +107,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
             businessName = itemView.findViewById(R.id.nameRecyclerItem);
             businessImage = itemView.findViewById(R.id.imageRecyclerItem);
+            businessContact = itemView.findViewById(R.id.contactRecyclerItem);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
