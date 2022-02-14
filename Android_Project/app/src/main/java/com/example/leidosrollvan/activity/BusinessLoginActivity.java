@@ -21,6 +21,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
@@ -32,7 +37,9 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
 
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
-
+    private String userID;
+    private DatabaseReference verifyRef;
+    private boolean verified = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,19 +111,29 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
                 if(task.isSuccessful()){
 
                     FirebaseUser user = mAuth.getCurrentUser();
+                    userID = user.getUid();
+
                     if(user.isEmailVerified() == true){
                         progressBar.setVisibility(View.GONE);
-                        startActivity(new Intent(BusinessLoginActivity.this, MainActivity.class));
+                        startActivity(new Intent(BusinessLoginActivity.this, BusinessHomeActivity.class));
                     }
                     else {
-                        mAuth.signOut();
-                        Toast.makeText(BusinessLoginActivity.this, "Verify your email before logging in", Toast.LENGTH_SHORT).show();
-                        user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(BusinessLoginActivity.this, "Verification email has been sent.", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        isVerified();
+                        if(verified == true){
+                            progressBar.setVisibility(View.GONE);
+                            startActivity(new Intent(BusinessLoginActivity.this, BusinessHomeActivity.class));
+                        }
+
+
+
+                        //mAuth.signOut();
+                        //Toast.makeText(BusinessLoginActivity.this, "Verify your email before logging in", Toast.LENGTH_SHORT).show();
+                        //user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        //    @Override
+                        //    public void onSuccess(Void aVoid) {
+                        //        Toast.makeText(BusinessLoginActivity.this, "Verification email has been sent.", Toast.LENGTH_SHORT).show();
+                        //    }
+                        //});
                     }
                 }
                 else {
@@ -129,7 +146,27 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
     public void forgotPassword(){
 
     }
+    public void isVerified(){
+        verifyRef = FirebaseDatabase.getInstance().getReference("Users still to verify");
+        verifyRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild(userID)){
+                    mAuth.signOut();
+                    Toast.makeText(BusinessLoginActivity.this, "Verify your email before logging in", Toast.LENGTH_SHORT).show();
+                    verified = false;
+                }
+                else{
+                    verified = true;
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     @Override
     public void onClick(View v) {
         switch(v.getId()){
