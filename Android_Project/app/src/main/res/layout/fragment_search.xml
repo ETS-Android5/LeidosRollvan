@@ -86,7 +86,7 @@
                         android:id="@+id/btn2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/hotdog"
+                        android:background="@drawable/fast_food"
                         android:clickable="true"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -143,7 +143,7 @@
                         android:id="@+id/btn4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/burger2"
+                        android:background="@drawable/burger"
                         android:clickable="true"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -199,7 +199,7 @@
                         android:id="@+id/btn6"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/asian_cuisine"
+                        android:background="@drawable/croiss"
                         android:clickable="true"
                         android:gravity="center"
                         android:orientation="vertical">
