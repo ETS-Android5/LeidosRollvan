@@ -87,7 +87,14 @@ debugTests:
     - cd Android_Project
     - ./gradlew -Pci --console=plain :app:testDebug
 
-
+EspressoTest:
+  stage: test
+  tags:
+    - docker
+  script:
+    - cd Android_Project
+    - ./gradlew connectedAndroidTest
+    
 unitTest:
   stage: test
   tags:
@@ -99,3 +106,6 @@ unitTest:
     when: always
     reports:
       junit: build/test-results/test/**/TEST-*.xml
+
+
+
