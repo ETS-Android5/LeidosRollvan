@@ -55,37 +55,37 @@ before_script:
 
 # Basic android and gradle stuff
 # Check linting
-lintDebug:
-  interruptible: true
-  stage: build
-  tags:
-    - docker
-  script:
-    - cd Android_Project
-    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+#lintDebug:
+ # interruptible: true
+  #stage: build
+#  tags:
+ #   - docker
+  #script:
+ #   - cd Android_Project
+  #  - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
 # Make Project
-assembleDebug:
-  interruptible: true
-  stage: build
-  tags:
-    - docker
-  script:
-    - cd Android_Project
-    - ./gradlew assembleDebug
-  artifacts:
-    paths:
-      - Android_Project/app/build/outputs/
+#assembleDebug:
+ # interruptible: true
+  #stage: build
+#  tags:
+ #   - docker
+#  script:
+ #   - cd Android_Project
+  #  - ./gradlew assembleDebug
+#  artifacts:
+ #   paths:
+  #    - Android_Project/app/build/outputs/
 
 # Run all tests, if any fails, interrupt the pipeline(fail it)
-debugTests:
-  interruptible: true
-  stage: test
-  tags: 
-    - docker
-  script:
-    - cd Android_Project
-    - ./gradlew -Pci --console=plain :app:testDebug
+#debugTests:
+ # interruptible: true
+  #stage: test
+#  tags: 
+ #   - docker
+  #script:
+   # - cd Android_Project
+   # - ./gradlew -Pci --console=plain :app:testDebug
 
 
 unitTest:
@@ -98,6 +98,6 @@ unitTest:
   artifacts:
     when: always
     reports:
-      junit: build/test-results/test/**/TEST-*.xml
+      junit: Android_Project/app/build/test-results/test/**/TEST-*.xml
 
 
