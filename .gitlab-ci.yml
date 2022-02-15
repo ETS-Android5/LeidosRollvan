@@ -103,6 +103,8 @@ unitTest:
 
 instrumentation_tests:
   stage: test
+  tags:
+    - docker
   script:
     - emulator -avd testAVD -no-audio -no-window &
     - ./ci/android-wait-for-emulator.sh
