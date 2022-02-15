@@ -21,8 +21,8 @@ variables:
 before_script:
   - apt-get --quiet update --yes
   - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
-
-  # Setup path as ANDROID_SDK_ROOT for moving/exporting the downloaded sdk into it
+  
+    # Setup path as ANDROID_SDK_ROOT for moving/exporting the downloaded sdk into it
   - export ANDROID_SDK_ROOT="${PWD}/android-home"
   # Create a new directory at specified location
   - install -d $ANDROID_SDK_ROOT
@@ -53,6 +53,7 @@ before_script:
   # Not necessary, but just for surity
   - chmod +x Android_Project/gradlew
 
+
 # Basic android and gradle stuff
 # Check linting
 lintDebug:
@@ -64,7 +65,7 @@ lintDebug:
     - cd Android_Project
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
-# Make Project
+# # Make Project
 assembleDebug:
   interruptible: true
   stage: build
@@ -77,7 +78,7 @@ assembleDebug:
     paths:
       - Android_Project/app/build/outputs/
 
-# Run all tests, if any fails, interrupt the pipeline(fail it)
+# # Run all tests, if any fails, interrupt the pipeline(fail it)
 debugTests:
   interruptible: true
   stage: test
@@ -86,3 +87,29 @@ debugTests:
   script:
     - cd Android_Project
     - ./gradlew -Pci --console=plain :app:testDebug
+
+# EspressoTest:
+#   stage: test
+#   tags:
+#     - docker
+#   script:
+#     - echo y | android-sdk-linux/tools/bin/sdkmanager  "emulator" >/dev/null
+#     - echo y | android-sdk-linux/tools/bin/sdkmanager "system-images;android-${ANDROID_COMPILE_SDK};google_apis;x86"
+#     - echo y | android-sdk-linux/tools/bin/avdmanager create avd -f -n testAVD -k "system-images;android-${ANDROID_COMPILE_SDK};google_apis;x86"
+#     - android-sdk-linux/emulator/emulator -avd testAVD -no-audio -no-window &
+#     - ./gradlew connectedAndroidTest
+    
+# unitTest:
+#   stage: test
+#   tags:
+#     - docker
+#   script:
+#     - cd Android_Project
+#     - ./gradlew test
+#   artifacts:
+#     when: always
+#     reports:
+#       junit: build/test-results/test/**/TEST-*.xml
+
+
+

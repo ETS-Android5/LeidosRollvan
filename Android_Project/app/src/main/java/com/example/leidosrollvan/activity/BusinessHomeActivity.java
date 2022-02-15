@@ -1,5 +1,6 @@
 package com.example.leidosrollvan.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,9 +20,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.leidosrollvan.dataClasses.BusinessLocation;
 import com.example.leidosrollvan.dataClasses.BusinessMenu;
 import com.example.leidosrollvan.R;
 import com.example.leidosrollvan.adapters.itemRecyclerAdapter;
+import com.example.leidosrollvan.dataClasses.BusinessMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,28 +37,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BusinessHomeActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button businessHomeLogout, addItemButton, addCategoryButton;
+    private Button businessHomeLogout, addItemButton, addCategoryButton,notiButton,locationSave;
     private ProgressBar businessHomeProgressBar;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private DatabaseReference reference;
+    private DatabaseReference businessReference, locationReference;
     private String businessID;
-    private EditText productName, productPrice;
+    private EditText productName, productPrice, locationEdit;
     private String productCategory,productSection;
     private Button saveButton,cancelButton;
-    private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5;
+    private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5,menuText;
     private RecyclerView breakfastSection,lunchSection,dinnerSection,dessertSection,drinksSection;
     private boolean paused = false;
-    String[] categories =  {"Asian Cuisine","Kebab","Hot Dogs","Coffee and Tea","Burritos"};
+    String[] categories =  {"Vegan","Tea and Coffee","Healthy","Fast Food","Desserts","Rolls"};
     String[] sections =  {"Breakfast","Lunch","Dinner","Dessert","Drinks"};
-    AutoCompleteTextView autoCompleteCategories;
-    AutoCompleteTextView autoCompleteSections;
-    ArrayAdapter<String> adapterCategories;
-    ArrayAdapter<String> adapterSections;
     itemRecyclerAdapter adapter;
-    ListView listview;
-    EditText GetValue;
-    BusinessMenu menu;
     HashMap<String, HashMap<String, Double>> menuMap;
 
     @Override
@@ -80,18 +76,21 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
         cat3 = (TextView) findViewById(R.id.cat3);
         cat4 = (TextView) findViewById(R.id.cat4);
         cat5 = (TextView) findViewById(R.id.cat5);
+        menuText = (TextView) findViewById(R.id.menuText);
         notifyNoItems = (TextView) findViewById(R.id.notifyNoItems);
         breakfastSection = (RecyclerView) findViewById(R.id.breakfastSection);
         lunchSection = (RecyclerView) findViewById(R.id.lunchSection);
         dinnerSection = (RecyclerView) findViewById(R.id.dinnerSection);
         dessertSection = (RecyclerView) findViewById(R.id.dessertSection);
         drinksSection = (RecyclerView) findViewById(R.id.drinksSection);
+        locationEdit = (EditText) findViewById(R.id.business_location_edit);
 
         businessHomeProgressBar = (ProgressBar) findViewById(R.id.business_home_progressBar);
         businessHomeProgressBar.setVisibility(View.VISIBLE);
 
         user = mAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Business Menu");
+        businessReference = FirebaseDatabase.getInstance().getReference("Business Menu");
+        locationReference = FirebaseDatabase.getInstance().getReference("Business Locations");
         businessID = user.getUid();
         businessHomeLogout = (Button) findViewById(R.id.business_home_logout);
         businessHomeLogout.setOnClickListener(this);
@@ -102,12 +101,45 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
         addCategoryButton = (Button) findViewById(R.id.business_home_category);
         addCategoryButton.setOnClickListener(this);
 
+        notiButton = (Button) findViewById(R.id.business_home_notifications);
+        notiButton.setOnClickListener(this);
+        locationSave = (Button) findViewById(R.id.business_location_save);
+        locationSave.setOnClickListener(this);
+
         businessHomeProgressBar.setVisibility(View.GONE);
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        locationReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild(businessID)) {
+                    locationReference.child(businessID).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            BusinessLocation location = snapshot.getValue(BusinessLocation.class);
+                            locationEdit.setText(location.postCode);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(BusinessHomeActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                locationEdit.setText("");
+                locationEdit.setError("Failed to get Location data");
+                locationEdit.requestFocus();
+            }
+        });
+
+        businessReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.hasChild(businessID + "/businessMenuItems")) {
-                    reference.child(businessID).addListenerForSingleValueEvent(new ValueEventListener() {
+                    businessReference.child(businessID).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             BusinessMenu oldMenu = snapshot.getValue(BusinessMenu.class);
@@ -115,6 +147,7 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
                                 return;
                             }
                             ArrayList<String> sections = oldMenu.getSections();
+                            menuText.setVisibility(View.VISIBLE);
                             if (sections.contains("Breakfast")) {
                                 cat1.setVisibility(View.VISIBLE);
                                 breakfastSection.setVisibility(View.VISIBLE);
@@ -189,12 +222,33 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
         this.recreate();
     }
 
-    public void toAddPage(View view){
-        startActivity(new Intent(this,  BusinessProductFormActivity.class));
-    }
+    private void setLocation(){
+        String postCode = locationEdit.getText().toString().trim();
 
-    public void toCategoriesPage(View view){
-        startActivity(new Intent(this,  BusinessCategoryActivity.class));
+        locationReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild(businessID)){
+                    BusinessLocation newLocation = snapshot.getValue(BusinessLocation.class);
+                    newLocation.setPostCode(postCode);
+                    locationReference.child(businessID).setValue(newLocation);
+                    Toast.makeText(BusinessHomeActivity.this, "Location saved", Toast.LENGTH_SHORT).show();
+
+
+                }else{
+                    BusinessLocation newLocation = new BusinessLocation(postCode);
+                    locationReference.child(businessID).setValue(newLocation);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(BusinessHomeActivity.this, "Unable to access database", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        finish();
+        startActivity(getIntent());
     }
 
     @Override
@@ -204,12 +258,17 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this, BusinessLoginActivity.class));
                 break;
-
             case R.id.business_home_add:
                 startActivity(new Intent(this, BusinessProductFormActivity.class));
                 break;
             case R.id.business_home_category:
                 startActivity(new Intent(this,  BusinessCategoryActivity.class));
+                break;
+            case R.id.business_home_notifications:
+                startActivity(new Intent(this,  BusinessNotificationActivity.class));
+                break;
+            case R.id.business_location_save:
+                setLocation();
                 break;
         }
     }

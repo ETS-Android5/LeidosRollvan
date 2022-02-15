@@ -8,17 +8,19 @@
     android:id="@+id/search_page"
     tools:context=".fragments.SearchFragment">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+    <ImageButton
+        android:id="@+id/searchByName"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="300dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="0dp"
         android:background="@drawable/searchview_background"
         android:iconifiedByDefault="false"
-        android:queryBackground="@android:color/transparent"
-        android:queryHint="Search" />
+        android:src="@drawable/ic_action_search"
+        android:backgroundTint="@color/register_bk_color"/>
+
+
 
     <ScrollView
         android:id="@+id/scrollView3"
@@ -55,7 +57,7 @@
                         android:id="@+id/btn1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/kebab"
+                        android:background="@drawable/pizza"
                         android:clickable="true"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -64,7 +66,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="Kebab"
+                            android:text="Vegan"
                             android:textColor="@color/white"
                             android:textSize="33sp" />
 
@@ -84,7 +86,7 @@
                         android:id="@+id/btn2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/hotdog"
+                        android:background="@drawable/coffee_and_tea"
                         android:clickable="true"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -93,7 +95,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="Hot dog"
+                            android:text="Tea and Coffee"
                             android:textColor="@color/white"
                             android:textSize="33sp" />
 
@@ -112,7 +114,7 @@
                         android:id="@+id/btn3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/burritos"
+                        android:background="@drawable/asian_cuisine"
                         android:clickable="true"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -121,7 +123,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="Burritos"
+                            android:text="Healthy"
                             android:textColor="@color/white"
                             android:textSize="33sp" />
 
@@ -149,7 +151,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="Burger"
+                            android:text="Fast Food"
                             android:textColor="@color/white"
                             android:textSize="33sp" />
 
@@ -168,8 +170,8 @@
                         android:id="@+id/btn5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/coffee_and_tea"
                         android:clickable="true"
+                        android:background="@drawable/cupcake"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -177,7 +179,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="Coffee and tea"
+                            android:text="Desserts"
                             android:textColor="@color/white"
                             android:textSize="33sp" />
 
@@ -196,7 +198,7 @@
                         android:id="@+id/btn6"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/asian_cuisine"
+                        android:background="@drawable/burritos"
                         android:clickable="true"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -205,54 +207,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="Asian Cuisine"
+                            android:text="Rolls"
                             android:textColor="@color/white"
                             android:textSize="33sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="10dp"
-                    android:layout_marginLeft="30dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageButton
-                            android:id="@+id/btn7"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
-                            android:background="@color/black"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/kebab"
-                            android:text="Button"
-                            android:textSize="18sp">
-
-                        </ImageButton>
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-
             </GridLayout>
         </LinearLayout>
     </ScrollView>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        android:textStyle="bold" />
 
 </LinearLayout>

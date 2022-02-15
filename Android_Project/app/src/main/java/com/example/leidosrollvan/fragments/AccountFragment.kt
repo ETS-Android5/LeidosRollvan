@@ -2,15 +2,16 @@ package com.example.leidosrollvan.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.example.leidosrollvan.activity.LoginActivity
+import androidx.fragment.app.Fragment
 import com.example.leidosrollvan.R
+import com.example.leidosrollvan.activity.LoginActivity
+import com.example.leidosrollvan.activity.MyNotificationsActivity
 import com.example.leidosrollvan.dataClasses.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -34,6 +35,9 @@ class AccountFragment : Fragment(), View.OnClickListener {
     private lateinit var user : FirebaseUser
     private lateinit var reference : DatabaseReference
 
+    private var helpFragment = HelpFragment()
+    private var aboutFragment = AboutFragment()
+
     private lateinit var userID : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +57,15 @@ class AccountFragment : Fragment(), View.OnClickListener {
 
         val logoutBtn : Button = view.findViewById(R.id.signOut)
         logoutBtn.setOnClickListener(this)
+
+        val aboutBtn : Button = view.findViewById(R.id.about)
+        aboutBtn.setOnClickListener(this)
+
+        val helpBtn : Button = view.findViewById(R.id.help)
+        helpBtn.setOnClickListener(this)
+
+        val myNotiBtn : Button = view.findViewById(R.id.notifications)
+        myNotiBtn.setOnClickListener(this)
 
         user = FirebaseAuth.getInstance().currentUser!!
         reference = FirebaseDatabase.getInstance().getReference("Users")
@@ -101,12 +114,30 @@ class AccountFragment : Fragment(), View.OnClickListener {
             }
     }
 
+    private fun replaceFragment(fragment : Fragment){
+        if(fragment != null){
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, fragment)
+            transaction.commit()
+        }
+    }
+
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.signOut -> {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(Intent(activity, LoginActivity::class.java))
             }
+            R.id.help -> {
+                replaceFragment(helpFragment)
+            }
+            R.id.about -> {
+                replaceFragment(aboutFragment)
+            }
+            R.id.notifications -> {
+                startActivity(Intent(activity, MyNotificationsActivity::class.java))
+            }
+
         }
     }
 }

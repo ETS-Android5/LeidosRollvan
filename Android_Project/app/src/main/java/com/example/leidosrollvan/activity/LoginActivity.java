@@ -99,6 +99,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
+
                 if(task.isSuccessful()){
                     FirebaseUser user = mAuth.getCurrentUser();
                     if(user.isEmailVerified() == true){

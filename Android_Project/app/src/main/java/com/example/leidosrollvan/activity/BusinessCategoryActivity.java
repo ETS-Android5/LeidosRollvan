@@ -2,6 +2,7 @@ package com.example.leidosrollvan.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.leidosrollvan.dataClasses.BusinessMenu;
 import com.example.leidosrollvan.R;
+import com.example.leidosrollvan.dataClasses.BusinessMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +27,7 @@ import java.util.HashMap;
 
 public class BusinessCategoryActivity extends AppCompatActivity{
 
-    private final String[] categories = {"Asian Cuisine", "Kebab", "Hot Dogs", "Coffee and Tea", "Burritos"};
+    private final String[] categories =  {"Vegan","Tea and Coffee","Healthy","Fast Food","Desserts","Rolls"};
     private final ArrayList<String> initialCategories = new ArrayList<String>();
     private final ArrayList<String> finalCategories = new ArrayList<String>();
     private DatabaseReference reference;
@@ -63,6 +64,9 @@ public class BusinessCategoryActivity extends AppCompatActivity{
                             for (String category : categories) {
                                 CheckBox checkBox = new CheckBox(context);
                                 checkBox.setText(category);
+                                checkBox.setTextSize(30);
+                                checkBox.setTypeface(null, Typeface.BOLD);
+                                checkBox.setPadding(0,0,0,5);
                                 checkBox.setId(count);
                                 count++;
                                 //if category was previously selected and saved, show as ticked on load.
@@ -86,6 +90,9 @@ public class BusinessCategoryActivity extends AppCompatActivity{
                     for (String category : categories) {
                         CheckBox checkBox = new CheckBox(context);
                         checkBox.setText(category);
+                        checkBox.setPadding(0,0,0,5);
+                        checkBox.setTypeface(null, Typeface.BOLD);
+                        checkBox.setTextSize(30);
                         checkBox.setId(count);
                         count++;
                         checkboxContainer.addView(checkBox);

@@ -8,7 +8,7 @@
     card_view:cardCornerRadius="20dp"
     card_view:cardElevation="50dp"
     android:layout_margin="1dp"
-    card_view:cardBackgroundColor="@color/register_bk_color"
+    card_view:cardBackgroundColor="?attr/button_color"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Business Name"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:textSize="20dp"/>
     </LinearLayout>
 
