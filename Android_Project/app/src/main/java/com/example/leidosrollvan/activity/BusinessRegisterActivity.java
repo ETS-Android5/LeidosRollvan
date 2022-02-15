@@ -56,7 +56,8 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
     private Uri mImageUri;
 
     private StorageReference mStorageRef;
-    private DatabaseReference mDatabaseReference;
+    private DatabaseReference mDatabaseReference, verifyRef;
+    private String verifyID;
 
 
     private FirebaseAuth mAuth;
@@ -161,7 +162,7 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Business business = new Business(businessName, businessMobile, businessEmail);
-
+                            verifyRef = FirebaseDatabase.getInstance().getReference("Users still to verify");
                             FirebaseDatabase.getInstance().getReference()
                                     .child("Businesses")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -173,6 +174,9 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
                                         businessProgressBar.setVisibility(View.GONE);
                                         //send verification email
                                         FirebaseUser business = mAuth.getCurrentUser();
+                                        verifyID = business.getUid();
+                                        verifyRef.child(verifyID).setValue(true);
+
                                         business.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {

@@ -102,9 +102,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                 if(task.isSuccessful()){
-
                     FirebaseUser user = mAuth.getCurrentUser();
-                    if(user.isEmailVerified() == true) {
+                    if(user.isEmailVerified() == true){
                         progressBar.setVisibility(View.GONE);
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     }
@@ -113,13 +112,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Toast.makeText(LoginActivity.this, "Verify your email before logging in",Toast.LENGTH_SHORT).show();
                         user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onSuccess(Void unused) {
+                            public void onSuccess(Void aVoid) {
                                 Toast.makeText(LoginActivity.this, "Verification email has been sent.", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
 
-                    }else {
+                }else {
                     Toast.makeText(LoginActivity.this, "Failed to Login! Please check your credentials!", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
