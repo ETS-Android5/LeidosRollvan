@@ -22,12 +22,12 @@ Leidos Rollvan app is available from the following download links
         height="80"
         src="readme/onedrive-svgrepo-com.svg" />
 </a> 
-<a href="#">
+<a href="https://www.dropbox.com/s/9htsbqh8qj7d6w8/app-debug.apk?dl=1">
     <img alt="Get it on DropBox"
         height="60"
         src="readme/dropbox-svgrepo-com.svg" />
 </a> 
-<a href="#">
+<a href="https://drive.google.com/uc?export=download&id=1IRMOq9JPChw_0_iK3gIsH7Zd01JlSszp">
     <img alt="Get it on Google Drive"
         height="60"
         src="readme/google-drive-social-media-svgrepo-com.svg" />
