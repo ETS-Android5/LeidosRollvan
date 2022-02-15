@@ -98,6 +98,6 @@ unitTest:
   artifacts:
     when: always
     reports:
-      junit: Android_Project/app/build/test-results/test/**/TEST-*.xml
+      junit: Android_Project/app/build/test-results/**/TEST-*.xml
 
 
