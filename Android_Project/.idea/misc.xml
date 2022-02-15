@@ -63,7 +63,7 @@
         <entry key="app/src/main/res/drawable/ic_food_truck_svgrepo_com.xml" value="0.2351851851851852" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.79375" />
         <entry key="app/src/main/res/layout/activity_business_forgot_password.xml" value="0.16983695652173914" />
-        <entry key="app/src/main/res/layout/activity_business_home.xml" value="0.10778985507246377" />
+        <entry key="app/src/main/res/layout/activity_business_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_business_login.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_business_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.10688956433637285" />
