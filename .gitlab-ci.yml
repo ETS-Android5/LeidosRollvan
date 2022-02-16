@@ -16,7 +16,9 @@ variables:
   #        commandlinetools-os_type-ANDROID_SDK_TOOLS_latest.zip
   # when the script was last modified for latest compileSdkVersion, it was which is written down below
   ANDROID_SDK_TOOLS: "7583922"
-  before_script:
+
+# Packages installation before running script
+before_script:
   - apt-get --quiet update --yes
   - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
   
@@ -50,6 +52,7 @@ variables:
 
   # Not necessary, but just for surity
   - chmod +x Android_Project/gradlew
+
 
 
 # Basic android and gradle stuff
