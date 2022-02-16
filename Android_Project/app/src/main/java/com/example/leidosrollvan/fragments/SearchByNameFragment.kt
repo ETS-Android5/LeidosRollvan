@@ -108,6 +108,7 @@ class SearchByNameFragment : Fragment() {
         refUser1.addValueEventListener(object : ValueEventListener,CustomRecyclerAdapter.OnBusiClickListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 (mBusiness as ArrayList<User>).clear()
+                (businessIdList as ArrayList<User>).clear()
                 if(searchEditTextSearch!!.text.toString()==""){
                     for(businessSnapshot in snapshot.children){
                         val business  = businessSnapshot.getValue(Business::class.java)
