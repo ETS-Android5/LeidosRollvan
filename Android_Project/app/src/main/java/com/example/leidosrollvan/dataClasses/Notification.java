@@ -18,5 +18,5 @@ public class Notification {
     public ArrayList<String> getNotis() {
             return notis;
         }
-    }
+}
 

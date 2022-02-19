@@ -39,26 +39,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="200dp">
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/noti"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:backgroundTint="?attr/button_color"
-                        android:drawableLeft="@drawable/ic_baseline_notifications_24"
-                        android:textColor="?attr/text_color"
-                        android:visibility="visible" />
+                        android:src="@drawable/ic_baseline_notifications_24"
+                        android:visibility="gone" />
 
-                    <Button
-                        android:id="@+id/notiUn"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/darkGrey"
-                        android:drawableLeft="@drawable/ic_baseline_notifications_off_24"
-                        android:textColor="?attr/text_color"
-                        android:visibility="visible" />
 
                 </LinearLayout>
 
