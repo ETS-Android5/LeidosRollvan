@@ -62,6 +62,13 @@
             android:textColor="?attr/text_color"
             android:textSize="15dp" />
 
+        <ImageButton
+            android:id="@+id/business_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="?attr/button_color"
+            app:srcCompat="@drawable/ic_baseline_settings_24" />
 
 
     </LinearLayout>
