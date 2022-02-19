@@ -28,6 +28,8 @@
         <activity
             android:name=".activity.MapActivity"
             android:exported="false" />
+        <activity android:name=".activity.BusinessSettingsActivity"
+            android:exported="false"/>
         <activity
             android:name=".activity.MyNotificationsActivity"
             android:exported="false" />

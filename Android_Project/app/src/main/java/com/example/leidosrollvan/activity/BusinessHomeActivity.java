@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ import java.util.HashMap;
 
 public class BusinessHomeActivity extends AppCompatActivity implements View.OnClickListener {
     private Button businessHomeLogout, addItemButton, addCategoryButton,notiButton,locationSave;
+    private ImageButton businessSettings;
     private ProgressBar businessHomeProgressBar;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -92,6 +94,10 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
         businessReference = FirebaseDatabase.getInstance().getReference("Business Menu");
         locationReference = FirebaseDatabase.getInstance().getReference("Business Locations");
         businessID = user.getUid();
+
+        businessSettings = (ImageButton) findViewById(R.id.business_settings);
+        businessSettings.setOnClickListener(this);
+
         businessHomeLogout = (Button) findViewById(R.id.business_home_logout);
         businessHomeLogout.setOnClickListener(this);
 
@@ -254,6 +260,9 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         switch(v.getId()){
+            case R.id.business_settings:
+                startActivity(new Intent(this, BusinessSettingsActivity.class));
+                break;
             case R.id.business_home_logout:
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this, BusinessLoginActivity.class));

@@ -30,6 +30,7 @@ import java.util.HashMap;
 
 public class BusinessSettingsActivity extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference reference;
+    private EditText businessName, businessPrice, businessOpening;
     private FirebaseUser user;
     private String businessID;
 
@@ -37,10 +38,24 @@ public class BusinessSettingsActivity extends AppCompatActivity implements View.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_settings);
+        Button saveButton = (Button) findViewById(R.id.popupSaveEdit);
+        saveButton.setOnClickListener(this);
+        Button cancelButton = (Button) findViewById(R.id.popupCancelEdit);
+        cancelButton.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
-
+        switch(v.getId()){
+            case R.id.popupSaveEdit:
+                //save
+                startActivity(new Intent(this, BusinessHomeActivity.class));
+                break;
+            case R.id.popupCancelEdit:
+                finish();
+                startActivity(new Intent(this, BusinessHomeActivity.class));
+                break;
+        }
     }
 }
