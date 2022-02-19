@@ -6,6 +6,7 @@
     android:id="@+id/categories"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="?attr/background_color"
     android:layout_height="match_parent">
 
     <include
@@ -21,7 +22,7 @@
         android:gravity="center"
         android:text="Category Selection"
         android:layout_marginTop="6dp"
-        android:textColor="?attr/text_color"
+        android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +51,7 @@
         android:id="@+id/saveCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="?attr/button_color"
+        android:backgroundTint="@color/green"
         android:onClick="toBusinessHome"
         android:text="Save"
         android:textAlignment="center"

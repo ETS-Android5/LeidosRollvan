@@ -21,8 +21,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lgreen">#b6f899</color>
     <color name="red">#FF0000</color>
-    <color name="grey">#808080</color>
+    <color name="grey">#c3c3c3</color>
     <color name="darkGrey">#A9A9A9</color>
+    <color name="lightBlue">#7691c1</color>
     <color name="blue">#2196F3</color>
+    <color name="darkBlue">#31345a</color>
     <color name="ic_launcheer_truck_background">#3DDC84</color>
 </resources>

@@ -3,7 +3,7 @@
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
-android:layout_height="match_parent"
+android:layout_height="match_parent" android:background="?attr/background_color"
 android:orientation="vertical">
 <include
     android:id="@+id/include"
@@ -16,7 +16,8 @@ android:orientation="vertical">
     android:layout_height="wrap_content"
     android:text="Edit Business"
     android:layout_marginTop="6dp"
-    android:textColor="?attr/text_color"
+    android:background="@color/grey"
+    android:textColor="@color/black"
     android:textSize="30sp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -139,7 +140,7 @@ android:orientation="vertical">
     android:id="@+id/popupSaveEdit"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:backgroundTint="?attr/button_color"
+    android:backgroundTint="@color/green"
     android:onClick="clickSave"
     android:text="Save"
     android:textColor="?attr/text_color"

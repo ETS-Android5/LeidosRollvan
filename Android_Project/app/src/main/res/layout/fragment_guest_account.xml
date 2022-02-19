@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/background_color"
     android:id="@+id/customer_guest_account_page"
     tools:context=".fragments.AccountFragment"
     android:fillViewport="false">
@@ -31,10 +32,10 @@
                 android:layout_marginTop="180dp"
                 android:background="#00000000"
                 android:drawableLeft="@drawable/help"
-                android:drawableTint="?android:textColorPrimary"
+                android:drawableTint="?attr/text_color"
                 android:text="Help"
                 android:textSize="25dp"
-                android:textColor="?android:textColorPrimary" />
+                android:textColor="?attr/text_color" />
 
             <Button
                 android:id="@+id/guestAbout"
@@ -43,10 +44,10 @@
                 android:layout_marginTop="80dp"
                 android:background="#00000000"
                 android:drawableLeft="@drawable/info"
-                android:drawableTint="?android:textColorPrimary"
+                android:drawableTint="?attr/text_color"
                 android:text="About"
                 android:textSize="25dp"
-                android:textColor="?android:textColorPrimary" />
+                android:textColor="?attr/text_color" />
 
             <Button
                 android:id="@+id/guestLogin"
