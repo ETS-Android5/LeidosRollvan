@@ -137,7 +137,7 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         favRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.child(businessID).hasChild(userID)){
+                if(snapshot.child(userID).hasChild(businessID)){
                     faveButton.setImageResource(R.drawable.heart_filled);
                 }
                 else{
@@ -161,10 +161,10 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                 if(user != null) {
                     if (userClick == true) {
 
-                        if (snapshot.child(businessID).hasChild(userID)) {
-                            favRef.child(businessID).child(userID).removeValue();
+                        if (snapshot.child(userID).hasChild(businessID)) {
+                            favRef.child(userID).child(businessID).removeValue();
                         } else {
-                            favRef.child(businessID).child(userID).setValue(true);
+                            favRef.child(userID).child(businessID).setValue(true);
                         }
                     }
                 }

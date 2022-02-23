@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.leidosrollvan.R
 import com.example.leidosrollvan.activity.LoginActivity
+import com.example.leidosrollvan.activity.MyFavouritesActivity
 import com.example.leidosrollvan.activity.MyNotificationsActivity
 import com.example.leidosrollvan.dataClasses.User
 import com.google.firebase.auth.FirebaseAuth
@@ -66,6 +67,9 @@ class AccountFragment : Fragment(), View.OnClickListener {
 
         val myNotiBtn : Button = view.findViewById(R.id.notifications)
         myNotiBtn.setOnClickListener(this)
+
+        val faveButton : Button = view.findViewById(R.id.yourFavourites)
+        faveButton.setOnClickListener(this)
 
         user = FirebaseAuth.getInstance().currentUser!!
         reference = FirebaseDatabase.getInstance().getReference("Users")
@@ -136,6 +140,9 @@ class AccountFragment : Fragment(), View.OnClickListener {
             }
             R.id.notifications -> {
                 startActivity(Intent(activity, MyNotificationsActivity::class.java))
+            }
+            R.id.yourFavourites -> {
+                startActivity(Intent(activity, MyFavouritesActivity::class.java))
             }
 
         }
