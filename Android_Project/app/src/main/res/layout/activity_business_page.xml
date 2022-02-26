@@ -73,6 +73,11 @@
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
+
                 <TextView
                     android:id="@+id/business_page_name"
                     android:layout_width="wrap_content"
@@ -98,71 +103,93 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:background="@color/lightBlue"
-                android:layout_gravity="center">
-
-                <ImageView
-                    android:id="@+id/busi_page_Image"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/burger" />
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="start"
-                    android:layout_marginLeft="1dp"
-                    android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="12sp"
-                    android:autoSizeMaxTextSize="100sp"
-                    android:autoSizeStepGranularity="2sp"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/grey"
-                        android:layout_marginLeft="10dp"
-                        android:text="Business Mobile: " />
+                    <ImageView
+                        android:id="@+id/busi_page_Image"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/burger" />
 
-                    <TextView
-                        android:id="@+id/business_page_mob"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="start"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:text="BUSINESS MOBILE"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:visibility="visible" />
-
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/grey"
-                        android:text="Business Email: " />
-
-                    <TextView
-                        android:id="@+id/business_page_email"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="BUSINESS EMAIL"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:visibility="visible" />
+                        android:layout_marginLeft="1dp"
+                        android:autoSizeMaxTextSize="100sp"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="start"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Business Mobile: "
+                            android:textColor="@color/grey" />
+
+                        <TextView
+                            android:id="@+id/business_page_mob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="start"
+                            android:text="BUSINESS MOBILE"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Business Email: "
+                            android:textColor="@color/grey" />
+
+                        <TextView
+                            android:id="@+id/business_page_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="BUSINESS EMAIL"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="?attr/text_color"
+                        android:text="Opening Hours: " />
                 </LinearLayout>
 
             </LinearLayout>
