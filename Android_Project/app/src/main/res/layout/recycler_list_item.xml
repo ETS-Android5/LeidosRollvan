@@ -42,7 +42,7 @@
                     android:textSize="30sp"
                     android:textStyle="bold"
                     android:text="Foodvan Local"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="?attr/text_color" />
 
                 <TextView
                     android:id="@+id/contactRecyclerItem"
@@ -51,7 +51,7 @@
                     android:layout_marginLeft="10dp"
                     android:textSize="20dp"
                     android:text="12345667"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="?attr/text_color"/>
             </LinearLayout>
 
         </LinearLayout>
