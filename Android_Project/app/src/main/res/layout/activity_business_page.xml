@@ -181,15 +181,23 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textView11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:text="Opening Hours: "
+                        android:textColor="?attr/text_color" />
+
+                    <TextView
+                        android:id="@+id/OpeningHoursText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:textColor="?attr/text_color"
-                        android:text="Opening Hours: " />
+                        android:text="The business has not set any opening hours" />
                 </LinearLayout>
 
             </LinearLayout>

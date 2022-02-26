@@ -1,9 +1,15 @@
 package com.example.leidosrollvan.dataClasses;
 
+import android.util.Log;
+
+import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+import io.opencensus.internal.StringUtils;
 
 public class OpeningTimes {
     int hourOpening;
@@ -13,6 +19,7 @@ public class OpeningTimes {
     ArrayList<String> DaysOfWeek = new ArrayList<String>();
 
     public OpeningTimes(){};
+
     public OpeningTimes(int hourOpening, int minuteOpening, int hourClosing, int minuteClosing) {
         this.hourOpening = hourOpening;
         this.minuteOpening = minuteOpening;
@@ -66,4 +73,34 @@ public class OpeningTimes {
         DaysOfWeek = daysOfWeek;
     }
 
+    @Override
+    public String toString() {
+        String openingTime = Integer.toString(this.hourOpening)+":"+Integer.toString(this.minuteOpening);
+        String closingTime = Integer.toString(this.hourClosing)+":"+Integer.toString(this.minuteClosing);
+        String OH = String.format("Open from %s to %s",openingTime,closingTime);
+        ArrayList<String> sortedDOW = new ArrayList<String>(Arrays.asList("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"));
+        sortedDOW.retainAll(DaysOfWeek);
+        ArrayList<String> DOW = new ArrayList<String>();
+//        for(String s:sortedDOW){
+//            if(DaysOfWeek.contains(s)){
+//                DOW.add(s);
+//            }
+//        }
+        String OD = "Days open: "+ join(",",sortedDOW);
+        return OH+"\n"+OD;
+    }
+
+    private static String join(String separator, ArrayList<String> input) {
+        if (input == null || input.size() <= 0) return "";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < input.size(); i++) {
+            sb.append(input.get(i));
+            // if not the last item
+            if (i != input.size() - 1) {
+                sb.append(separator);
+            }
+        }
+        return sb.toString();
+
+    }
 }
