@@ -177,6 +177,18 @@ public class BusinessSettingsActivity extends AppCompatActivity implements View.
         //get all fields and validate
         String businessNameEdited = businessName.getText().toString().trim();
         String businessMobileEdited = businessMobile.getText().toString().trim();
+        if(businessNameEdited.length()<1){
+            businessName.setError("Invalid Name");
+            businessName.requestFocus();
+            return;
+        }
+        boolean validNum = true;
+        validNum = businessMobile.getText().toString().matches("-?\\d+(\\.\\d+)?");
+        if(!validNum){
+            businessMobile.setError("Invalid number");
+            businessMobile.requestFocus();
+            return;
+        }
         int openingTimeHours = Integer.parseInt(openingTime.getText().toString().split(":")[0]);
         int openingTimeMinutes = Integer.parseInt(openingTime.getText().toString().split(":")[1]);
         int closingTimeHours = Integer.parseInt(closingTime.getText().toString().split(":")[0]);

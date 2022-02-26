@@ -100,9 +100,9 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
             productPrice.requestFocus();
             return;
         }
-        if(productName.length()>=40){
-            productPrice.setError("Invalid price");
-            productPrice.requestFocus();
+        if(productName.length()>=50){
+            productName.setError("Invalid Name");
+            productName.requestFocus();
             return;
         }
 
