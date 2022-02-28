@@ -118,7 +118,7 @@ before_script:
 #       junit: build/test-results/test/**/TEST-*.xml
 
 assembleRelease:
-  stage: release
+  stage: deploy
   tags: 
     - docker
   script:
