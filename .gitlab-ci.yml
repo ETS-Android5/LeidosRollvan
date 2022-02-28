@@ -122,7 +122,6 @@ assembleRelease:
   tags: 
     - docker
   script:
-    - cd Android_Project
     - ./gradlew assembleRelease
       -Pandroid.injected.signing.store.file=${KEYSTORE_FILE}
       -Pandroid.injected.signing.store.password=${KEYSTORE_PASSWORD}
