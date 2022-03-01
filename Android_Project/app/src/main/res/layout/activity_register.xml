@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/register_bk_color"
+    android:background="@color/darkBlue"
     android:focusableInTouchMode="true"
     android:gravity="center"
     tools:context=".activity.RegisterActivity">
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:cardBackgroundColor="@color/whiteTextColor"
+                app:cardBackgroundColor="@color/lightBlue"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
@@ -76,6 +76,7 @@
                             style="@style/modifiedEditText"
                             android:hint="Name"
                             android:inputType="textPersonName"
+                            android:foreground="@color/white"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,6 +89,7 @@
                             android:id="@+id/editTextEmail"
                             style="@style/modifiedEditText"
                             android:hint="@string/login_email_hint"
+                            android:foreground="@color/white"
                             android:inputType="textEmailAddress"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -102,6 +104,7 @@
                             style="@style/modifiedEditText"
                             android:hint="Mobile Number"
                             android:inputType="phone"
+                            android:foreground="@color/white"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,16 +117,20 @@
                             android:id="@+id/editTextPassword"
                             style="@style/modifiedEditText"
                             android:hint="@string/login_password_hint"
+                            android:foreground="@color/white"
                             android:inputType="textPassword"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                         android:id="@+id/cirRegisterButton"
-                        style="@style/loginButton"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:text="Register"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/white"
                         app:initialCornerAngle="27dp"
                         app:spinning_bar_color="#FFF"
                         app:spinning_bar_padding="6dp"
@@ -203,6 +210,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="20dp"
+        android:backgroundTint="@color/lightBlue"
         android:background="@drawable/ic_side_bg" />
 
     <ImageView
@@ -214,5 +222,6 @@
         android:layout_marginBottom="30dp"
         android:adjustViewBounds="false"
         android:onClick="toLoginPage"
-        android:src="@drawable/ic_back_img" />
+        android:src="@drawable/ic_back_img"
+        />
 </RelativeLayout>

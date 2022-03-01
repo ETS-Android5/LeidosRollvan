@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:id="@+id/business_register_page"
-    android:background="@color/register_bk_color"
+    android:background="?attr/background_color"
     android:focusableInTouchMode="true"
     android:gravity="center"
     tools:context=".activity.BusinessRegisterActivity">
@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:cardBackgroundColor="@color/whiteTextColor"
+                app:cardBackgroundColor="?attr/button_color"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
@@ -76,6 +76,7 @@
                             android:id="@+id/editBusinessTextName"
                             style="@style/modifiedEditText"
                             android:hint="Name"
+                            android:backgroundTint="?attr/edittext_background"
                             android:inputType="textPersonName"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -88,6 +89,7 @@
                         <EditText
                             android:id="@+id/editBusinessTextEmail"
                             style="@style/modifiedEditText"
+                            android:backgroundTint="?attr/edittext_background"
                             android:hint="@string/login_email_hint"
                             android:inputType="textEmailAddress"
                             android:maxLines="1" />
@@ -102,6 +104,7 @@
                             android:id="@+id/editBusinessTextMobile"
                             style="@style/modifiedEditText"
                             android:hint="Mobile Number"
+                            android:backgroundTint="?attr/edittext_background"
                             android:inputType="phone"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -115,6 +118,7 @@
                             android:id="@+id/editBusinessTextPassword"
                             style="@style/modifiedEditText"
                             android:hint="@string/login_password_hint"
+                            android:backgroundTint="?attr/edittext_background"
                             android:inputType="textPassword"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -147,10 +151,14 @@
 
                     <Button
                         android:id="@+id/addImageButton"
-                        style="@style/addImageButton"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="5dp"
-                        android:text="Add Image" />
+                        android:backgroundTint="?attr/edittext_background"
+                        android:text="Add Image"
+                        android:textColor="@color/black"
+                        />
 
 
                     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
@@ -159,7 +167,9 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:text="Register"
+                        android:textColor="@color/black"
                         app:initialCornerAngle="27dp"
+                        android:backgroundTint="?attr/edittext_background"
                         app:spinning_bar_color="#FFF"
                         app:spinning_bar_padding="6dp"
                         app:spinning_bar_width="4dp" />
@@ -187,6 +197,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="20dp"
+        android:backgroundTint="?attr/button_color"
         android:background="@drawable/ic_side_bg" />
 
     <ImageView

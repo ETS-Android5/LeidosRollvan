@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/login_bk_color"
+    android:background="@color/darkBlue"
     android:focusableInTouchMode="true"
     android:gravity="center"
     tools:context=".activity.LoginActivity">
@@ -48,13 +48,15 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputEmail"
                 style="@style/parent"
-                android:layout_marginTop="@dimen/loginViewsMargin">
+                android:layout_marginTop="@dimen/loginViewsMargin"
+                >
 
                 <EditText
                     android:id="@+id/editLoginTextEmail"
                     style="@style/modifiedEditText"
                     android:hint="@string/login_email_hint"
                     android:inputType="textEmailAddress"
+                    android:foreground="@color/white"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,6 +69,7 @@
                     android:id="@+id/editLoginTextPassword"
                     style="@style/modifiedEditText"
                     android:hint="@string/login_password_hint"
+                    android:foreground="@color/white"
                     android:inputType="textPassword"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -83,13 +86,15 @@
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                 android:id="@+id/cirLoginButton"
-                style="@style/loginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="Login"
                 app:initialCornerAngle="27dp"
                 app:spinning_bar_color="#FFF"
                 app:spinning_bar_padding="6dp"
+                android:background="@color/white"
                 app:spinning_bar_width="4dp" />
 
             <TextView
@@ -128,8 +133,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="Business owner? Click here"
+                android:background="@color/white"
                 android:textAlignment="center"
-                android:textColor="@color/themeColor"
+                android:textColor="@color/black"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
@@ -185,14 +191,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <View
-        android:layout_width="11dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/ic_side_bg"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -202,5 +200,15 @@
         android:src="@drawable/ic_add_img"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:layout_width="11dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_side_bg"
+        android:backgroundTint="@color/lightBlue"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

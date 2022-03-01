@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/login_bk_color"
+    android:background="?attr/background_color"
     android:focusableInTouchMode="true"
     android:gravity="center"
     android:id="@+id/business_login_page"
@@ -54,6 +54,7 @@
                 <EditText
                     android:id="@+id/editBusinessLoginTextEmail"
                     style="@style/modifiedEditText"
+                    android:backgroundTint="?attr/edittext_background"
                     android:hint="@string/login_email_hint"
                     android:inputType="textEmailAddress"
                     android:maxLines="1" />
@@ -67,6 +68,7 @@
                 <EditText
                     android:id="@+id/editBusinessLoginTextPassword"
                     style="@style/modifiedEditText"
+                    android:backgroundTint="?attr/edittext_background"
                     android:hint="@string/login_password_hint"
                     android:inputType="textPassword"
                     android:maxLines="1" />
@@ -89,8 +91,9 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="Login"
+                android:textColor="@color/black"
                 app:initialCornerAngle="27dp"
-                app:spinning_bar_color="#FFF"
+                android:backgroundTint="?attr/edittext_background"
                 app:spinning_bar_padding="6dp"
                 app:spinning_bar_width="4dp" />
 
@@ -121,8 +124,9 @@
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="Are you a customer? Click here"
                 android:textAlignment="center"
-                android:textColor="@color/themeColor"
+                android:backgroundTint="?attr/edittext_background"
                 android:textSize="13sp"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
 
@@ -183,6 +187,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:background="@drawable/ic_side_bg"
+        android:backgroundTint="?attr/button_color"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView

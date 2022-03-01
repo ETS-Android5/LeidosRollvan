@@ -8,11 +8,8 @@
         <entry key="..\:/Users/alexh/OneDrive/cs26/Android_Project/app/src/main/res/layout/fragment_home.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/Android_Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/drawable-anydpi/ic_delete.xml" value="0.3484375" />
-        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/drawable-night/edit_text_border.xml" value="0.4791666666666667" />
-        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/drawable-notnight/edit_text_border.xml" value="0.4791666666666667" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/drawable-v24/edit_text_border.xml" value="0.5708333333333333" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/drawable/edit_text_border_white.xml" value="0.5708333333333333" />
-        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/drawable/heart_outline.xml" value="0.31614583333333335" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.5708333333333333" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/drawable/topbar.xml" value="0.3484375" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout-v26/activity_business_page.xml" value="0.5546875" />
@@ -20,19 +17,15 @@
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_business_forgot_password.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_business_home.xml" value="0.22" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_business_login.xml" value="0.21693840579710144" />
-        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_business_noti.xml" value="0.22" />
-        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_business_page-LAPTOP-Q7CNES.xml" value="0.5546875" />
+        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_business_noti.xml" value="0.5244791666666667" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_business_page.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_business_product_form.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_business_register.xml" value="0.34739583333333335" />
-        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_business_settings.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_category.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_forgot_password.xml" value="0.33125" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_login.xml" value="0.30570652173913043" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_main.xml" value="0.30570652173913043" />
-        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_map.xml" value="0.3" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_register.xml" value="0.30570652173913043" />
-        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_search_by_name_fragment.xml" value="0.3" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/activity_splash.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/appbar.xml" value="0.21693840579710144" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/food_card.xml" value="0.4466666666666667" />
@@ -40,7 +33,6 @@
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/form_popup.xml" value="0.26975683890577506" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/fragment_about.xml" value="0.38125" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/fragment_account.xml" value="0.22" />
-        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/fragment_allbusiness.xml" value="0.3" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/fragment_guest_account.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/fragment_help.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/fragment_home.xml" value="0.30570652173913043" />
@@ -48,10 +40,8 @@
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/fragment_search.xml" value="0.21693840579710144" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/horiz_bus.xml" value="0.5546875" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/horizdeal.xml" value="0.5546875" />
-        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/map_bottom_sheet.xml" value="0.3" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/offer_card.xml" value="0.5244791666666667" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/recycler_list_item.xml" value="0.26975683890577506" />
-        <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/row_business.xml" value="0.21829710144927536" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/simplerow.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/simplerow2.xml" value="0.34427083333333336" />
         <entry key="..\:/Users/alexh/OneDrive/cs26/cs26-main/Android_Project/app/src/main/res/layout/spinner_section.xml" value="0.5546875" />
@@ -68,21 +58,34 @@
         <entry key="..\:/code/cs26-main/Android_Project/app/src/main/res/layout/activity_login.xml" value="0.20520833333333333" />
         <entry key="..\:/code/cs26-main/Android_Project/app/src/main/res/layout/activity_register.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable-anydpi/signOut.xml" value="0.3111111111111111" />
+        <entry key="app/src/main/res/drawable-hdpi/ic_add_img.xml" value="0.1375" />
+        <entry key="app/src/main/res/drawable-hdpi/ic_back_img.xml" value="0.1375" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_photo_alternate_24.xml" value="0.2611111111111111" />
         <entry key="app/src/main/res/drawable/ic_fast_food_svgrepo_com.xml" value="0.2351851851851852" />
         <entry key="app/src/main/res/drawable/ic_food_truck_svgrepo_com.xml" value="0.2351851851851852" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.79375" />
+        <entry key="app/src/main/res/layout/activity_business_categories.xml" value="0.17572463768115942" />
         <entry key="app/src/main/res/layout/activity_business_forgot_password.xml" value="0.16983695652173914" />
         <entry key="app/src/main/res/layout/activity_business_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_business_login.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/activity_business_noti.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/activity_business_page.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/activity_business_product_form.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_business_register.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_business_settings.xml" value="0.17572463768115942" />
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.10688956433637285" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.16983695652173914" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.17572463768115942" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_map.xml" value="0.17572463768115942" />
+        <entry key="app/src/main/res/layout/activity_my_notifications.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_search_by_name_fragment.xml" value="0.10688956433637285" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/appbar.xml" value="0.22826086956521738" />
         <entry key="app/src/main/res/layout/business_page.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout/food_card.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/food_card_business_page.xml" value="0.17572463768115942" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_account_guest.xml" value="0.3098958333333333" />
@@ -94,9 +97,15 @@
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/horiz_bus.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/horizdeal.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/map_bottom_sheet.xml" value="0.17572463768115942" />
+        <entry key="app/src/main/res/layout/offer_card.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/recycler_list_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/row_business.xml" value="0.26721014492753625" />
         <entry key="app/src/main/res/layout/rowbus.xml" value="0.26721014492753625" />
+        <entry key="app/src/main/res/layout/search_bottom_sheet.xml" value="0.17572463768115942" />
+        <entry key="app/src/main/res/layout/simplerow.xml" value="0.17572463768115942" />
+        <entry key="app/src/main/res/layout/spinner_section.xml" value="0.17572463768115942" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.18385416666666668" />
