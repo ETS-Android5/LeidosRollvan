@@ -2,6 +2,7 @@ package com.example.leidosrollvan.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -65,6 +66,7 @@ public class BusinessCategoryActivity extends AppCompatActivity{
                                 CheckBox checkBox = new CheckBox(context);
                                 checkBox.setText(category);
                                 checkBox.setTextSize(30);
+                                checkBox.setTextColor(Color.parseColor("#ffffff"));
                                 checkBox.setTypeface(null, Typeface.BOLD);
                                 checkBox.setPadding(0,0,0,5);
                                 checkBox.setId(count);
