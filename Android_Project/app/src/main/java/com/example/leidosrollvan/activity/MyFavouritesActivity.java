@@ -38,7 +38,7 @@ public class MyFavouritesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_favourites);
+        setContentView(R.layout.activity_my_notifications);
         final SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefreshMyNoti);
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -51,15 +51,67 @@ public class MyFavouritesActivity extends AppCompatActivity {
     }
 
 
-    void load() {
-        faveHead = (TextView) findViewById(R.id.faveBusinesses);
-        faveSection = (RecyclerView) findViewById(R.id.faveSection);
-        noFave = (TextView) findViewById(R.id.nofaves);
+
+    void load(){
+        faveHead = (TextView) findViewById(R.id.subscribedBusinesses);
+        faveSection = (RecyclerView) findViewById(R.id.subsSection);
+        noFave= (TextView) findViewById(R.id.noSubBusiness);
 
         user = mAuth.getInstance().getCurrentUser();
-        if (user != null) {
+        if(user!= null) {
             userID = user.getUid();
         }
+
+        DatabaseReference faveRef = FirebaseDatabase.getInstance().getReference("Favourites");
+        faveRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild(userID)) {
+                    ArrayList faveList = new ArrayList();
+                    faveRef.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                                Business busID = snapshot1.getValue(Business.class);
+                                String busName = busID.getBusinessName();
+                                faveList.add(busName);
+                            }
+                            faveHead.setVisibility(View.VISIBLE);
+                            faveSection.setVisibility(View.VISIBLE);
+                            subSectionAdapter = new SubscribedRecyclerAdapter(faveList);
+                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                            faveSection.setLayoutManager(layoutManager);
+                            faveSection.setItemAnimator(new DefaultItemAnimator());
+                            faveSection.setAdapter(subSectionAdapter);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+                else {
+                    noFave.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 //        DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("Favourites");
@@ -106,5 +158,5 @@ public class MyFavouritesActivity extends AppCompatActivity {
 //            }
 //        });
 
-}
+
 
