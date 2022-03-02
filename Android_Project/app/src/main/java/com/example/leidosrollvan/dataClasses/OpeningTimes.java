@@ -75,18 +75,16 @@ public class OpeningTimes {
 
     @Override
     public String toString() {
-        String openingTime = Integer.toString(this.hourOpening)+":"+Integer.toString(this.minuteOpening);
+        String openingTime = Integer.toString(this.hourOpening)+":"+String.format("%02d", this.minuteOpening);
         String closingTime = Integer.toString(this.hourClosing)+":"+Integer.toString(this.minuteClosing);
         String OH = String.format("Open from %s to %s",openingTime,closingTime);
         ArrayList<String> sortedDOW = new ArrayList<String>(Arrays.asList("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"));
         sortedDOW.retainAll(DaysOfWeek);
         ArrayList<String> DOW = new ArrayList<String>();
-//        for(String s:sortedDOW){
-//            if(DaysOfWeek.contains(s)){
-//                DOW.add(s);
-//            }
-//        }
-        String OD = "Days open: "+ join(",",sortedDOW);
+        for(String day:sortedDOW){
+            DOW.add(day.substring(0,3));
+        }
+        String OD = "Days open: "+ join(",",DOW);
         return OH+"\n"+OD;
     }
 

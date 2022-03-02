@@ -140,11 +140,11 @@
                             android:id="@+id/business_page_mob"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="5dp"
                             android:gravity="start"
                             android:text="BUSINESS MOBILE"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="20sp"
                             android:visibility="visible" />
 
@@ -160,11 +160,11 @@
                             android:id="@+id/business_page_email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="10dp"
+                            android:layout_gravity="left"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="5dp"
                             android:text="BUSINESS EMAIL"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="20sp"
                             android:visibility="visible" />
 
@@ -172,36 +172,32 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/textView11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Opening Hours: "
-                        android:textColor="?attr/text_color" />
-
-                    <TextView
-                        android:id="@+id/OpeningHoursText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="?attr/text_color"
-                        android:text="The business has not set any opening hours" />
-                </LinearLayout>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/OpeningHoursText"
+                    android:layout_width="match_parent"
+                    android:textSize="20dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="5dp"
+                    android:text="The business has not set any opening hours"
+                    android:textColor="?attr/text_color" />
+            </LinearLayout>
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="Business Menu"
+                android:text="Menu"
                 android:textColor="?attr/text_color"
                 android:textSize="30sp"
                 android:textStyle="italic"
