@@ -133,5 +133,18 @@ assembleRelease:
       - Android_Project/app/release
       - CHANGELOG
 
+unitTest:
+  stage: test
+  tags:
+    - docker
+  script:
+    - cd Android_Project
+    - ./gradlew test
+  artifacts:
+    when: always
+    reports:
+      junit: Android_Project/app/build/test-results/**/TEST-*.xml
+
+
 
 
