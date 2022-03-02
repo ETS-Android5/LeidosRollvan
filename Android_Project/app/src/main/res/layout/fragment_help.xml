@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/background_color"
     tools:context=".fragments.AboutFragment">
 
     <ScrollView
@@ -33,7 +34,7 @@
                 android:paddingRight="20dp"
                 android:text="Tap to Expand or Minimize"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:textSize="20dp"
 
@@ -55,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:text="To get a forgot your password email click below"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:visibility="gone"
@@ -91,7 +92,7 @@
                 android:paddingRight="20dp"
                 android:text="To favourite a business please navigate to the business page and press the star button "
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:visibility="gone"
                 android:textSize="20dp"
@@ -116,7 +117,7 @@
                 android:paddingRight="20dp"
                 android:text="Please email us with the name of the business and the reason for removal "
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:visibility="gone"
                 android:textSize="20dp"
@@ -141,7 +142,7 @@
                 android:paddingRight="20dp"
                 android:text="Navigate to the search  page and click the icon top right to search by text or click a category"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:visibility="gone"
                 android:textSize="20dp"

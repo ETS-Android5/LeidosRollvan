@@ -54,6 +54,7 @@ import java.util.HashMap;
 public class BusinessHomeActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int PICK_IMAGE_REQUEST  = 1;
     private Button businessHomeLogout, addItemButton, addCategoryButton,notiButton,locationSave;
+    private ImageButton businessSettings;
     private ProgressBar businessHomeProgressBar;
     private ImageView bannerImage;
     private Uri mImageUri;
@@ -114,6 +115,10 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
         locationReference = FirebaseDatabase.getInstance().getReference("Business Locations");
         mStorageRef = FirebaseStorage.getInstance().getReference("Business banners");
         businessID = user.getUid();
+
+        businessSettings = (ImageButton) findViewById(R.id.business_settings);
+        businessSettings.setOnClickListener(this);
+
         businessHomeLogout = (Button) findViewById(R.id.business_home_logout);
         businessHomeLogout.setOnClickListener(this);
 
@@ -361,6 +366,9 @@ public class BusinessHomeActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         switch(v.getId()){
+            case R.id.business_settings:
+                startActivity(new Intent(this, BusinessSettingsActivity.class));
+                break;
             case R.id.business_home_logout:
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this, BusinessLoginActivity.class));
