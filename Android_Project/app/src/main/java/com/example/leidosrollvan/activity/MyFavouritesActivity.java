@@ -38,7 +38,7 @@ public class MyFavouritesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_notifications);
+        setContentView(R.layout.activity_my_favourites);
         final SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefreshMyNoti);
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -103,60 +103,9 @@ public class MyFavouritesActivity extends AppCompatActivity {
         });
     }
 
+}
 
 
-
-
-
-
-
-
-
-
-
-//        DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("Favourites");
-//        ArrayList<String> busList =new ArrayList<String>();
-//        //DatabaseReference busRef = FirebaseDatabase.getInstance().getReference("Businesses");
-//        favRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.child(busID).hasChild(userID)){
-//                    businessID = busID;
-//                    DatabaseReference busRef = FirebaseDatabase.getInstance().getReference("Businesses");
-//                    busRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                            if(snapshot.hasChild(businessID)){
-//                                Business business = snapshot.getValue(Business.class);
-//                                busList.add(business.getBusinessName());
-//
-//
-//                            }
-//
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//
-//                        }
-//                    });
-//                }
-//
-
-//                faveHead.setVisibility(View.VISIBLE);
-//                faveSection.setVisibility(View.VISIBLE);
-//                subSectionAdapter = new SubscribedRecyclerAdapter(busList);
-//                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-//                faveSection.setLayoutManager(layoutManager);
-//                faveSection.setItemAnimator(new DefaultItemAnimator());
-//                faveSection.setAdapter(subSectionAdapter);
-            }
-
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
 
 
