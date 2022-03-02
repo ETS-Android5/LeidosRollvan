@@ -35,8 +35,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class BusinessPageActivity extends AppCompatActivity implements View.OnClickListener {
@@ -181,10 +179,10 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                                 ArrayList<String> notis = noti.getNotis();
                                 if (notis.contains(businessName)) {
                                     notiSubButton.setImageResource(R.drawable.ic_baseline_notifications_off_24);
-                                    notiSubButton.setBackgroundColor(getResources().getColor(R.color.grey));
+                                    notiSubButton.setBackgroundColor(getResources().getColor(R.color.lgreen));
                                 } else {
                                     notiSubButton.setImageResource(R.drawable.ic_baseline_notifications_24);
-                                    notiSubButton.setBackgroundColor(getResources().getColor(R.color.lgreen));
+                                    notiSubButton.setBackgroundColor(getResources().getColor(R.color.grey));
                                 }
                             }
 
