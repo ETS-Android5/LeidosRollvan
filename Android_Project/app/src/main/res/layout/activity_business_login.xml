@@ -82,7 +82,7 @@
                 android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:text="Forgot Password?"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/newsMoreTextSize" />
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
@@ -91,9 +91,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="Login"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:initialCornerAngle="27dp"
-                android:backgroundTint="?attr/edittext_background"
                 app:spinning_bar_padding="6dp"
                 app:spinning_bar_width="4dp" />
 
@@ -103,7 +102,7 @@
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="New Business? Register Now"
                 android:textAlignment="center"
-                android:textColor="@color/themeColor"
+                android:textColor="@color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -117,16 +116,15 @@
 
             <Button
                 android:id="@+id/gotoUserLogin"
-                style="@style/parent"
+                style="@style/businessOwnerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="Are you a customer? Click here"
                 android:textAlignment="center"
-                android:backgroundTint="?attr/edittext_background"
                 android:textSize="13sp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
 
