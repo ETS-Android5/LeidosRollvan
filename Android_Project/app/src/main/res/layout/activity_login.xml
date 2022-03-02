@@ -50,7 +50,6 @@
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 >
-
                 <EditText
                     android:id="@+id/editLoginTextEmail"
                     style="@style/modifiedEditText"
@@ -86,6 +85,7 @@
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                 android:id="@+id/cirLoginButton"
+                style="@style/loginButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -94,7 +94,6 @@
                 app:initialCornerAngle="27dp"
                 app:spinning_bar_color="#FFF"
                 app:spinning_bar_padding="6dp"
-                android:background="@color/white"
                 app:spinning_bar_width="4dp" />
 
             <TextView
@@ -127,13 +126,12 @@
 
             <Button
                 android:id="@+id/gotoBusinessLogin"
-                style="@style/parent"
+                style="@style/businessOwnerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="Business owner? Click here"
-                android:background="@color/lightBlue"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="13sp"

@@ -75,8 +75,8 @@
                         <EditText
                             android:id="@+id/editBusinessTextName"
                             style="@style/modifiedEditText"
-                            android:hint="Name"
                             android:backgroundTint="?attr/edittext_background"
+                            android:hint="Name"
                             android:inputType="textPersonName"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>

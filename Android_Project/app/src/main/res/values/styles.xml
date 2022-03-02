@@ -38,15 +38,30 @@
         <item name="text_color">@color/white</item>
     </style>
 
-    <style name="modifiedEditText" parent="parent">
+    <style name="parent2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="text_color">@color/black</item>
+    </style>
+
+    <style name="modifiedEditText" parent="parent2">
         <item name="android:textSize">@dimen/newsMoreTextSize</item>
-        <item name="android:backgroundTint">@color/primaryTextColor</item>
+        <item name="android:backgroundTint">@color/white</item>
         <item name="android:radius">5dp</item>
     </style>
 
     <style name="loginButton" parent="viewParent">
+        <item name="android:background">@drawable/button_background_blue</item>
         <item name="android:textColor">@color/whiteTextColor</item>
         <item name="android:textStyle">bold</item>
+
+    </style>
+    <style name="businessOwnerButton" parent="viewParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="text_color">@color/white</item>
+        <item name="android:backgroundTint">@color/lightBlue</item>
+
     </style>
 
     <style name="addImageButton" parent="viewParent">
