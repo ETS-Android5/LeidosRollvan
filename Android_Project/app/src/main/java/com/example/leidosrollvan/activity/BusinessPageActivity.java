@@ -179,7 +179,7 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                                 ArrayList<String> notis = noti.getNotis();
                                 if (notis.contains(businessName)) {
                                     notiSubButton.setImageResource(R.drawable.ic_baseline_notifications_off_24);
-                                    notiSubButton.setBackgroundColor(getResources().getColor(R.color.lgreen));
+                                    notiSubButton.setBackgroundColor(getResources().getColor(R.color.lightBlue));
                                 } else {
                                     notiSubButton.setImageResource(R.drawable.ic_baseline_notifications_24);
                                     notiSubButton.setBackgroundColor(getResources().getColor(R.color.grey));
@@ -193,7 +193,7 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                         });
                     } else {
                         notiSubButton.setImageResource(R.drawable.ic_baseline_notifications_24);
-                        notiSubButton.setBackgroundColor(getResources().getColor(R.color.lgreen));
+                        notiSubButton.setBackgroundColor(getResources().getColor(R.color.grey));
                     }
                 }
 

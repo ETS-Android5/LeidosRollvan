@@ -52,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:src="@drawable/ic_baseline_notifications_24"
-                        android:visibility="" />
+                        android:visibility="gone" />
 
 
 
