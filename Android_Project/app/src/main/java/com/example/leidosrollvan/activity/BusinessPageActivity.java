@@ -40,10 +40,10 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class BusinessPageActivity extends AppCompatActivity implements View.OnClickListener {
-    private DatabaseReference reference, OTreference;
-    private DatabaseReference imRef, favRef;
-    private ImageButton faveButton;
-    private Button homeButton, notiSubButton, notiUnSubButton;
+    private DatabaseReference reference;
+    private DatabaseReference imRef, favRef,notiRef;
+    private ImageButton faveButton,notiSubButton;
+    private Button homeButton;
     boolean userClick = false;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -62,12 +62,9 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_page);
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
-            notiSubButton = (Button) findViewById(R.id.noti);
+            notiSubButton = (ImageButton) findViewById(R.id.noti);
             notiSubButton.setOnClickListener(this);
-            notiUnSubButton = (Button) findViewById(R.id.notiUn);
-            notiUnSubButton.setOnClickListener(this);
             notiSubButton.setVisibility(View.VISIBLE);
-            notiUnSubButton.setVisibility(View.VISIBLE);
         }
         homeButton = (Button) findViewById(R.id.home_bus);
         homeButton.setOnClickListener(this);
@@ -163,8 +160,50 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         businessID = b_id;
 
         favRef = FirebaseDatabase.getInstance().getReference("Favourites");
+        notiRef = FirebaseDatabase.getInstance().getReference("User Notis");
         if(user != null) {
             getFaveStatus(businessID, userID);
+            getNotiStatus(userID);
+        }
+    }
+
+    public void getNotiStatus( String userID) {
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+            notiRef = FirebaseDatabase.getInstance().getReference("User Notis");
+            notiRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild(userID)) {
+                        notiRef.child(userID).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                Notification noti = snapshot.getValue(Notification.class);
+                                ArrayList<String> notis = noti.getNotis();
+                                if (notis.contains(businessName)) {
+                                    notiSubButton.setImageResource(R.drawable.ic_baseline_notifications_off_24);
+                                    notiSubButton.setBackgroundColor(getResources().getColor(R.color.grey));
+                                } else {
+                                    notiSubButton.setImageResource(R.drawable.ic_baseline_notifications_24);
+                                    notiSubButton.setBackgroundColor(getResources().getColor(R.color.lgreen));
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    } else {
+                        notiSubButton.setImageResource(R.drawable.ic_baseline_notifications_24);
+                        notiSubButton.setBackgroundColor(getResources().getColor(R.color.lgreen));
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
     }
 
@@ -215,6 +254,60 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
 
             }
         });
+    }
+
+    public void setNoti(String businessName,String userID) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            DatabaseReference referenceNoti = FirebaseDatabase.getInstance().getReference("User Notis");
+            referenceNoti.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild(userID)) {
+                        referenceNoti.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                Notification noti = snapshot.getValue(Notification.class);
+                                ArrayList<String> notis = noti.getNotis();
+                                if (!notis.contains(businessName)) {
+                                    noti.addNoti(businessName);
+                                    referenceNoti.child(userID).setValue(noti);
+                                    FirebaseMessaging.getInstance().subscribeToTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(getApplicationContext(), "Subscribed", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                } else {
+                                    noti.deleteNoti(businessName);
+                                    referenceNoti.child(userID).setValue(noti);
+                                    FirebaseMessaging.getInstance().unsubscribeFromTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(getApplicationContext(), "Unsubscribed", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    } else {
+                        ArrayList<String> notis = new ArrayList<String>();
+                        notis.add(businessName);
+                        Notification noti = new Notification(notis);
+                        referenceNoti.child(userID).setValue(noti);
+                    }
+                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                }
+
+            });
+        }
     }
 
     protected void load() {
@@ -326,97 +419,9 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                 setFave(businessID, userID);
                 break;
             case R.id.noti:
-                if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
-                    DatabaseReference referenceNoti = FirebaseDatabase.getInstance().getReference("User Notis");
-                    referenceNoti.addListenerForSingleValueEvent(new ValueEventListener() {
-
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.hasChild(userID)){
-                                referenceNoti.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        Notification noti = snapshot.getValue(Notification.class);
-                                        ArrayList<String> notis =noti.getNotis();
-                                        if(!notis.contains(businessName)){
-                                            noti.addNoti(businessName);
-                                            referenceNoti.child(userID).setValue(noti);
-                                            FirebaseMessaging.getInstance().subscribeToTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void unused) {
-                                                    Toast.makeText(getApplicationContext(), "Subscribed", Toast.LENGTH_LONG).show();
-                                                }
-                                            });
-                                        }else{
-                                            Toast.makeText(getApplicationContext(), "You are already subscribed", Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                            }else{
-                                ArrayList<String> notis = new ArrayList<String>();
-                                notis.add(businessName);
-                                Notification noti = new Notification(notis);
-                                referenceNoti.child(userID).setValue(noti);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                    break;
+                setNoti(businessName,userID);
+                break;
                 }
-            case R.id.notiUn:
-                if(FirebaseAuth.getInstance().getCurrentUser()==null){
-                    Toast.makeText(BusinessPageActivity.this, "Login for subscription feature", Toast.LENGTH_SHORT).show();
-                }
-                if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
-                    DatabaseReference referenceNoti = FirebaseDatabase.getInstance().getReference("User Notis");
-                    referenceNoti.addListenerForSingleValueEvent(new ValueEventListener() {
 
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.hasChild(userID)){
-                                referenceNoti.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        Notification noti = snapshot.getValue(Notification.class);
-                                        ArrayList<String> notis =noti.getNotis();
-                                        if(notis.contains(businessName)) {
-                                            noti.deleteNoti(businessName);
-                                            referenceNoti.child(userID).setValue(noti);
-                                            FirebaseMessaging.getInstance().unsubscribeFromTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void unused) {
-                                                    Toast.makeText(getApplicationContext(), "Unsubscribed", Toast.LENGTH_LONG).show();
-                                                }
-                                            });
-                                        }else{
-                                            Toast.makeText(getApplicationContext(), "You are not subscribed", Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                    break;
-                }
         }
     }
-}

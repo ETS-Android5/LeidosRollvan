@@ -76,10 +76,12 @@
         <entry key="app/src/main/res/layout/activity_business_forgot_password.xml" value="0.16983695652173914" />
         <entry key="app/src/main/res/layout/activity_business_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_business_login.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/activity_business_page.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_business_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.10688956433637285" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.16983695652173914" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_my_notifications.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_search_by_name_fragment.xml" value="0.10688956433637285" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/appbar.xml" value="0.22826086956521738" />
