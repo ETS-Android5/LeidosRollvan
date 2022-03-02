@@ -33,7 +33,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Business Name"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="25dp"/>
 
         <LinearLayout
@@ -51,7 +51,7 @@
                 android:backgroundTint="@color/lightBlue"
                 android:drawableLeft="@drawable/ic_baseline_directions_car_24"
                 android:text="Directions"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <View
                 android:layout_width="0dp"
@@ -79,6 +79,7 @@
                     <TextView
                         android:id="@+id/bottom_distance"
                         android:layout_width="wrap_content"
+                        android:textColor="@color/white"
                         android:layout_height="wrap_content"
                         android:text="1.6 km" />
 
@@ -98,6 +99,7 @@
                     <TextView
                         android:id="@+id/bottom_time"
                         android:layout_width="wrap_content"
+                        android:textColor="@color/white"
                         android:layout_height="wrap_content"
                         android:text="12 mins" />
                 </LinearLayout>
@@ -119,7 +121,7 @@
                 android:layout_marginLeft="10dp"
                 android:drawableLeft="@drawable/ic_baseline_directions_24"
                 android:text="Visit Page"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </LinearLayout>
