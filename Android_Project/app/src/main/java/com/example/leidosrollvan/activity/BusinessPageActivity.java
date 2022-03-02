@@ -40,7 +40,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class BusinessPageActivity extends AppCompatActivity implements View.OnClickListener {
-    private DatabaseReference reference;
+    private DatabaseReference reference, OTreference;
     private DatabaseReference imRef, favRef,notiRef;
     private ImageButton faveButton,notiSubButton;
     private Button homeButton;
