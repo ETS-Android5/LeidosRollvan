@@ -81,7 +81,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Forgot Password?"
                 android:clickable="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/newsMoreTextSize" />
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
@@ -103,7 +103,7 @@
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="New user? Register Now"
                 android:textAlignment="center"
-                android:textColor="@color/themeColor"
+                android:textColor="@color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -121,7 +121,7 @@
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="Continue as Guest"
                 android:textAlignment="center"
-                android:textColor="@color/themeColor"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -133,9 +133,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="Business owner? Click here"
-                android:background="@color/white"
+                android:background="@color/lightBlue"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
@@ -151,7 +151,7 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_weight="3"
-                    android:background="@color/colorPrimaryDark" />
+                    android:background="@color/white" />
 
                 <TextView
                     style="@style/viewParent.headerText.NoMode"
@@ -166,7 +166,7 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_weight="3"
-                    android:background="@color/colorPrimaryDark" />
+                    android:background="@color/white" />
 
             </LinearLayout>
 
@@ -191,6 +191,15 @@
         </LinearLayout>
     </ScrollView>
 
+    <View
+        android:layout_width="11dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_side_bg"
+        android:backgroundTint="@color/lightBlue"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -199,15 +208,6 @@
         android:onClick="toRegisterPage"
         android:src="@drawable/ic_add_img"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <View
-        android:layout_width="11dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/ic_side_bg"
-        android:backgroundTint="@color/lightBlue"
         app:layout_constraintEnd_toEndOf="parent" />
 
 
