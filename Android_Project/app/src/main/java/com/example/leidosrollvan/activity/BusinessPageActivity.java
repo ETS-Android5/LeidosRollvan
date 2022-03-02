@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,18 +37,22 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class BusinessPageActivity extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference reference, OTreference;
     private DatabaseReference imRef, favRef,notiRef;
     private ImageButton faveButton,notiSubButton;
-    private Button homeButton;
+    private Button homeButton,OTButton;
     boolean userClick = false;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private String userID, businessID, businessName, businessMobile, businessEmail; ;
-    private TextView businessPageName, businessPageMob, businessPageEmail,OpeningHours;
+    private String userID, businessID, businessName, businessMobile, businessEmail;
+    private TextView businessPageName, businessPageMob, businessPageEmail,OpeningHours,OpeningWarning;
+    private CheckBox sun,mon,tue,wed,thu,fri,sat;
+    private LinearLayout OTLayout;
     private ImageView businessPageImg;
     private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5;
     private businessItemRecyclerAdapter adapter;
@@ -76,6 +82,21 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         faveButton.setOnClickListener(this);
 
         OpeningHours = (TextView) findViewById(R.id.OpeningHoursText);
+        OpeningWarning = (TextView) findViewById(R.id.noOpeningHours);
+
+        sun = (CheckBox) findViewById(R.id.checkBoxSun);
+        mon = (CheckBox) findViewById(R.id.checkBoxMon);
+        tue = (CheckBox) findViewById(R.id.checkBoxTue);
+        wed = (CheckBox) findViewById(R.id.checkBoxWed);
+        thu = (CheckBox) findViewById(R.id.checkBoxThu);
+        fri = (CheckBox) findViewById(R.id.checkBoxFri);
+        sat = (CheckBox) findViewById(R.id.checkBoxSat);
+
+        OTLayout = (LinearLayout) findViewById(R.id.OTLayout);
+
+        OTButton = (Button) findViewById(R.id.OTButton);
+        OTButton.setOnClickListener(this);
+
 
 
         Bundle bundle = getIntent().getExtras();
@@ -117,7 +138,31 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             OpeningTimes OT = snapshot.getValue(OpeningTimes.class);
+                            OpeningWarning.setVisibility(View.GONE);
+                            OTButton.setVisibility(View.VISIBLE);
                             OpeningHours.setText(OT.toString());
+                            ArrayList<String>Days = OT.getDaysOfWeek();
+                            if(Days.contains("Monday")){
+                                mon.setChecked(true);
+                            }
+                            if(Days.contains("Tuesday")){
+                                tue.setChecked(true);
+                            }
+                            if(Days.contains("Wednesday")){
+                                wed.setChecked(true);
+                            }
+                            if(Days.contains("Thursday")){
+                                thu.setChecked(true);
+                            }
+                            if(Days.contains("Friday")){
+                                fri.setChecked(true);
+                            }
+                            if(Days.contains("Saturday")){
+                                sat.setChecked(true);
+                            }
+                            if(Days.contains("Sunday")){
+                                sun.setChecked(true);
+                            }
                         }
 
                         @Override
@@ -416,6 +461,14 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
             case R.id.faveButton:
                 setFave(businessID, userID);
                 break;
+            case R.id.OTButton:
+                if(OTLayout.getVisibility()==View.VISIBLE){
+                    OTLayout.setVisibility(View.GONE);
+                    break;
+                }
+                OTLayout.setVisibility(View.VISIBLE);
+                break;
+
             case R.id.noti:
                 setNoti(businessName,userID);
                 break;
