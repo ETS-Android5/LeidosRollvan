@@ -30,7 +30,7 @@ import java.util.List;
 public class MyFavouritesActivity extends AppCompatActivity {
     TextView faveHead, noFave;
     RecyclerView faveSection;
-    SubscribedRecyclerAdapter subSectionAdapter;
+    //FaveRecyclerAdapter faveSectionAdapter;
     private FirebaseUser user;
     private FirebaseAuth mAuth;
     private String userID, busID, businessID;
@@ -39,23 +39,23 @@ public class MyFavouritesActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_favourites);
-        final SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefreshMyNoti);
-        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                load();
-                pullToRefresh.setRefreshing(false);
-            }
-        });
-        load();
+//        final SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefreshMyNoti);
+//        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                load();
+//                pullToRefresh.setRefreshing(false);
+//            }
+//        });
+        //load();
     }
 
 
 
     void load(){
-        faveHead = (TextView) findViewById(R.id.subscribedBusinesses);
+        faveHead = (TextView) findViewById(R.id.faveBusinesses);
         faveSection = (RecyclerView) findViewById(R.id.subsSection);
-        noFave= (TextView) findViewById(R.id.noSubBusiness);
+        noFave= (TextView) findViewById(R.id.nofaves);
 
         user = mAuth.getInstance().getCurrentUser();
         if(user!= null) {
@@ -76,13 +76,14 @@ public class MyFavouritesActivity extends AppCompatActivity {
                                 String busName = busID.getBusinessName();
                                 faveList.add(busName);
                             }
-                            faveHead.setVisibility(View.VISIBLE);
-                            faveSection.setVisibility(View.VISIBLE);
-                            subSectionAdapter = new SubscribedRecyclerAdapter(faveList);
-                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-                            faveSection.setLayoutManager(layoutManager);
-                            faveSection.setItemAnimator(new DefaultItemAnimator());
-                            faveSection.setAdapter(subSectionAdapter);
+
+                            //faveHead.setVisibility(View.VISIBLE);
+                            //faveSection.setVisibility(View.VISIBLE);
+                            //subSectionAdapter = new SubscribedRecyclerAdapter(faveList);
+                            //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                            //faveSection.setLayoutManager(layoutManager);
+                            //faveSection.setItemAnimator(new DefaultItemAnimator());
+                            //faveSection.setAdapter(subSectionAdapter);
                         }
 
                         @Override
