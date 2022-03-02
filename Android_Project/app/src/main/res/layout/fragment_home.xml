@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/customer_home_page"
+    android:background="?attr/background_color"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
 
@@ -119,7 +120,7 @@
                 android:layout_marginTop="10dp"
                 android:fillViewport="true"
                 android:text="Near You"
-                android:textColor="?android:textColorPrimary"
+                android:textColor="?attr/text_color"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
@@ -136,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Top deals"
-                android:textColor="?android:textColorPrimary"
+                android:textColor="?attr/text_color"
                 android:textSize="25dp"
                 android:textStyle="bold"
                 />
@@ -154,7 +155,7 @@
                 android:layout_marginTop="30dp"
                 android:fillViewport="true"
                 android:text="All Businesses"
-                android:textColor="?android:textColorPrimary"
+                android:textColor="?attr/text_color"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 

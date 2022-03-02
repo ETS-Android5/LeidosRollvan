@@ -23,6 +23,7 @@ import com.example.leidosrollvan.dataClasses.Business;
 import com.example.leidosrollvan.dataClasses.BusinessImage;
 import com.example.leidosrollvan.dataClasses.BusinessMenu;
 import com.example.leidosrollvan.dataClasses.Notification;
+import com.example.leidosrollvan.dataClasses.OpeningTimes;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +34,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -45,7 +48,7 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private String userID, businessID, businessName, businessMobile, businessEmail; ;
-    private TextView businessPageName, businessPageMob, businessPageEmail;
+    private TextView businessPageName, businessPageMob, businessPageEmail,OpeningHours;
     private ImageView businessPageImg;
     private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5;
     private businessItemRecyclerAdapter adapter;
@@ -73,6 +76,9 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         }
         faveButton = (ImageButton) findViewById(R.id.faveButton);
         faveButton.setOnClickListener(this);
+
+        OpeningHours = (TextView) findViewById(R.id.OpeningHoursText);
+
 
         Bundle bundle = getIntent().getExtras();
         String b_id = bundle.getString("b_id");
@@ -102,6 +108,36 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                 Toast.makeText(BusinessPageActivity.this, "Something Went Wrong!", Toast.LENGTH_LONG).show();
             }
         });
+
+        OTreference = FirebaseDatabase.getInstance().getReference("Business OT");
+        OTreference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild(b_id)){ //if previous data found, then load into boxes
+                    OTreference = FirebaseDatabase.getInstance().getReference("Business OT/"+b_id);
+                    OTreference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            OpeningTimes OT = snapshot.getValue(OpeningTimes.class);
+                            OpeningHours.setText(OT.toString());
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(BusinessPageActivity.this, "Something Went Wrong!", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(BusinessPageActivity.this, "Something Went Wrong!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
+
 
         imRef = FirebaseDatabase.getInstance().getReference("Business Images");
         imRef.child(b_id).addListenerForSingleValueEvent(new ValueEventListener() {

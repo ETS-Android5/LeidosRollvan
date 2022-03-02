@@ -14,9 +14,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcheer_truck"
+        android:icon="@mipmap/ic_launch_truck_blue"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcheer_truck_round"
+        android:roundIcon="@mipmap/ic_launch_truck_blue_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LeidosRollVan">
         <meta-data
@@ -28,6 +28,8 @@
         <activity
             android:name=".activity.MapActivity"
             android:exported="false" />
+        <activity android:name=".activity.BusinessSettingsActivity"
+            android:exported="false"/>
         <activity
             android:name=".activity.MyNotificationsActivity"
             android:exported="false" />
@@ -71,16 +73,14 @@
         </activity>
         <activity
             android:name=".activity.RegisterActivity"
-            android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".activity.BusinessPageActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
