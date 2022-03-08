@@ -142,7 +142,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
                 startActivity(Intent(activity, MyNotificationsActivity::class.java))
             }
             R.id.yourFavourites -> {
-                startActivity(Intent(activity, MyFavouritesActivity::class.java))
+                startActivity((Intent(activity, MyFavouritesActivity::class.java)))
             }
 
         }
