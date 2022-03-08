@@ -23,6 +23,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.leidosrollvan.R;
+import com.example.leidosrollvan.activitymethods.BusinessNameMobileCheckMethods;
+import com.example.leidosrollvan.activitymethods.EmailCheckMethods;
+import com.example.leidosrollvan.activitymethods.PasswordCheckMethods;
 import com.example.leidosrollvan.dataClasses.Business;
 import com.example.leidosrollvan.dataClasses.BusinessImage;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -58,6 +61,10 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseReference, verifyRef;
     private String verifyID;
+
+    private BusinessNameMobileCheckMethods nameMobileCheckerClass = new BusinessNameMobileCheckMethods();
+    private EmailCheckMethods emailCheckerClass = new EmailCheckMethods();
+    private PasswordCheckMethods passwordCheckerClass = new PasswordCheckMethods();
 
 
     private FirebaseAuth mAuth;
@@ -112,43 +119,49 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
         String businessMobile = editBusinessTextMobile.getText().toString().trim();
         String businessPassword = editBusinessTextPassword.getText().toString().trim();
 
-        if(businessName.isEmpty()){
+        boolean checkedName = nameMobileCheckerClass.checkBusinessName(businessName);
+        boolean checkedMobile = nameMobileCheckerClass.checkBusinessMobile(businessMobile);
+        boolean checkedUri = nameMobileCheckerClass.checkUri(mImageUri);
+        int checkedEmail = emailCheckerClass.checkEmail(businessEmail);
+        int checkedPassword = passwordCheckerClass.check_password(businessPassword);
+
+        if(checkedName){
             editBusinessTextName.setError("Name is Required!");
             editBusinessTextName.requestFocus();
             return;
         }
 
-        if(businessMobile.isEmpty()){
+        if(checkedMobile){
             editBusinessTextMobile.setError("Mobile Number is Required!");
             editBusinessTextMobile.requestFocus();
             return;
         }
 
-        if(businessEmail.isEmpty()){
+        if(checkedEmail == 0){
             editBusinessTextEmail.setError("Email is Required!");
             editBusinessTextEmail.requestFocus();
             return;
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(businessEmail).matches()){
+        if(checkedEmail == 1){
             editBusinessTextEmail.setError("Please provide valid email!");
             editBusinessTextEmail.requestFocus();
             return;
         }
 
-        if(businessPassword.isEmpty()){
+        if(checkedPassword == 0){
             editBusinessTextPassword.setError("Password is Required!");
             editBusinessTextPassword.requestFocus();
             return;
         }
 
-        if(businessPassword.length() < 6){
+        if(checkedPassword == 1){
             editBusinessTextPassword.setError("Minimum password length should be 6 characters");
             editBusinessTextPassword.requestFocus();
             return;
         }
 
-        if(mImageUri == null){
+        if(checkedUri){
             addImageButton.setError("A banner image is required!");
             bannerImage.requestFocus();
             Toast.makeText(BusinessRegisterActivity.this, "Add a banner image!", Toast.LENGTH_SHORT).show();

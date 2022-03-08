@@ -114,7 +114,7 @@
                         android:id="@+id/btn3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/healthy_food"
+                        android:background="@drawable/asian_cuisine"
                         android:clickable="true"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -142,7 +142,7 @@
                         android:id="@+id/btn4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/burger"
+                        android:background="@drawable/burger2"
                         android:clickable="true"
                         android:gravity="center"
                         android:orientation="vertical">

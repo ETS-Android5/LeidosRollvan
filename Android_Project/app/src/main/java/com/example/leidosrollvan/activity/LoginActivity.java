@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.leidosrollvan.R;
+import com.example.leidosrollvan.activitymethods.EmailCheckMethods;
+import com.example.leidosrollvan.activitymethods.PasswordCheckMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -30,6 +32,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextEmail, editTextPassword;
     private CircularProgressButton login;
     private Button goToBusinessLogin;
+    private EmailCheckMethods emailHelperClass = new EmailCheckMethods();
+    private PasswordCheckMethods passwordHelperClass = new PasswordCheckMethods();
 
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
@@ -70,25 +74,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        if(email.isEmpty()){
+        int emailChecker = emailHelperClass.checkEmail(email);
+        int passwordChecker = passwordHelperClass.check_password(password);
+
+        if(emailChecker == 0){
             editTextEmail.setError("Email is Required!");
             editTextEmail.requestFocus();
             return;
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if(emailChecker == 1){
             editTextEmail.setError("Please enter a valid Email!");
             editTextEmail.requestFocus();
             return;
         }
 
-        if (password.isEmpty()) {
+        if (passwordChecker == 0) {
             editTextPassword.setError("Password is required!");
             editTextPassword.requestFocus();
             return;
         }
 
-        if(password.length() < 6){
+        if(passwordChecker == 1){
             editTextPassword.setError("Minimum password length is 6 characters");
             editTextPassword.requestFocus();
             return;
