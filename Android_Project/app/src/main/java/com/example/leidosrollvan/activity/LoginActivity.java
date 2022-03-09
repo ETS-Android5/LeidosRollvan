@@ -3,7 +3,6 @@ package com.example.leidosrollvan.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.leidosrollvan.R;
 import com.example.leidosrollvan.activitymethods.EmailCheckMethods;
 import com.example.leidosrollvan.activitymethods.PasswordCheckMethods;
+import com.example.leidosrollvan.dataClassesForMethods.EmailPasswordResponseModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -74,29 +74,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        int emailChecker = emailHelperClass.checkEmail(email);
-        int passwordChecker = passwordHelperClass.check_password(password);
+        EmailPasswordResponseModel checkedEmail = emailHelperClass.checkEmail(email);
+        EmailPasswordResponseModel checkedPassword = passwordHelperClass.checkPassword(password);
 
-        if(emailChecker == 0){
-            editTextEmail.setError("Email is Required!");
+        if(!checkedEmail.getStatus()){
+            editTextEmail.setError(checkedEmail.getMessage());
             editTextEmail.requestFocus();
             return;
         }
 
-        if(emailChecker == 1){
-            editTextEmail.setError("Please enter a valid Email!");
-            editTextEmail.requestFocus();
-            return;
-        }
-
-        if (passwordChecker == 0) {
-            editTextPassword.setError("Password is required!");
-            editTextPassword.requestFocus();
-            return;
-        }
-
-        if(passwordChecker == 1){
-            editTextPassword.setError("Minimum password length is 6 characters");
+        if (!checkedPassword.getStatus()) {
+            editTextPassword.setError(checkedPassword.getMessage());
             editTextPassword.requestFocus();
             return;
         }

@@ -1,92 +1,119 @@
 package com.example.leidosrollvan.activitymethods;
 
+import com.example.leidosrollvan.dataClassesForMethods.EmailPasswordResponseModel;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 public class LoginActivityTest {
 
-    private EmailCheckMethods emailCheckClass = new EmailCheckMethods();
-    private PasswordCheckMethods passwordCheckClass = new PasswordCheckMethods();
+    private final EmailCheckMethods emailCheckClass = new EmailCheckMethods();
+    private final PasswordCheckMethods passwordCheckClass = new PasswordCheckMethods();
 
     @Test
-    public void test_emty_email(){
+    public void test_empty_email(){
 
-        int actual = emailCheckClass.checkEmail("");
+        EmailPasswordResponseModel actual = emailCheckClass.checkEmail("");
 
-        int expected = 0;
+        EmailPasswordResponseModel expected = new EmailPasswordResponseModel();
 
-        Assert.assertEquals(expected, actual);
+        expected.setStatus(false);
+        expected.setMessage("Email is Required!");
+
+        Assert.assertEquals(expected.getMessage(), actual.getMessage());
+        Assert.assertEquals(expected.getStatus(), actual.getStatus());
     }
 
     @Test
     public void test_incorrect_email(){
 
-        int actual = emailCheckClass.checkEmail("someemail");
+        EmailPasswordResponseModel actual = emailCheckClass.checkEmail("someemail");
 
-        int expected = 1;
+        EmailPasswordResponseModel expected = new EmailPasswordResponseModel();
+        expected.setStatus(false);
+        expected.setMessage("Please provide valid email!");
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected.getMessage(), actual.getMessage());
+        Assert.assertEquals(expected.getStatus(), actual.getStatus());
     }
     @Test
     public void test_email_without_char(){
 
-        int actual = emailCheckClass.checkEmail("someemail.com");
+        EmailPasswordResponseModel actual = emailCheckClass.checkEmail("someemail.com");
 
-        int expected = 1;
+        EmailPasswordResponseModel expected = new EmailPasswordResponseModel();
+        expected.setStatus(false);
+        expected.setMessage("Please provide valid email!");
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected.getMessage(), actual.getMessage());
+        Assert.assertEquals(expected.getStatus(), actual.getStatus());
     }
 
     @Test
     public void test_email_without_dot(){
 
-        int actual = emailCheckClass.checkEmail("some@emailcom");
+        EmailPasswordResponseModel actual = emailCheckClass.checkEmail("some@emailcom");
 
-        int expected = 1;
+        EmailPasswordResponseModel expected = new EmailPasswordResponseModel();
+        expected.setStatus(false);
+        expected.setMessage("Please provide valid email!");
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected.getMessage(), actual.getMessage());
+        Assert.assertEquals(expected.getStatus(), actual.getStatus());
     }
 
     @Test
     public void test_correct_email(){
 
-        int actual = emailCheckClass.checkEmail("some@email.com");
+        EmailPasswordResponseModel actual = emailCheckClass.checkEmail("some@email.com");
 
-        int expected = 2;
+        EmailPasswordResponseModel expected = new EmailPasswordResponseModel();
+        expected.setStatus(true);
+        expected.setMessage("OK");
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected.getMessage(), actual.getMessage());
+        Assert.assertEquals(expected.getStatus(), actual.getStatus());
     }
 
     @Test
     public void test_empty_password(){
 
-        int actual = passwordCheckClass.check_password("");
+        EmailPasswordResponseModel actual = passwordCheckClass.checkPassword("");
 
-        int expected = 0;
+        EmailPasswordResponseModel expected = new EmailPasswordResponseModel();
+        expected.setStatus(false);
+        expected.setMessage("Password is Required!");
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected.getMessage(), actual.getMessage());
+        Assert.assertEquals(expected.getStatus(), actual.getStatus());
 
     }
 
     @Test
     public void test_incorrect_password(){
 
-        int actual = passwordCheckClass.check_password("12345");
+        EmailPasswordResponseModel actual = passwordCheckClass.checkPassword("12345");
 
-        int expected = 1;
+        EmailPasswordResponseModel expected = new EmailPasswordResponseModel();
+        expected.setStatus(false);
+        expected.setMessage("Minimum password length should be 6 characters");
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected.getMessage(), actual.getMessage());
+        Assert.assertEquals(expected.getStatus(), actual.getStatus());
 
     }
 
     @Test
     public void test_correct_password(){
 
-        int actual = passwordCheckClass.check_password("123456");
+        EmailPasswordResponseModel actual = passwordCheckClass.checkPassword("123456");
 
-        int expected = 2;
+        EmailPasswordResponseModel expected = new EmailPasswordResponseModel();
+        expected.setStatus(true);
+        expected.setMessage("OK");
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected.getMessage(), actual.getMessage());
+        Assert.assertEquals(expected.getStatus(), actual.getStatus());
 
     }
 

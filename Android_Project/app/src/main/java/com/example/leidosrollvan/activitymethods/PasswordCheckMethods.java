@@ -1,17 +1,27 @@
 package com.example.leidosrollvan.activitymethods;
 
+import com.example.leidosrollvan.dataClassesForMethods.EmailPasswordResponseModel;
+
 public class PasswordCheckMethods {
 
-    public int check_password(String password){
+    public EmailPasswordResponseModel checkPassword(String password){
+
+        EmailPasswordResponseModel finalModel = new EmailPasswordResponseModel();
 
         if (password.isEmpty()){
-            return 0;
+            finalModel.setMessage("Password is Required!");
+            finalModel.setStatus(false);
         }
         else if (password.length() < 6){
-            return 1;
+            finalModel.setMessage("Minimum password length should be 6 characters");
+            finalModel.setStatus(false);
         }
-        else
-            return 2;
+        else {
+            finalModel.setMessage("OK");
+            finalModel.setStatus(true);
+        }
+
+        return finalModel;
 
     }
 

@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class BusinessProductFormActivityTest {
 
-    private NameCheckMethods testingClass = new NameCheckMethods();
+    private final NameCheckMethods testingClass = new NameCheckMethods();
 
     @Test
     public void test_empty_product_name(){

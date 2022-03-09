@@ -1,7 +1,6 @@
 package com.example.leidosrollvan.activity;
 
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.leidosrollvan.R;
+import com.example.leidosrollvan.dataClassesForMethods.EmailPasswordResponseModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,15 +45,10 @@ public class forgotPasswordActivity extends AppCompatActivity {
 
     private void resetPassword(){
         String email = emailText.getText().toString().trim();
+        EmailPasswordResponseModel checkedEmail = new EmailPasswordResponseModel();
 
-        if(email.isEmpty()){
-            emailText.setError("email required");
-            emailText.requestFocus();
-            return;
-        }
-
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailText.setError("Please provide a valid email");
+        if(!checkedEmail.getStatus()){
+            emailText.setError(checkedEmail.getMessage());
             emailText.requestFocus();
             return;
         }

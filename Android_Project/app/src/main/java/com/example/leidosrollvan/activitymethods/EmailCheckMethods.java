@@ -1,5 +1,7 @@
 package com.example.leidosrollvan.activitymethods;
 
+import com.example.leidosrollvan.dataClassesForMethods.EmailPasswordResponseModel;
+
 import java.util.regex.Pattern;
 
 public class EmailCheckMethods {
@@ -14,13 +16,22 @@ public class EmailCheckMethods {
                     ")+"
     );
 
-    public int checkEmail(String email) {
+    public EmailPasswordResponseModel checkEmail(String email) {
 
-        if (email.isEmpty())
-            return 0;
-        else if (!EMAIL_ADDRESS.matcher(email).matches()) {
-            return 1;
-        } else return 2;
+        EmailPasswordResponseModel finalModel = new EmailPasswordResponseModel();
+
+        if (email.isEmpty()) {
+            finalModel.setMessage("Email is Required!");
+            finalModel.setStatus(false);
+        } else if (!EMAIL_ADDRESS.matcher(email).matches()) {
+            finalModel.setMessage("Please provide valid email!");
+            finalModel.setStatus(false);
+        } else {
+            finalModel.setMessage("OK");
+            finalModel.setStatus(true);
+        }
+
+        return finalModel;
 
     }
 

@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -28,6 +27,7 @@ import com.example.leidosrollvan.activitymethods.EmailCheckMethods;
 import com.example.leidosrollvan.activitymethods.PasswordCheckMethods;
 import com.example.leidosrollvan.dataClasses.Business;
 import com.example.leidosrollvan.dataClasses.BusinessImage;
+import com.example.leidosrollvan.dataClassesForMethods.EmailPasswordResponseModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -122,8 +122,8 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
         boolean checkedName = nameMobileCheckerClass.checkBusinessName(businessName);
         boolean checkedMobile = nameMobileCheckerClass.checkBusinessMobile(businessMobile);
         boolean checkedUri = nameMobileCheckerClass.checkUri(mImageUri);
-        int checkedEmail = emailCheckerClass.checkEmail(businessEmail);
-        int checkedPassword = passwordCheckerClass.check_password(businessPassword);
+        EmailPasswordResponseModel checkedEmail = emailCheckerClass.checkEmail(businessEmail);
+        EmailPasswordResponseModel checkedPassword = passwordCheckerClass.checkPassword(businessPassword);
 
         if(checkedName){
             editBusinessTextName.setError("Name is Required!");
@@ -137,26 +137,14 @@ public class BusinessRegisterActivity extends AppCompatActivity implements View.
             return;
         }
 
-        if(checkedEmail == 0){
-            editBusinessTextEmail.setError("Email is Required!");
+        if(!checkedEmail.getStatus()){
+            editBusinessTextEmail.setError(checkedEmail.getMessage());
             editBusinessTextEmail.requestFocus();
             return;
         }
 
-        if(checkedEmail == 1){
-            editBusinessTextEmail.setError("Please provide valid email!");
-            editBusinessTextEmail.requestFocus();
-            return;
-        }
-
-        if(checkedPassword == 0){
-            editBusinessTextPassword.setError("Password is Required!");
-            editBusinessTextPassword.requestFocus();
-            return;
-        }
-
-        if(checkedPassword == 1){
-            editBusinessTextPassword.setError("Minimum password length should be 6 characters");
+        if(!checkedPassword.getStatus()){
+            editBusinessTextPassword.setError(checkedPassword.getMessage());
             editBusinessTextPassword.requestFocus();
             return;
         }
