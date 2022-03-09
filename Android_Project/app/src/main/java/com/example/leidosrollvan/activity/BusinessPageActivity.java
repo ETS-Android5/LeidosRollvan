@@ -164,7 +164,7 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
                         if (snapshot.child(userID).hasChild(businessID)) {
                             favRef.child(userID).child(businessID).removeValue();
                         } else {
-                            favRef.child(userID).child(businessID).setValue(businessID);
+                            favRef.child(userID).child(businessID).setValue(businessName);
                         }
                     }
                 }

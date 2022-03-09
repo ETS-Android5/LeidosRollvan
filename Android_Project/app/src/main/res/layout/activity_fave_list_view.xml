@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/FaveName"
         android:text="My text"
+        android:layout_weight="1"
         />
     <ImageView
         android:layout_width="30dp"

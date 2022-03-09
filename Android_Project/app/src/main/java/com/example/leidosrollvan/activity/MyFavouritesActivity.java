@@ -25,12 +25,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class MyFavouritesActivity extends AppCompatActivity {
-    TextView faveHead, noFave;
-    RecyclerView faveSection;
+    TextView noFave;
     private FirebaseUser user;
     private FirebaseAuth mAuth;
     private String userID, businessID, busName;
-    private ArrayList favesList = new ArrayList();
+    private ArrayList<String> favesList = new ArrayList();
     private Object busID, businessName;
     //private Object ListView;
     private ListView favoritesList;
@@ -39,6 +38,7 @@ public class MyFavouritesActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_favourites);
+        load();
         final SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefreshMyFave);
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -47,8 +47,10 @@ public class MyFavouritesActivity extends AppCompatActivity {
                 pullToRefresh.setRefreshing(false);
             }
         });
-        load();
+        //load();
         favesList.add("test");
+        favesList.add("test2");
+        favesList.add("test3");
         ListView listView = (ListView) findViewById(R.id.favoritesList);
         FaveAdapter adapter = new FaveAdapter(getApplicationContext(), favesList);
         listView.setAdapter(adapter);
@@ -57,9 +59,7 @@ public class MyFavouritesActivity extends AppCompatActivity {
 
 
     void load(){
-        faveHead = (TextView) findViewById(R.id.faveBusinesses);
-        faveSection = (RecyclerView) findViewById(R.id.subsSection);
-        noFave= (TextView) findViewById(R.id.nofaves);
+
 
         user = mAuth.getInstance().getCurrentUser();
         if(user!= null) {
@@ -67,6 +67,7 @@ public class MyFavouritesActivity extends AppCompatActivity {
         }
 
         DatabaseReference faveRef = FirebaseDatabase.getInstance().getReference("Favourites");
+
         faveRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -75,25 +76,28 @@ public class MyFavouritesActivity extends AppCompatActivity {
                     faveRef.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            ArrayList<String> favesList = new ArrayList();
                             for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                                busID = snapshot1.getValue();
-                                businessID = String.valueOf(busID);
-                                DatabaseReference busRef = FirebaseDatabase.getInstance().getReference("Businesses");
-                                busRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        if(snapshot.hasChild(businessID)){
-                                            businessName = snapshot.child("businessName").getValue();
-                                            busName = String.valueOf(businessName);
-                                            favesList.add(busName);
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
+                                businessName = snapshot1.getValue();
+                                busName = String.valueOf(businessName);
+                                favesList.add(busName);
+//                                favesList.add(businessName);
+//                                DatabaseReference busRef = FirebaseDatabase.getInstance().getReference("Businesses");
+//                                busRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                        if(snapshot.hasChild(businessID)){
+//                                            businessName = snapshot.child("businessName").getValue();
+//                                            busName = String.valueOf(businessName);
+//                                            favesList.add(busName);
+//                                        }
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                    }
+//                                });
                             }
 //                                if(favesList.isEmpty()==true){
 //                                    noFave.setVisibility(View.VISIBLE);

@@ -15,18 +15,18 @@ import java.util.ArrayList;
 public class FaveAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<String> faveList;
+    ArrayList<String> listOfFaves;
     LayoutInflater inflater;
 
 
-    public FaveAdapter(Context ctx, ArrayList faveList){
+    public FaveAdapter(Context ctx, ArrayList listOfFaves){
         this.context = ctx;
-        this.faveList = faveList;
+        this.listOfFaves = listOfFaves;
         inflater = LayoutInflater.from(ctx);
     }
     @Override
     public int getCount() {
-        return faveList.size();
+        return listOfFaves.size();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class FaveAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.activity_fave_list_view, null);
         TextView text = (TextView) convertView.findViewById(R.id.FaveName);
-        text.setText(faveList.get(position));
+        text.setText(listOfFaves.get(position));
         return convertView;
 
     }
