@@ -38,26 +38,27 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/nofaves"
+                android:id="@+id/noFaves"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:textColor="?attr/text_color"
+                android:textColor="?android:textColorPrimary"
                 android:text="You Have No Favourite Businesses"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:visibility="gone"
                 />
-             <ListView
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:id="@+id/favoritesList"
-                 android:textColor="?attr/text_color"
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/faveSection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible" />
 
 
 
-                 />
+
 
 
 
