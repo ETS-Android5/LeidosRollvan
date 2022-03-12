@@ -91,7 +91,7 @@
                             android:layout_margin="1dp"
                             android:layout_height="100dp"
                             android:backgroundTint="?attr/button_color"
-                            android:drawableTop="@drawable/ic_breakfast"
+                            android:drawableTop="@drawable/ic_vegansvg"
                             android:text="Vegan"
                             android:textColor="?attr/text_color"
                             android:textSize="9dp" />
