@@ -32,7 +32,7 @@ public class BusinessProductFormActivityEspressoTest {
     public ActivityScenarioRule<BusinessProductFormActivity> businessProductFormActivityActivityScenarioRule =
             new ActivityScenarioRule<BusinessProductFormActivity>(BusinessProductFormActivity.class);
 
-    @Test //Clicking register now button correctly navigates to register page
+    @Test
     public void test_cancel_navigation() {
         onView(withId(R.id.popupCancel))
                 .perform(click());
