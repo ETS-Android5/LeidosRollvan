@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import com.example.leidosrollvan.dataClasses.Business;
 import com.example.leidosrollvan.dataClasses.BusinessImage;
 import com.example.leidosrollvan.dataClasses.BusinessMenu;
 import com.example.leidosrollvan.dataClasses.Notification;
+import com.example.leidosrollvan.dataClasses.OpeningTimes;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,18 +37,22 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class BusinessPageActivity extends AppCompatActivity implements View.OnClickListener {
-    private DatabaseReference reference;
-    private DatabaseReference imRef, favRef;
-    private ImageButton faveButton;
-    private Button homeButton, notiSubButton, notiUnSubButton;
+    private DatabaseReference reference, OTreference;
+    private DatabaseReference imRef, favRef,notiRef;
+    private ImageButton faveButton,notiSubButton;
+    private Button homeButton,OTButton;
     boolean userClick = false;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private String userID, businessID, businessName, businessMobile, businessEmail; ;
-    private TextView businessPageName, businessPageMob, businessPageEmail;
+    private String userID, businessID, businessName, businessMobile, businessEmail;
+    private TextView businessPageName, businessPageMob, businessPageEmail,OpeningHours,OpeningWarning;
+    private CheckBox sun,mon,tue,wed,thu,fri,sat;
+    private LinearLayout OTLayout;
     private ImageView businessPageImg;
     private TextView notifyNoItems,cat1,cat2,cat3,cat4,cat5;
     private businessItemRecyclerAdapter adapter;
@@ -59,12 +66,9 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_page);
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
-            notiSubButton = (Button) findViewById(R.id.noti);
+            notiSubButton = (ImageButton) findViewById(R.id.noti);
             notiSubButton.setOnClickListener(this);
-            notiUnSubButton = (Button) findViewById(R.id.notiUn);
-            notiUnSubButton.setOnClickListener(this);
             notiSubButton.setVisibility(View.VISIBLE);
-            notiUnSubButton.setVisibility(View.VISIBLE);
         }
         homeButton = (Button) findViewById(R.id.home_bus);
         homeButton.setOnClickListener(this);
@@ -76,6 +80,24 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         }
         faveButton = (ImageButton) findViewById(R.id.faveButton);
         faveButton.setOnClickListener(this);
+
+        OpeningHours = (TextView) findViewById(R.id.OpeningHoursText);
+        OpeningWarning = (TextView) findViewById(R.id.noOpeningHours);
+
+        sun = (CheckBox) findViewById(R.id.checkBoxSun);
+        mon = (CheckBox) findViewById(R.id.checkBoxMon);
+        tue = (CheckBox) findViewById(R.id.checkBoxTue);
+        wed = (CheckBox) findViewById(R.id.checkBoxWed);
+        thu = (CheckBox) findViewById(R.id.checkBoxThu);
+        fri = (CheckBox) findViewById(R.id.checkBoxFri);
+        sat = (CheckBox) findViewById(R.id.checkBoxSat);
+
+        OTLayout = (LinearLayout) findViewById(R.id.OTLayout);
+
+        OTButton = (Button) findViewById(R.id.OTButton);
+        OTButton.setOnClickListener(this);
+
+
 
         Bundle bundle = getIntent().getExtras();
         String b_id = bundle.getString("b_id");
@@ -106,6 +128,60 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
+        OTreference = FirebaseDatabase.getInstance().getReference("Business OT");
+        OTreference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild(b_id)){ //if previous data found, then load into boxes
+                    OTreference = FirebaseDatabase.getInstance().getReference("Business OT/"+b_id);
+                    OTreference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            OpeningTimes OT = snapshot.getValue(OpeningTimes.class);
+                            OpeningWarning.setVisibility(View.GONE);
+                            OTButton.setVisibility(View.VISIBLE);
+                            OpeningHours.setText(OT.toString());
+                            ArrayList<String>Days = OT.getDaysOfWeek();
+                            if(Days.contains("Monday")){
+                                mon.setChecked(true);
+                            }
+                            if(Days.contains("Tuesday")){
+                                tue.setChecked(true);
+                            }
+                            if(Days.contains("Wednesday")){
+                                wed.setChecked(true);
+                            }
+                            if(Days.contains("Thursday")){
+                                thu.setChecked(true);
+                            }
+                            if(Days.contains("Friday")){
+                                fri.setChecked(true);
+                            }
+                            if(Days.contains("Saturday")){
+                                sat.setChecked(true);
+                            }
+                            if(Days.contains("Sunday")){
+                                sun.setChecked(true);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(BusinessPageActivity.this, "Something Went Wrong!", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(BusinessPageActivity.this, "Something Went Wrong!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
+
+
         imRef = FirebaseDatabase.getInstance().getReference("Business Images");
         imRef.child(b_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -127,8 +203,50 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
         businessID = b_id;
 
         favRef = FirebaseDatabase.getInstance().getReference("Favourites");
+        notiRef = FirebaseDatabase.getInstance().getReference("User Notis");
         if(user != null) {
             getFaveStatus(businessID, userID);
+            getNotiStatus(userID);
+        }
+    }
+
+    public void getNotiStatus( String userID) {
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+            notiRef = FirebaseDatabase.getInstance().getReference("User Notis");
+            notiRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild(userID)) {
+                        notiRef.child(userID).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                Notification noti = snapshot.getValue(Notification.class);
+                                ArrayList<String> notis = noti.getNotis();
+                                if (notis.contains(businessName)) {
+                                    notiSubButton.setImageResource(R.drawable.ic_baseline_notifications_off_24);
+                                    notiSubButton.setBackgroundColor(getResources().getColor(R.color.lightBlue));
+                                } else {
+                                    notiSubButton.setImageResource(R.drawable.ic_baseline_notifications_24);
+                                    notiSubButton.setBackgroundColor(getResources().getColor(R.color.grey));
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    } else {
+                        notiSubButton.setImageResource(R.drawable.ic_baseline_notifications_24);
+                        notiSubButton.setBackgroundColor(getResources().getColor(R.color.grey));
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
     }
 
@@ -179,6 +297,60 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
 
             }
         });
+    }
+
+    public void setNoti(String businessName,String userID) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            DatabaseReference referenceNoti = FirebaseDatabase.getInstance().getReference("User Notis");
+            referenceNoti.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild(userID)) {
+                        referenceNoti.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                Notification noti = snapshot.getValue(Notification.class);
+                                ArrayList<String> notis = noti.getNotis();
+                                if (!notis.contains(businessName)) {
+                                    noti.addNoti(businessName);
+                                    referenceNoti.child(userID).setValue(noti);
+                                    FirebaseMessaging.getInstance().subscribeToTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(getApplicationContext(), "Subscribed", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                } else {
+                                    noti.deleteNoti(businessName);
+                                    referenceNoti.child(userID).setValue(noti);
+                                    FirebaseMessaging.getInstance().unsubscribeFromTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(getApplicationContext(), "Unsubscribed", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    } else {
+                        ArrayList<String> notis = new ArrayList<String>();
+                        notis.add(businessName);
+                        Notification noti = new Notification(notis);
+                        referenceNoti.child(userID).setValue(noti);
+                    }
+                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                }
+
+            });
+        }
     }
 
     protected void load() {
@@ -289,98 +461,18 @@ public class BusinessPageActivity extends AppCompatActivity implements View.OnCl
             case R.id.faveButton:
                 setFave(businessID, userID);
                 break;
+            case R.id.OTButton:
+                if(OTLayout.getVisibility()==View.VISIBLE){
+                    OTLayout.setVisibility(View.GONE);
+                    break;
+                }
+                OTLayout.setVisibility(View.VISIBLE);
+                break;
+
             case R.id.noti:
-                if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
-                    DatabaseReference referenceNoti = FirebaseDatabase.getInstance().getReference("User Notis");
-                    referenceNoti.addListenerForSingleValueEvent(new ValueEventListener() {
-
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.hasChild(userID)){
-                                referenceNoti.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        Notification noti = snapshot.getValue(Notification.class);
-                                        ArrayList<String> notis =noti.getNotis();
-                                        if(!notis.contains(businessName)){
-                                            noti.addNoti(businessName);
-                                            referenceNoti.child(userID).setValue(noti);
-                                            FirebaseMessaging.getInstance().subscribeToTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void unused) {
-                                                    Toast.makeText(getApplicationContext(), "Subscribed", Toast.LENGTH_LONG).show();
-                                                }
-                                            });
-                                        }else{
-                                            Toast.makeText(getApplicationContext(), "You are already subscribed", Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                            }else{
-                                ArrayList<String> notis = new ArrayList<String>();
-                                notis.add(businessName);
-                                Notification noti = new Notification(notis);
-                                referenceNoti.child(userID).setValue(noti);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                    break;
+                setNoti(businessName,userID);
+                break;
                 }
-            case R.id.notiUn:
-                if(FirebaseAuth.getInstance().getCurrentUser()==null){
-                    Toast.makeText(BusinessPageActivity.this, "Login for subscription feature", Toast.LENGTH_SHORT).show();
-                }
-                if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
-                    DatabaseReference referenceNoti = FirebaseDatabase.getInstance().getReference("User Notis");
-                    referenceNoti.addListenerForSingleValueEvent(new ValueEventListener() {
 
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.hasChild(userID)){
-                                referenceNoti.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        Notification noti = snapshot.getValue(Notification.class);
-                                        ArrayList<String> notis =noti.getNotis();
-                                        if(notis.contains(businessName)) {
-                                            noti.deleteNoti(businessName);
-                                            referenceNoti.child(userID).setValue(noti);
-                                            FirebaseMessaging.getInstance().unsubscribeFromTopic(businessName.replace('\'', '-').replace(' ', '-')).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void unused) {
-                                                    Toast.makeText(getApplicationContext(), "Unsubscribed", Toast.LENGTH_LONG).show();
-                                                }
-                                            });
-                                        }else{
-                                            Toast.makeText(getApplicationContext(), "You are not subscribed", Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                    break;
-                }
         }
     }
-}

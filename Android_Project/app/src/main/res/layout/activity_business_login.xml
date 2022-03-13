@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/login_bk_color"
+    android:background="?attr/background_color"
     android:focusableInTouchMode="true"
     android:gravity="center"
     android:id="@+id/business_login_page"
@@ -54,6 +54,7 @@
                 <EditText
                     android:id="@+id/editBusinessLoginTextEmail"
                     style="@style/modifiedEditText"
+                    android:backgroundTint="?attr/edittext_background"
                     android:hint="@string/login_email_hint"
                     android:inputType="textEmailAddress"
                     android:maxLines="1" />
@@ -67,6 +68,7 @@
                 <EditText
                     android:id="@+id/editBusinessLoginTextPassword"
                     style="@style/modifiedEditText"
+                    android:backgroundTint="?attr/edittext_background"
                     android:hint="@string/login_password_hint"
                     android:inputType="textPassword"
                     android:maxLines="1" />
@@ -80,7 +82,7 @@
                 android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:text="Forgot Password?"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/newsMoreTextSize" />
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
@@ -89,8 +91,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="Login"
+                android:textColor="@color/white"
                 app:initialCornerAngle="27dp"
-                app:spinning_bar_color="#FFF"
                 app:spinning_bar_padding="6dp"
                 app:spinning_bar_width="4dp" />
 
@@ -100,7 +102,7 @@
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="New Business? Register Now"
                 android:textAlignment="center"
-                android:textColor="@color/themeColor"
+                android:textColor="@color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -114,15 +116,15 @@
 
             <Button
                 android:id="@+id/gotoUserLogin"
-                style="@style/parent"
+                style="@style/businessOwnerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="Are you a customer? Click here"
                 android:textAlignment="center"
-                android:textColor="@color/themeColor"
                 android:textSize="13sp"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
 
@@ -131,48 +133,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:gravity="center"
-                android:weightSum="12">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimaryDark" />
-
-                <TextView
-                    style="@style/viewParent.headerText.NoMode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="Use other Methods"
-                    android:textAlignment="center"
-                    android:textSize="12sp" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimaryDark" />
-
-            </LinearLayout>
+                android:weightSum="12"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_facebook" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_google_plus" />
-            </LinearLayout>
+                android:gravity="center"/>
 
         </LinearLayout>
     </ScrollView>
@@ -183,6 +150,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:background="@drawable/ic_side_bg"
+        android:backgroundTint="?attr/button_color"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView

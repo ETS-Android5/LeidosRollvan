@@ -90,9 +90,7 @@ public class CategoryActivity extends AppCompatActivity implements CategoryAdapt
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-
+                //(offerIdList as ArrayList<>).clear;
                 if (snapshot.exists()) {
                     GenericTypeIndicator<HashMap<String, Business>> t = new GenericTypeIndicator<HashMap<String, Business>>() {
                     };
@@ -109,7 +107,11 @@ public class CategoryActivity extends AppCompatActivity implements CategoryAdapt
                                 businessMap.entrySet().stream().filter(
                                         a -> filteredMap.containsKey(a.getKey())
                                 ).map(Map.Entry::getValue).collect(Collectors.toList());
-                        offerIdList = filteredMap.keySet().stream().collect(Collectors.toList());
+                        offerIdList = businessMap.entrySet().stream().filter(
+                                a -> filteredMap.containsKey(a.getKey())
+                        ).map(Map.Entry::getKey).collect(Collectors.toList());
+
+                        //offerIdList = businessMap.keySet().stream().collect(Collectors.toList());
                         myAdapter.setData(new ArrayList<>(listData),new ArrayList<>(offerIdList));
                         if (listData.size() == 0) {
                             TextView NoAvailable = (TextView) findViewById(R.id.textViewNoAvailable);

@@ -108,6 +108,7 @@ class SearchByNameFragment : Fragment() {
         refUser1.addValueEventListener(object : ValueEventListener,CustomRecyclerAdapter.OnBusiClickListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 (mBusiness as ArrayList<User>).clear()
+                (businessIdList as ArrayList<User>).clear()
                 if(searchEditTextSearch!!.text.toString()==""){
                     for(businessSnapshot in snapshot.children){
                         val business  = businessSnapshot.getValue(Business::class.java)
@@ -145,6 +146,7 @@ class SearchByNameFragment : Fragment() {
         refUser12.addValueEventListener(object :ValueEventListener,CustomRecyclerAdapter.OnBusiClickListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 (mBusiness as ArrayList<User>).clear()
+                (businessIdList as ArrayList<User>).clear()
                 for(businessSnapshot in snapshot.children){
                     val business  = businessSnapshot.getValue(Business::class.java)
                     val businessName = business?.businessName
@@ -155,6 +157,7 @@ class SearchByNameFragment : Fragment() {
                             text = ""
                         }
                     }
+
                     if(mBusiness.size==0){
                         noMatches.apply {
                             text = "No Matches"
@@ -162,10 +165,13 @@ class SearchByNameFragment : Fragment() {
                     }
 
 
+
+
                 }
-
-
                 searchAdapter.adapter = CustomRecyclerAdapter(mBusiness,businessIdList,this)
+
+
+
                 //recyclerView!!.adapter = searchAdapter
 
             }

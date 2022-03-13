@@ -36,6 +36,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     private RecyclerViewClickInterface recyclerViewClickInterface;
 
 
+
+
     public CategoryAdapter(Context context,RecyclerViewClickInterface recyclerViewClickInterface) {
         this.context = context;
         this.recyclerViewClickInterface = recyclerViewClickInterface;
@@ -111,7 +113,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    recyclerViewClickInterface.onItemClick(getAdapterPosition());
+                    recyclerViewClickInterface.onItemClick(getAbsoluteAdapterPosition());
                 }
             });
 

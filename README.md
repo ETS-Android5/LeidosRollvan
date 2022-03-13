@@ -13,7 +13,7 @@ width="100" hspace="10" vspace="10">](https://www.leidos.com/)
 [<img src="/readme/uni-of-glasgow.jpg" align="right"
 width="90" hspace="10" vspace="10">](https://www.leidos.com/)
 
-Leidos Rollvan app is available from the following download links
+Leidos Rollvan app is available from the following **download links**
 
 
 <p align="left">
@@ -22,12 +22,12 @@ Leidos Rollvan app is available from the following download links
         height="80"
         src="readme/onedrive-svgrepo-com.svg" />
 </a> 
-<a href="#">
+<a href="https://www.dropbox.com/s/9htsbqh8qj7d6w8/app-debug.apk?dl=1">
     <img alt="Get it on DropBox"
         height="60"
         src="readme/dropbox-svgrepo-com.svg" />
 </a> 
-<a href="#">
+<a href="https://drive.google.com/uc?export=download&id=1IRMOq9JPChw_0_iK3gIsH7Zd01JlSszp">
     <img alt="Get it on Google Drive"
         height="60"
         src="readme/google-drive-social-media-svgrepo-com.svg" />
@@ -53,24 +53,15 @@ This application was originally created by:
 - German Cherstvov
 It was released under the GNU GPLv3.
 
-## Features
+## How to install the app?
 
-The android app lets Users:
-- Discover local food truck businesses 
-- Explore businesses on a map based UI to be able to see directions, travel time and distances to any registered business
-- Search for any destination and plot a route to it, to see businesses that fall along the given route
-- Register for a free User account to subscribe to offer notifications from businesses
-- Registration requires a verfied email address to be able to access the account
-- An account allows users to save favourite businesses for easy access
-- Visiting a business page allows users to explore food items on sale and receive contact details for all businesses
+If you are a new user looking to get started with the Leidos Rollvan app, follow the simple instructions given below:
 
-The android app lets Business owners:
-- Register to advertise their food truck business
-- Business accounts must be verified via the email provided
-- Business owners can customise the look of their page to attract more customers by adding food items under various preset sections
-- Owners can add category tags to their business to allow users to locate their business under appropriate categories
-- Owners can add a location to allow users to find their business on a map
-- Business owners can create and notify subscribed users about ongoing offers and deals
+  - Use one of the available download links above (_Dropbox, Google Drive or One Drive_) to download the APK of the app to your computer or mobile device. 
+  - If you downloaded the APK to your computer, transfer the downloaded file to your mobile device with an appropriate USB cable. If you downloaded the APK to your phone directly, follow on from step 3. **NOTE: Downloading directly to your phone may require enabling permissions to download from untrusted sources.**
+  - Once you have the APK downloaded to your phone, using your Android file manager locate the downloaded APK file. 
+  - Simply click on the APK and run the file to begin the installation process. 
+  - One installed, locate the app on your homescreen and get started!
 
 ## Screenshots
 
@@ -84,10 +75,30 @@ With at least android version 8 for stable performance, Leidos Rollvan requires 
 
 The "Read access from internal media storage" permission is only used for Business accounts to upload a profile banner image for their page otherwise it is not used for User accounts. The network access permissions are made use of for retrieving server content. The Fine and Coarse location permissions is used to display user's location on the Map and is needed to be able to make use of any map features at all.
 
-## Known Bugs in current release:
+## Release Notes
+
+### March 17, 2022 - Leidos Rollvan v1.0 - Features:
+
+Users can:
+- Discover local food truck businesses - See the food items on sale, any ongoing offers, their opening-closing times and the contact details of all registered businesses
+- Use a name based search feature to find their desired rollvan business or use the various filters to narrow down the search to the exact type of food they are looking for
+- Explore businesses on a map based UI to be able to see directions, travel time and distances to any registered business
+- Search for any destination and plot a route to it on the map UI, to discover all businesses along the given route
+- Register for a free User account with a verified email address for the following benefits:
+    - Subscribe to businesses to receive push notifications whenever they have ongoing offers and deals
+    - Save your favourite businesses for easy access
+
+Business owners can:
+- Register to advertise their food truck business - business accounts must be verified via the email provided
+- Customise the look of their page to attract more customers - add a banner image, update food items and their prices under various preset sections, set opening and closing times and select the days when they remain open
+- Add category tags to their business to allow users to locate their business under appropriate category filters
+- Add a location to allow users to find their business on the map UI
+- Create and notify subscribed users about ongoing offers and deals
+
+#### Known Bugs in current release
 
 Limitations and bugs identified in the current version of the app:
-- Map fails to load on startup. Requires refreshing the map page several times to render all map data. 
+- Map fails to load on startup. Requires refreshing the map page several times to render all map data. On some devices rapidly refreshing the map page twice will load the map immediately and continue working as expected. The cause of this bug was not identified and solved as it could not be recreated on the development environment's Android emulator. It is only a bug experienced when using this feature on a real mobile device with the latest Android version.
 
 ## License
 
