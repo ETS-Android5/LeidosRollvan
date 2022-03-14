@@ -99,26 +99,6 @@ public class MyFavouritesActivity extends AppCompatActivity implements CategoryA
             }
         });
 
-//        for(String id : faveID){
-//            busRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    for (DataSnapshot data : snapshot.getChildren()){
-//                        if(data.getKey() == id){
-//                            Business business = data.getValue(Business.class);
-//                            favesList.add(business);
-//                        }
-//                    }
-//
-//                    Log.d("FAVES LIST SIZE:", Integer.toString(favesList.size()));
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//            });
-//        }
 
     }
 
@@ -129,66 +109,6 @@ public class MyFavouritesActivity extends AppCompatActivity implements CategoryA
         startActivity(intent);
 
     }
-//
-////
-////
-////
-////        DatabaseReference faveRef = FirebaseDatabase.getInstance().getReference("Favourites");
-////
-////        faveRef.addListenerForSingleValueEvent(new ValueEventListener() {
-////            @Override
-////            public void onDataChange(@NonNull DataSnapshot snapshot) {
-////                if(snapshot.hasChild(userID)) {
-////                    //ArrayList faveList = new ArrayList();
-////                    faveRef.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-////                        @Override
-////                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-////                            ArrayList<String> favesList = new ArrayList();
-////                            for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-////                                businessName = snapshot1.getValue();
-////                                busName = String.valueOf(businessName);
-////                                favesList.add(busName);
-////                                favesList.add(businessName);
-////                                DatabaseReference busRef = FirebaseDatabase.getInstance().getReference("Businesses");
-////                                busRef.addListenerForSingleValueEvent(new ValueEventListener() {
-////                                    @Override
-////                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-////                                        if(snapshot.hasChild(businessID)){
-////                                            businessName = snapshot.child("businessName").getValue();
-////                                            busName = String.valueOf(businessName);
-////                                            favesList.add(busName);
-////                                        }
-////                                    }
-////
-////                                    @Override
-////                                    public void onCancelled(@NonNull DatabaseError error) {
-////
-////                                    }
-////                                });
-//                            }
-////                                if(favesList.isEmpty()==true){
-////                                    noFave.setVisibility(View.VISIBLE);
-////                                }
-//
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//
-//                        }
-//                    });
-//                }
-//                else {
-//                    noFave.setVisibility(View.VISIBLE);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
 }
 
 
