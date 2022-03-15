@@ -89,17 +89,17 @@ debugTests:
     - ./gradlew -Pci --console=plain :app:testDebug
 
 ## Run all unit tests 
-unitTest:
-  stage: test
-  tags:
-    - docker
-  script:
-    - cd Android_Project
-    - ./gradlew test
-  artifacts:
-    when: always
-    reports:
-      junit: Android_Project/app/build/test-results/**/TEST-*.xml
+# unitTest:
+#   stage: test
+#   tags:
+#     - docker
+#   script:
+#     - cd Android_Project
+#     - ./gradlew test
+#   artifacts:
+#     when: always
+#     reports:
+#       junit: Android_Project/app/build/test-results/**/TEST-*.xml
 
 # EspressoTest:
 #   stage: test
