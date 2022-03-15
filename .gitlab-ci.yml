@@ -117,21 +117,21 @@ before_script:
 #     reports:
 #       junit: build/test-results/test/**/TEST-*.xml
 
-assembleRelease:
-  stage: deploy
-  tags: 
-    - docker
-  script:
-    - cd Android_Project
-    - ./gradlew assembleRelease
-      -Pandroid.injected.signing.store.file=${KEYSTORE_FILE}
-      -Pandroid.injected.signing.store.password=${KEYSTORE_PASSWORD}
-      -Pandroid.injected.signing.key.alias=${KEY_ALIAS}
-      -Pandroid.injected.signing.key.password=${KEY_PASSWORD}
-  artifacts:
-    paths:
-      - Android_Project/app/release
-      - CHANGELOG
+#assembleRelease:
+ # stage: deploy
+  #tags: 
+   # - docker
+#  script:
+ #   - cd Android_Project
+  #  - ./gradlew assembleRelease
+   #   -Pandroid.injected.signing.store.file=${KEYSTORE_FILE}
+    #  -Pandroid.injected.signing.store.password=${KEYSTORE_PASSWORD}
+     # -Pandroid.injected.signing.key.alias=${KEY_ALIAS}
+      #-Pandroid.injected.signing.key.password=${KEY_PASSWORD}
+#  artifacts:
+ #   paths:
+  #    - Android_Project/app/release
+   #   - CHANGELOG
 
 unitTest:
   stage: test
@@ -141,6 +141,8 @@ unitTest:
     - cd Android_Project
     - ./gradlew test
   artifacts:
+    paths:
+    - Android_Project/app/build/outputs/apk/androidTest/debug
     when: always
     reports:
       junit: Android_Project/app/build/test-results/**/TEST-*.xml
