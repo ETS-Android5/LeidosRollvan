@@ -16,10 +16,6 @@ variables:
   #        commandlinetools-os_type-ANDROID_SDK_TOOLS_latest.zip
   # when the script was last modified for latest compileSdkVersion, it was which is written down below
   ANDROID_SDK_TOOLS: "7583922"
-  KEYSTORE_FILE: "KeyStore"
-  KEYSTORE_PASSWORD: "test1234"
-  KEY_ALIAS: "tester"
-  KEY_PASSWORD: "test1234"
 
 
 
@@ -72,17 +68,17 @@ before_script:
    # - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
 # # Make Project
-#assembleDebug:
- # interruptible: true
-  #stage: build
-#  tags:
- #   - docker
-  #script:
-   # - cd Android_Project
-    #- ./gradlew assembleDebug
-#  artifacts:
- #   paths:
-  #    - Android_Project/app/build/outputs/
+assembleDebug:
+  interruptible: true
+  stage: build
+  tags:
+    - docker
+  script:
+    - cd Android_Project
+    - ./gradlew assembleDebug
+  artifacts:
+    paths:
+      - Android_Project/app/build/outputs/
 
 # # Run all tests, if any fails, interrupt the pipeline(fail it)
 #debugTests:
