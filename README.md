@@ -18,22 +18,17 @@ Leidos Rollvan app is available from the following **download links**
 
 <p align="left">
 <a href="#">
-    <img alt="Get it on One Drive"
-        height="80"
-        src="readme/onedrive-svgrepo-com.svg" />
+    <img alt="Get it on One Drive" height="70" src="readme/onedrive-svgrepo-com.svg" />
 </a> 
-<a href="https://www.dropbox.com/s/00idpk0itzeryes/app-debug.apk?dl=1">
 
-    <img alt="Get it on DropBox"
-        height="60"
-        src="readme/dropbox-svgrepo-com.svg" />
+<a href="https://www.dropbox.com/s/00idpk0itzeryes/app-debug.apk?dl=1">
+    <img alt="Get it on DropBox" height="60" src="readme/dropbox-svgrepo-com.svg" />
 </a> 
+
 <a href="https://drive.google.com/uc?export=download&id=1f3ayK3_l3t3yrM4ONuitqK6AoqZF4EPQ">
-    <img alt="Get it on Google Drive"
-        height="60"
-        src="readme/google-drive-social-media-svgrepo-com.svg" />
+    <img alt="Get it on Google Drive" height="60" src="readme/google-drive-social-media-svgrepo-com.svg" />
 </a> 
-        </p>
+</p>
 
 ## About
 
