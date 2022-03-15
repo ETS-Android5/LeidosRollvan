@@ -58,14 +58,14 @@ before_script:
 
 # Basic android and gradle stuff
 # Check linting
-#lintDebug:
- # interruptible: true
-  #stage: build
-  #tags:
-#    - docker
- # script:
-  #  - cd Android_Project
-   # - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+lintDebug:
+  interruptible: true
+  stage: build
+  tags:
+    - docker
+  script:
+    - cd Android_Project
+    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
 # # Make Project
 assembleDebug:
@@ -80,54 +80,7 @@ assembleDebug:
     paths:
       - Android_Project/app/build/outputs/
 
-# # Run all tests, if any fails, interrupt the pipeline(fail it)
-#debugTests:
- # interruptible: true
-  #stage: test
-#  tags: 
- #   - docker
-  #script:
-   # - cd Android_Project
-    #- ./gradlew -Pci --console=plain :app:testDebug
 
-# EspressoTest:
-#   stage: test
-#   tags:
-#     - docker
-#   script:
-#     - echo y | android-sdk-linux/tools/bin/sdkmanager  "emulator" >/dev/null
-#     - echo y | android-sdk-linux/tools/bin/sdkmanager "system-images;android-${ANDROID_COMPILE_SDK};google_apis;x86"
-#     - echo y | android-sdk-linux/tools/bin/avdmanager create avd -f -n testAVD -k "system-images;android-${ANDROID_COMPILE_SDK};google_apis;x86"
-#     - android-sdk-linux/emulator/emulator -avd testAVD -no-audio -no-window &
-#     - ./gradlew connectedAndroidTest
-    
-# unitTest:
-#   stage: test
-#   tags:
-#     - docker
-#   script:
-#     - cd Android_Project
-#     - ./gradlew test
-#   artifacts:
-#     when: always
-#     reports:
-#       junit: build/test-results/test/**/TEST-*.xml
-
-#assembleRelease:
- # stage: deploy
-  #tags: 
-   # - docker
-#  script:
- #   - cd Android_Project
-  #  - ./gradlew assembleRelease
-   #   -Pandroid.injected.signing.store.file=${KEYSTORE_FILE}
-    #  -Pandroid.injected.signing.store.password=${KEYSTORE_PASSWORD}
-     # -Pandroid.injected.signing.key.alias=${KEY_ALIAS}
-      #-Pandroid.injected.signing.key.password=${KEY_PASSWORD}
-#  artifacts:
- #   paths:
-  #    - Android_Project/app/release
-   #   - CHANGELOG
 
 unitTest:
   stage: test
