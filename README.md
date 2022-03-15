@@ -11,7 +11,7 @@ Leidos Rollvan is an app commissioned by Leidos to Level 3 University of Glasgow
 width="100" hspace="10" vspace="10">](https://www.leidos.com/)
 
 [<img src="/readme/uni-of-glasgow.jpg" align="right"
-width="90" hspace="10" vspace="10">](https://www.leidos.com/)
+width="90" hspace="10" vspace="10">](https://www.gla.ac.uk/)
 
 Leidos Rollvan app is available from the following **download links**
 
@@ -22,12 +22,13 @@ Leidos Rollvan app is available from the following **download links**
         height="80"
         src="readme/onedrive-svgrepo-com.svg" />
 </a> 
-<a href="https://www.dropbox.com/s/9htsbqh8qj7d6w8/app-debug.apk?dl=1">
+<a href="https://www.dropbox.com/s/00idpk0itzeryes/app-debug.apk?dl=1">
+
     <img alt="Get it on DropBox"
         height="60"
         src="readme/dropbox-svgrepo-com.svg" />
 </a> 
-<a href="https://drive.google.com/uc?export=download&id=1IRMOq9JPChw_0_iK3gIsH7Zd01JlSszp">
+<a href="https://drive.google.com/uc?export=download&id=1f3ayK3_l3t3yrM4ONuitqK6AoqZF4EPQ">
     <img alt="Get it on Google Drive"
         height="60"
         src="readme/google-drive-social-media-svgrepo-com.svg" />
