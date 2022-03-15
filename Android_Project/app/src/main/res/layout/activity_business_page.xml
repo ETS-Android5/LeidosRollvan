@@ -113,8 +113,7 @@
                         android:id="@+id/busi_page_Image"
                         android:layout_width="200dp"
                         android:layout_height="200dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/burger" />
+                        android:scaleType="fitXY" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

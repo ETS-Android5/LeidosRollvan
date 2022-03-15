@@ -37,7 +37,6 @@
                 android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:textSize="20dp"
-
                 />
 
             <Button
@@ -105,9 +104,12 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="Insert License"
+                android:linksClickable="true"
+                android:clickable="true"
+                android:autoLink="web"
+                android:text="@string/license_text"
                 android:textAlignment="center"
-                android:textColor="?attr/text_color"
+                android:textColor="#36E7FF"
                 android:layout_gravity="center"
                 android:visibility="gone"
                 android:textSize="20dp"

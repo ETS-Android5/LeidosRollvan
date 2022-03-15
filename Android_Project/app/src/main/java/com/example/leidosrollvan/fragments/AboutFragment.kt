@@ -1,6 +1,9 @@
 package com.example.leidosrollvan.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,7 +61,11 @@ class AboutFragment : Fragment(), View.OnClickListener {
         licenseBtn.setOnClickListener(this)
         aboutText = view?.findViewById(R.id.aboutText)!!
         creatorsText = view?.findViewById(R.id.creatorsText)!!
+
         licenseText = view?.findViewById(R.id.licenseText)!!
+        licenseText.movementMethod = LinkMovementMethod.getInstance()
+        licenseText.setOnClickListener(this)
+
 
         return view
 
@@ -93,6 +100,12 @@ class AboutFragment : Fragment(), View.OnClickListener {
                 else{
                     aboutText.visibility=View.VISIBLE
                 }
+            }
+            R.id.licenseText -> {
+                var browserIntent = Intent(Intent.ACTION_VIEW)
+                browserIntent.data = Uri.parse("https://github.com/leidosApp/LeidosRollvan/blob/master/LICENSE")
+                startActivity(browserIntent)
+
             }
             R.id.creatorsbtn -> {
                 if(creatorsText.visibility==View.VISIBLE){

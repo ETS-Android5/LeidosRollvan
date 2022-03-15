@@ -58,17 +58,6 @@
             android:textColor="?attr/text_color" />
 
         <Button
-            android:id="@+id/savedPlaces"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:background="#00000000"
-            android:drawableLeft="@drawable/ic_location"
-            android:drawableTint="?attr/text_color"
-            android:text="Saved Places"
-            android:textColor="?attr/text_color" />
-
-        <Button
             android:id="@+id/notifications"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
