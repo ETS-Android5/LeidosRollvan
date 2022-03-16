@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/business_details_page"
+    android:background="?attr/background_color"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
@@ -22,45 +23,39 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <Button
                     android:id="@+id/home_bus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_gravity="start"
                     android:backgroundTint="?attr/button_color"
                     android:text="BACK"
+                    android:layout_weight="1"
                     android:textColor="?attr/text_color" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="200dp">
+                    android:layout_weight="8"></TextView>
 
-                    <Button
+
+
+
+
+                    <ImageButton
                         android:id="@+id/noti"
                         android:layout_width="50dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:backgroundTint="?attr/button_color"
-                        android:drawableLeft="@drawable/ic_baseline_notifications_24"
-                        android:textColor="?attr/text_color"
-                        android:visibility="visible" />
+                        android:gravity="end"
+                        android:src="@drawable/ic_baseline_notifications_24"
+                        android:visibility="gone" />
 
-                    <Button
-                        android:id="@+id/notiUn"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/darkGrey"
-                        android:drawableLeft="@drawable/ic_baseline_notifications_off_24"
-                        android:textColor="?attr/text_color"
-                        android:visibility="visible" />
 
-                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -72,13 +67,18 @@
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
+
                 <TextView
                     android:id="@+id/business_page_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="BUSINESS NAME"
-                    android:textColor="?android:textColorPrimary"
+                    android:textColor="?attr/text_color"
                     android:textStyle="bold"
                     android:textSize="32sp"
                     android:visibility="visible" />
@@ -97,70 +97,202 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/register_bk_color"
-                android:layout_gravity="center">
-
-                <ImageView
-                    android:id="@+id/busi_page_Image"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/burger" />
+                android:layout_marginBottom="5dp"
+                android:background="@color/lightBlue"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="start"
-                    android:layout_marginLeft="1dp"
-                    android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="12sp"
-                    android:autoSizeMaxTextSize="100sp"
-                    android:autoSizeStepGranularity="2sp"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textView2"
+                    <ImageView
+                        android:id="@+id/busi_page_Image"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:scaleType="fitXY" />
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/grey"
-                        android:layout_marginLeft="10dp"
-                        android:text="Business Mobile: " />
-
-                    <TextView
-                        android:id="@+id/business_page_mob"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="start"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:text="BUSINESS MOBILE"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:visibility="visible" />
-
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/grey"
-                        android:text="Business Email: " />
-
-                    <TextView
-                        android:id="@+id/business_page_email"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="BUSINESS EMAIL"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:visibility="visible" />
+                        android:layout_marginLeft="1dp"
+                        android:autoSizeMaxTextSize="100sp"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="start"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Business Mobile: "
+                            android:textColor="@color/grey" />
+
+                        <TextView
+                            android:id="@+id/business_page_mob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="start"
+                            android:text="BUSINESS MOBILE"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Business Email: "
+                            android:textColor="@color/grey" />
+
+                        <TextView
+                            android:id="@+id/business_page_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="BUSINESS EMAIL"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/noOpeningHours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="This business has not set any opening hours"
+                    android:textColor="?attr/text_color"
+                    android:textSize="20sp"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="5dp"
+                android:visibility="visible">
+
+                <Button
+                    android:id="@+id/OTButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:backgroundTint="@color/lightBlue"
+                    android:text="Opening Hours"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/OTLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/OpeningHoursText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:text="Opening hours"
+                        android:textColor="?attr/text_color"
+                        android:textSize="20dp" />
+
+                    <CheckBox
+                        android:id="@+id/checkBoxSun"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:clickable="false"
+                        android:text="Sunday"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/checkBoxMon"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:clickable="false"
+                        android:text="Monday"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/checkBoxTue"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:clickable="false"
+                        android:text="Tuesday"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/checkBoxWed"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:clickable="false"
+                        android:text="Wednesday"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/checkBoxThu"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:clickable="false"
+                        android:text="Thursday"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/checkBoxFri"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:clickable="false"
+                        android:text="Friday"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/checkBoxSat"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:clickable="false"
+                        android:text="Saturday"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -171,8 +303,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="Business Menu"
-                android:textColor="?android:textColorPrimary"
+                android:text="Menu"
+                android:textColor="?attr/text_color"
                 android:textSize="30sp"
                 android:textStyle="italic"
                 android:visibility="visible" />

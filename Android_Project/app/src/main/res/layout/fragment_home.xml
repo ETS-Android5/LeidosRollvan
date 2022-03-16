@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/customer_home_page"
+    android:background="?attr/background_color"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
 
@@ -90,7 +91,7 @@
                             android:layout_margin="1dp"
                             android:layout_height="100dp"
                             android:backgroundTint="?attr/button_color"
-                            android:drawableTop="@drawable/ic_breakfast"
+                            android:drawableTop="@drawable/ic_vegansvg"
                             android:text="Vegan"
                             android:textColor="?attr/text_color"
                             android:textSize="9dp" />
@@ -107,6 +108,7 @@
                 android:adjustViewBounds="true"
                 android:backgroundTint="@color/white"
                 android:layout_marginLeft="0dp"
+                android:layout_gravity="center"
                 android:src="@drawable/coke"
                 android:layout_marginBottom="5dp"
 
@@ -117,9 +119,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
                 android:fillViewport="true"
-                android:text="Near You"
-                android:textColor="?android:textColorPrimary"
+                android:text="Recommended "
+                android:textColor="?attr/text_color"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
@@ -136,8 +139,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Top deals"
-                android:textColor="?android:textColorPrimary"
+                android:textColor="?attr/text_color"
                 android:textSize="25dp"
+                android:layout_marginStart="5dp"
                 android:textStyle="bold"
                 />
 
@@ -154,7 +158,8 @@
                 android:layout_marginTop="30dp"
                 android:fillViewport="true"
                 android:text="All Businesses"
-                android:textColor="?android:textColorPrimary"
+                android:layout_marginStart="5dp"
+                android:textColor="?attr/text_color"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 

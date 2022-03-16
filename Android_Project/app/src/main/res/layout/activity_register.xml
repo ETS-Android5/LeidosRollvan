@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/register_bk_color"
+    android:background="@color/darkBlue"
     android:focusableInTouchMode="true"
     android:gravity="center"
     tools:context=".activity.RegisterActivity">
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:cardBackgroundColor="@color/whiteTextColor"
+                app:cardBackgroundColor="@color/lightBlue"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
@@ -88,6 +88,7 @@
                             android:id="@+id/editTextEmail"
                             style="@style/modifiedEditText"
                             android:hint="@string/login_email_hint"
+
                             android:inputType="textEmailAddress"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -120,9 +121,11 @@
 
                     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                         android:id="@+id/cirRegisterButton"
-                        style="@style/loginButton"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/loginViewsMargin"
+                        style="@style/loginButton"
                         android:text="Register"
                         app:initialCornerAngle="27dp"
                         app:spinning_bar_color="#FFF"
@@ -136,7 +139,7 @@
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:text="Sign-in to existing account"
                         android:textAlignment="center"
-                        android:textColor="@color/themeColor"
+                        android:textColor="@color/white"
                         android:textSize="17sp"
                         android:textStyle="bold" />
 
@@ -148,71 +151,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:gravity="center"
-                android:weightSum="12">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="3"
-                    android:background="@color/whiteTextColor" />
-
-                <TextView
-                    style="@style/viewParent.headerText.NoMode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="Use other Methods"
-                    android:textAlignment="center"
-                    android:textColor="@color/whiteTextColor"
-                    android:textSize="12sp" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="3"
-                    android:background="@color/whiteTextColor" />
-
-            </LinearLayout>
+                android:weightSum="12"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_facebook" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_google_plus" />
-            </LinearLayout>
+                android:gravity="center"/>
 
 
         </LinearLayout>
     </ScrollView>
 
-    <View
-        android:layout_width="11dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/ic_side_bg" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="11dp"
         android:layout_marginBottom="30dp"
         android:adjustViewBounds="false"
         android:onClick="toLoginPage"
-        android:src="@drawable/ic_back_img" />
+        android:src="@drawable/ic_back_img"
+        />
 </RelativeLayout>

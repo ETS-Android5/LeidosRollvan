@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.leidosrollvan.R;
 import com.example.leidosrollvan.activitymethods.NameCheckMethods;
 import com.example.leidosrollvan.dataClasses.BusinessMenu;
+import com.example.leidosrollvan.staticClasses.InputValidation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -102,9 +103,9 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
             productPrice.requestFocus();
             return;
         }
-        if(productName.length()>=40){
-            productPrice.setError("Invalid price");
-            productPrice.requestFocus();
+        if(productName.length()>=50){
+            productName.setError("Invalid Name");
+            productName.requestFocus();
             return;
         }
 
@@ -119,11 +120,10 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                             if(snapshot.hasChild("businessMenuItems")){
                                 BusinessMenu oldMenu = snapshot.getValue(BusinessMenu.class);
                                 spinnerSection = findViewById(R.id.spinnerSection);
-                                String selectedName = productName.getText().toString().trim();
                                 Double selectedPriceD = Double.parseDouble(productPrice.getText().toString());
                                 String selectedPrice = String.format("%.2f",selectedPriceD).trim();
                                 HashMap<String, String> item = new HashMap<String, String>();
-                                item.put(selectedName,selectedPrice);
+                                item.put(validatedName,selectedPrice);
                                 oldMenu.addMenuItems(selectedSection,item);
                                 //old menu is now updated with new items
                                 FirebaseDatabase.getInstance().getReference("Business Menu")
@@ -135,7 +135,6 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                             else{
                                 BusinessMenu oldMenu = snapshot.getValue(BusinessMenu.class);
                                 spinnerSection = findViewById(R.id.spinnerSection);
-                                String selectedName = productName.getText().toString().trim();
                                 Double selectedPriceD = Double.parseDouble(productPrice.getText().toString());
                                 String selectedPrice = String.format("%.2f",selectedPriceD).trim();
                                 String selectedSection = spinnerSection.getSelectedItem().toString().trim();
@@ -144,7 +143,7 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                                 ArrayList<HashMap<String,String>> items = new ArrayList<HashMap<String,String>>();
 
                                 //populate fields with form data
-                                item.put(selectedName,selectedPrice);
+                                item.put(validatedName,selectedPrice);
                                 items.add(item);
                                 businessMenuItems.put(selectedSection,items);
 
@@ -166,7 +165,6 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                 //Menu and categories don't exist
                 else{
                     spinnerSection = findViewById(R.id.spinnerSection);
-                    String selectedName = productName.getText().toString().trim();
                     Double selectedPriceD = Double.parseDouble(productPrice.getText().toString());
                     String selectedPrice = String.format("%.2f",selectedPriceD).trim();
                     String selectedSection = spinnerSection.getSelectedItem().toString().trim();
@@ -175,7 +173,7 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
                     ArrayList<HashMap<String,String>> items = new ArrayList<HashMap<String,String>>();
 
                     //populate fields with form data
-                    item.put(selectedName,selectedPrice);
+                    item.put(validatedName,selectedPrice);
                     items.add(item);
                     businessMenuItems.put(selectedSection,items);
 
@@ -196,6 +194,7 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
         Intent i = new Intent(this, BusinessHomeActivity.class);
         startActivity(i);
     }
+
 
     public void cancel(View v){
         finish();

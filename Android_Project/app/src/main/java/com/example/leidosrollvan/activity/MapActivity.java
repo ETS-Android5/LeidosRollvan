@@ -191,9 +191,9 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
                 ArrayList<String> tags = (ArrayList<String>) marker.getTag();
                 resetSelectedMarker();
                 mSelectedMarker = marker;
-                Log.d("MARKER", tags.toString());
+                // Log.d("MARKER", tags.toString());
 
-                if(tags.get(0).equals("Business")){
+                if(tags != null && tags.get(0).equals("Business")){
                     String businessID = (String) tags.get(1);
                     String distanceTo = (String) tags.get(2);
                     showBottomSheetDialog(marker, businessID, distanceTo);
@@ -206,7 +206,7 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
                     clickedMarker.add(marker);
                     marker.setIcon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_clicked_restaurant_24));
 
-                }else if(tags.get(0).equals("Search")) {
+                }else if(tags != null && tags.get(0).equals("Search")) {
                     showSearchBottomSheet(marker);
                 }
                 return false;

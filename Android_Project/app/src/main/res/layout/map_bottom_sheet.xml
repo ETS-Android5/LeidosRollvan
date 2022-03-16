@@ -8,7 +8,7 @@
     card_view:cardCornerRadius="20dp"
     card_view:cardElevation="50dp"
     android:layout_margin="1dp"
-    card_view:cardBackgroundColor="@color/register_bk_color">
+    card_view:cardBackgroundColor="@color/darkBlue">
 
     <LinearLayout
         android:id="@+id/bottom_full"
@@ -33,7 +33,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Business Name"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="25dp"/>
 
         <LinearLayout
@@ -48,10 +48,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12dp"
-                android:backgroundTint="@color/quantum_grey50"
+                android:backgroundTint="@color/lightBlue"
                 android:drawableLeft="@drawable/ic_baseline_directions_car_24"
                 android:text="Directions"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <View
                 android:layout_width="0dp"
@@ -79,6 +79,7 @@
                     <TextView
                         android:id="@+id/bottom_distance"
                         android:layout_width="wrap_content"
+                        android:textColor="@color/white"
                         android:layout_height="wrap_content"
                         android:text="1.6 km" />
 
@@ -98,6 +99,7 @@
                     <TextView
                         android:id="@+id/bottom_time"
                         android:layout_width="wrap_content"
+                        android:textColor="@color/white"
                         android:layout_height="wrap_content"
                         android:text="12 mins" />
                 </LinearLayout>
@@ -115,11 +117,11 @@
                 android:layout_height="wrap_content"
                 android:textSize="12dp"
                 android:layout_gravity="end"
-                android:backgroundTint="@color/quantum_grey50"
+                android:backgroundTint="@color/lightBlue"
                 android:layout_marginLeft="10dp"
                 android:drawableLeft="@drawable/ic_baseline_directions_24"
                 android:text="Visit Page"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </LinearLayout>

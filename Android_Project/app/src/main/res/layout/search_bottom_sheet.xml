@@ -9,7 +9,7 @@
     card_view:cardCornerRadius="20dp"
     card_view:cardElevation="50dp"
     android:layout_margin="1dp"
-    card_view:cardBackgroundColor="@color/register_bk_color">
+    card_view:cardBackgroundColor="@color/lightBlue">
 
     <Button
         android:id="@+id/searchDirectionButton"
@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:text="GET DIRECTIONS"
         android:textColor="@color/black"
+        android:backgroundTint="@color/lightBlue"
         android:textSize="18sp"
         android:drawableLeft="@drawable/ic_baseline_directions_car_24"/>
 

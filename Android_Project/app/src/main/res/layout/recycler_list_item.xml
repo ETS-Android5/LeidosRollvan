@@ -6,13 +6,15 @@
     app:cardElevation="8dp"
     app:cardCornerRadius="10dp"
     android:layout_margin="8dp"
-    app:cardBackgroundColor="@color/cardview_light_background">
+
+    app:cardBackgroundColor="@color/lightBlue">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginVertical="5dp"
+        android:background="@color/lightBlue"
         android:orientation="vertical">
 
         <LinearLayout
@@ -26,8 +28,7 @@
                 android:layout_rowSpan="2"
                 android:layout_width="80dp"
                 android:layout_height="70dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/burger" />
+                android:scaleType="fitXY" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,7 +41,7 @@
                     android:textSize="30sp"
                     android:textStyle="bold"
                     android:text="Foodvan Local"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="?attr/text_color" />
 
                 <TextView
                     android:id="@+id/contactRecyclerItem"
@@ -49,7 +50,7 @@
                     android:layout_marginLeft="10dp"
                     android:textSize="20dp"
                     android:text="12345667"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="?attr/text_color"/>
             </LinearLayout>
 
         </LinearLayout>

@@ -36,6 +36,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     private RecyclerViewClickInterface recyclerViewClickInterface;
 
 
+
+
     public CategoryAdapter(Context context,RecyclerViewClickInterface recyclerViewClickInterface) {
         this.context = context;
         this.recyclerViewClickInterface = recyclerViewClickInterface;

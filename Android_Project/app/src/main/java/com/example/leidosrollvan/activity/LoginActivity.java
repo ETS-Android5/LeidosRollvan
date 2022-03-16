@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.leidosrollvan.R;
 import com.example.leidosrollvan.activitymethods.EmailCheckMethods;
@@ -40,13 +41,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         //for changing status bar icon colors
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M){
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
+//        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M){
+//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+//        }
         setContentView(R.layout.activity_login);
-
         register = (TextView) findViewById(R.id.register);
         register.setOnClickListener(this);
 
