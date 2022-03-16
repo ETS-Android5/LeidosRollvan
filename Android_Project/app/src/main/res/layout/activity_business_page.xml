@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:backgroundTint="?attr/button_color"
-                    android:text="BACK"
+                    android:text="HOME"
                     android:layout_weight="1"
                     android:textColor="?attr/text_color" />
 
