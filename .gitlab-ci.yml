@@ -17,6 +17,8 @@ variables:
   # when the script was last modified for latest compileSdkVersion, it was which is written down below
   ANDROID_SDK_TOOLS: "7583922"
 
+
+
 # Packages installation before running script
 before_script:
   - apt-get --quiet update --yes
@@ -78,40 +80,19 @@ assembleDebug:
     paths:
       - Android_Project/app/build/outputs/
 
-# # Run all tests, if any fails, interrupt the pipeline(fail it)
-debugTests:
-  interruptible: true
+
+
+unitTest:
   stage: test
-  tags: 
+  tags:
     - docker
   script:
     - cd Android_Project
-    - ./gradlew -Pci --console=plain :app:testDebug
-
-## Run all unit tests 
-# unitTest:
-#   stage: test
-#   tags:
-#     - docker
-#   script:
-#     - cd Android_Project
-#     - ./gradlew test
-#   artifacts:
-#     when: always
-#     reports:
-#       junit: Android_Project/app/build/test-results/**/TEST-*.xml
-
-# EspressoTest:
-#   stage: test
-#   tags:
-#     - docker
-#   script:
-#     - echo y | android-sdk-linux/tools/bin/sdkmanager  "emulator" >/dev/null
-#     - echo y | android-sdk-linux/tools/bin/sdkmanager "system-images;android-${ANDROID_COMPILE_SDK};google_apis;x86"
-#     - echo y | android-sdk-linux/tools/bin/avdmanager create avd -f -n testAVD -k "system-images;android-${ANDROID_COMPILE_SDK};google_apis;x86"
-#     - android-sdk-linux/emulator/emulator -avd testAVD -no-audio -no-window &
-#     - ./gradlew connectedAndroidTest
-
+    - ./gradlew test
+  artifacts:
+    when: always
+    reports:
+      junit: Android_Project/app/build/test-results/**/TEST-*.xml
 
 
 

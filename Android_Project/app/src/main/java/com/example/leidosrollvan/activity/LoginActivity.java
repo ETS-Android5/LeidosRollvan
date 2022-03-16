@@ -3,7 +3,6 @@ package com.example.leidosrollvan.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.leidosrollvan.R;
+import com.example.leidosrollvan.activitymethods.EmailCheckMethods;
+import com.example.leidosrollvan.activitymethods.PasswordCheckMethods;
+import com.example.leidosrollvan.dataClassesForMethods.EmailPasswordResponseModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +33,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextEmail, editTextPassword;
     private CircularProgressButton login;
     private Button goToBusinessLogin;
+    private EmailCheckMethods emailHelperClass = new EmailCheckMethods();
+    private PasswordCheckMethods passwordHelperClass = new PasswordCheckMethods();
 
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
@@ -71,26 +75,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        if(email.isEmpty()){
-            editTextEmail.setError("Email is Required!");
+        EmailPasswordResponseModel checkedEmail = emailHelperClass.checkEmail(email);
+        EmailPasswordResponseModel checkedPassword = passwordHelperClass.checkPassword(password);
+
+        if(!checkedEmail.getStatus()){
+            editTextEmail.setError(checkedEmail.getMessage());
             editTextEmail.requestFocus();
             return;
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmail.setError("Please enter a valid Email!");
-            editTextEmail.requestFocus();
-            return;
-        }
-
-        if (password.isEmpty()) {
-            editTextPassword.setError("Password is required!");
-            editTextPassword.requestFocus();
-            return;
-        }
-
-        if(password.length() < 6){
-            editTextPassword.setError("Minimum password length is 6 characters");
+        if (!checkedPassword.getStatus()) {
+            editTextPassword.setError(checkedPassword.getMessage());
             editTextPassword.requestFocus();
             return;
         }

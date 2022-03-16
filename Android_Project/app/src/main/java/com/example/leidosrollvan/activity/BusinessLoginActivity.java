@@ -3,7 +3,6 @@ package com.example.leidosrollvan.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.leidosrollvan.R;
+import com.example.leidosrollvan.activitymethods.EmailCheckMethods;
+import com.example.leidosrollvan.activitymethods.PasswordCheckMethods;
+import com.example.leidosrollvan.dataClassesForMethods.EmailPasswordResponseModel;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +36,9 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
     private Button goToUserLogin;
     private EditText editBusinessTextEmail, editBusinessTextPassword;
     private CircularProgressButton businessLogin;
+
+    private EmailCheckMethods emailCheckClass = new EmailCheckMethods();
+    private PasswordCheckMethods passwordCheckClass = new PasswordCheckMethods();
 
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
@@ -81,26 +85,17 @@ public class BusinessLoginActivity extends AppCompatActivity implements View.OnC
         String businessEmail = editBusinessTextEmail.getText().toString().trim();
         String password = editBusinessTextPassword.getText().toString().trim();
 
-        if(businessEmail.isEmpty()){
-            editBusinessTextEmail.setError("Email is Required!");
+        EmailPasswordResponseModel checkedEmail = emailCheckClass.checkEmail(businessEmail);
+        EmailPasswordResponseModel checkedPassword = passwordCheckClass.checkPassword(password);
+
+        if(!checkedEmail.getStatus()){
+            editBusinessTextEmail.setError(checkedEmail.getMessage());
             editBusinessTextEmail.requestFocus();
             return;
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(businessEmail).matches()){
-            editBusinessTextEmail.setError("Please enter a valid Email!");
-            editBusinessTextEmail.requestFocus();
-            return;
-        }
-
-        if (password.isEmpty()) {
-            editBusinessTextPassword.setError("Password is required!");
-            editBusinessTextPassword.requestFocus();
-            return;
-        }
-
-        if(password.length() < 6){
-            editBusinessTextPassword.setError("Minimum password length is 6 characters");
+        if (!checkedPassword.getStatus()) {
+            editBusinessTextPassword.setError(checkedPassword.getMessage());
             editBusinessTextPassword.requestFocus();
             return;
         }

@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.leidosrollvan.R;
+import com.example.leidosrollvan.activitymethods.NameCheckMethods;
 import com.example.leidosrollvan.dataClasses.BusinessMenu;
 import com.example.leidosrollvan.staticClasses.InputValidation;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +39,7 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
     private DatabaseReference reference;
     private FirebaseUser user;
     private String businessID;
+    private NameCheckMethods nameValidationClass = new NameCheckMethods();
 
     @Override
 
@@ -76,14 +78,16 @@ public class BusinessProductFormActivity extends AppCompatActivity implements Vi
         businessID = user.getUid();
         productName = (EditText) findViewById(R.id.productNamePopup);
         productPrice = (EditText) findViewById(R.id.productPricePopup);
+        boolean productNameValidation = nameValidationClass.checkProductName(productName.getText().toString());
+        boolean productPriceValidation = nameValidationClass.checkProductPrice(productPrice.getText().toString());
         String selectedSection = spinnerSection.getSelectedItem().toString().trim();
         String validatedName = InputValidation.encodeForFirebaseKey(productName.getText().toString().trim());
-        if(validatedName.length()<1){
-            productName.setError("Invalid Name");
+        if(productNameValidation){
+            productName.setError("Invalid name");
             productName.requestFocus();
             return;
         }
-        if(productPrice.getText().toString().equals("")){
+        if(productPriceValidation){
             productPrice.setError("Invalid price");
             productPrice.requestFocus();
             return;

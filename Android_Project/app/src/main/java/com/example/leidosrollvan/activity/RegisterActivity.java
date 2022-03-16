@@ -17,7 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.leidosrollvan.R;
+import com.example.leidosrollvan.activitymethods.BusinessNameMobileCheckMethods;
+import com.example.leidosrollvan.activitymethods.EmailCheckMethods;
+import com.example.leidosrollvan.activitymethods.PasswordCheckMethods;
 import com.example.leidosrollvan.dataClasses.User;
+import com.example.leidosrollvan.dataClassesForMethods.EmailPasswordResponseModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +39,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText editTextName, editTextEmail, editTextMobile, editTextPassword;
     private ProgressBar progressBar;
     private CircularProgressButton registerUser;
+
+    private EmailCheckMethods emailCheckClass = new EmailCheckMethods();
+    private PasswordCheckMethods passwordCheckClass = new PasswordCheckMethods();
+    private BusinessNameMobileCheckMethods nameMobileCheckClass = new BusinessNameMobileCheckMethods();
 
     private FirebaseAuth mAuth;
 
@@ -80,38 +88,31 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String mobile = editTextMobile.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        if(name.isEmpty()){
+        Boolean checkedName = nameMobileCheckClass.checkBusinessName(name);
+        Boolean checkedMobile = nameMobileCheckClass.checkBusinessMobile(mobile);
+        EmailPasswordResponseModel checkedEmail = emailCheckClass.checkEmail(email);
+        EmailPasswordResponseModel checkedPassword = passwordCheckClass.checkPassword(password);
+
+        if(checkedName){
             editTextName.setError("Name is Required!");
             editTextName.requestFocus();
             return;
         }
 
-        if(mobile.isEmpty()){
+        if(checkedMobile){
             editTextMobile.setError("Mobile Number is Required!");
             editTextMobile.requestFocus();
             return;
         }
 
-        if(email.isEmpty()){
-            editTextEmail.setError("Email is Required!");
+        if(!checkedEmail.getStatus()){
+            editTextEmail.setError(checkedEmail.getMessage());
             editTextEmail.requestFocus();
             return;
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmail.setError("Please provide valid email!");
-            editTextEmail.requestFocus();
-            return;
-        }
-
-        if(password.isEmpty()){
-            editTextPassword.setError("Password is Required!");
-            editTextPassword.requestFocus();
-            return;
-        }
-
-        if(password.length() < 6){
-            editTextPassword.setError("Minimum password length should be 6 characters");
+        if(!checkedPassword.getStatus()){
+            editTextPassword.setError(checkedPassword.getMessage());
             editTextPassword.requestFocus();
             return;
         }
