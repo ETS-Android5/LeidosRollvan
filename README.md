@@ -1,4 +1,4 @@
-# Leidos Rollvan - Android App ![CI Status](https://stgit.dcs.gla.ac.uk/team-project-h/2021/cs26/cs26-main/badges/master/pipeline.svg)
+# Leidos Rollvan - Android App 
 
 <img src="/readme/food-truck-svgrepo-com.svg" align="left"
 width="200" hspace="10" vspace="10">
