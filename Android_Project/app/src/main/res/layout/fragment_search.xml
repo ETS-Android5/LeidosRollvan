@@ -57,7 +57,7 @@
                         android:id="@+id/btn1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/pizza"
+                        android:background="@drawable/vegan_food"
                         android:clickable="true"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -78,7 +78,6 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
-                    android:layout_marginLeft="30dp"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
 
@@ -134,7 +133,6 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
-                    android:layout_marginLeft="30dp"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
 
@@ -190,7 +188,6 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
-                    android:layout_marginLeft="30dp"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
 
